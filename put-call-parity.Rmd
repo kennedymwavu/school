@@ -1,0 +1,176 @@
+---
+title: "AMC Entertainment Holdings Inc Options Price"
+output: pdf_document
+header-includes:
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \usepackage[normalem]{ulem}
+- \usepackage{makecell}
+- \usepackage{xcolor}
+---
+
+\section*{Group Members}
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)
+library(quantmod)
+library(ggpubr)
+library(kableExtra)
+
+
+members <- tibble(
+  Name = c(
+    "Joy Kanyi", 
+    "Kennedy Mwavu", 
+    "Nelvine Anyango", 
+    "Rachael Kanini"
+  ), 
+  
+  `Registration Number` = c(
+    "I07/", 
+    "I07/0807/2018", 
+    "I07/", 
+    "I07/"
+  )
+)
+
+kbl(
+  members, 
+  booktabs = TRUE, 
+  row.names = TRUE
+) |> 
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+
+\section*{Q1: Get Options Data}
+
+We used options data from NYSE's AMC Entertainment Holdings Inc with expiration date March 04 2022.
+```{r warning=FALSE, message=FALSE, include=FALSE}
+# ----data----
+# Read in the data:
+calls <- read_csv(file = "calls.csv")
+puts <- read_csv(file = "puts.csv")
+
+market_prices <- calls |> 
+  inner_join(puts, by = "Strike", suffix = c("_call", "_put")) |> 
+  transmute(
+    Strike = Strike, 
+    Call = (Bid_call + Ask_call) / 2, 
+    Put = (Bid_put + Ask_put) / 2
+  )
+
+market_prices_long <- market_prices |> 
+  pivot_longer(
+    cols = c(Call, Put), 
+    names_to = "option", 
+    values_to = "market_price"
+  )
+
+# Linear regression model:
+fit1 <- lm(Call ~ Put + Strike, data = market_prices)
+
+# error residuals:
+error <- fit1$residuals
+```
+
+```{r echo=FALSE}
+first_few <- head(market_prices, n = 20) |> 
+  rename(
+    Strike = Strike
+  )
+
+kbl(
+  first_few, 
+  booktabs = TRUE, 
+  caption = "Sample of a few rows of the cleaned data"
+) |> 
+  add_header_above(
+    header = c(" " = 1, "Market Price" = 2)
+  ) |> 
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+\newpage
+
+\section*{Q2: Plot Put and Call Options Vs Strike Price}
+```{r echo = FALSE, fig.align='center'}
+p1 <- market_prices_long |> 
+  ggplot(
+    mapping = aes(x = Strike, y = market_price, color = option)
+  ) + 
+  geom_point() + 
+  # add intersection:
+  # geom_vline(xintercept = fit1$coefficients[[1]]) + 
+  scale_color_manual(
+    values = c("blue", "red"), 
+    name = "Market Price"
+  ) + 
+  ggtitle(label = "AMC Options Price") + 
+  ylab(label = "Payoff") + 
+  xlab(label = "Strike Price") + 
+  theme_bw() + 
+  theme(
+    plot.title = element_text(hjust = 0.5)
+  )
+p1
+
+```
+
+\section*{Q3: Fit a Multiple Linear Regression Model and Estimate All Parameters}
+
+Results of the model are as follows:
+```{r echo=FALSE}
+summary(fit1)
+```
+
+The estimated parameters are:
+
+- $\beta_0 = 17.641607$
+- $\beta_1 = 0.996657$
+- $\beta_2 = -1.001114$
+
+
+### Check If Assumption Of Normality Over Residuals Is Valid
+#### A graphical analysis of the residuals:
+- A histogram of the residuals shows that most of the residuals are clustered around $0$ (which is their mean theoretically) but there are some clustered around $-0.13$. Chances are the errors may not be normally distributed.
+```{r echo=FALSE, warning=FALSE, fig.align='center', fig.height=3, fig.width=5}
+gghistogram(
+  error, fill = "lightblue", color = "blue", alpha = 0.7
+)
+```
+
+- A density plot of the residuals looks more of bimodal distribution:
+```{r echo=FALSE, fig.align='center', fig.height=3, fig.width=5}
+ggdensity(
+  error, fill = "lightblue", color = "blue", alpha = 0.7
+)
+```
+
+- A qqplot of the residuals shows that majority of the points don't fall along the reference line, so we cannot assume normality:
+```{r echo=FALSE, fig.align='center', fig.height=3, fig.width=5}
+ggqqplot(error, color = "blue", alpha = 0.7)
+```
+
+### Formal Test For Normality
+
+\vspace{2mm}
+
+We used the `Shapiro-Wilk Test` for normality:
+
+```{r echo=FALSE}
+shapiro.test(error)
+```
+
+`p-value < 0.05` implying that the distribution of the errors is 
+significantly different from the normal distribution, hence we cannot 
+assume normality.
+
