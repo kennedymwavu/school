@@ -1,5 +1,9 @@
 ---
-title: "AMC Entertainment Holdings Inc Options Price"
+title: | 
+  |
+  | PUT-CALL PARITY RELATIONSHIP
+  | 
+  | Case Study: AMC Entertainment Holdings INC.
 output: pdf_document
 header-includes:
 - \usepackage{booktabs}
@@ -16,6 +20,10 @@ header-includes:
 - \usepackage[normalem]{ulem}
 - \usepackage{makecell}
 - \usepackage{xcolor}
+- \usepackage{titling}
+- \pretitle{\begin{center}
+  \includegraphics{UoN_Logo.png}\LARGE\\}
+- \posttitle{\end{center}}
 ---
 
 \section*{Group Members}
