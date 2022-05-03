@@ -98,3 +98,51 @@ mp_hist <- industry_long |>
     lwd = 1
   ) + 
   theme_classic()
+
+# ----qqplots----
+# From the descriptive stats and now from the histograms, 
+# we can affirm that the data is positively skewed.
+
+# This implies the need to use continuous distributions that 
+# are +vely skewed to fit the data
+
+mc_qqplot <- industry_long |> 
+  dplyr::filter(`Class Name` == "motor_commercial") |> 
+  ggqqplot(
+    x = "Amount", 
+    title = "Motor Commercial", 
+    size = 0.8
+  )
+
+mp_qqplot <- industry_long |> 
+  dplyr::filter(`Class Name` == "motor_private") |> 
+  ggqqplot(
+    x = "Amount", 
+    title = "Motor Private", 
+    size = 0.8
+  )
+
+# We used the cube root function to transform the data and 
+# make the claim sizes become closer to normally distributed
+
+# transform data:
+industry_long_trans <- industry_long
+industry_long_trans$Amount <- industry_long_trans$Amount ^ (1 / 3)
+
+# qqplots of transformed data:
+mc_trans_qqplot <- industry_long_trans |> 
+  dplyr::filter(`Class Name` == "motor_commercial") |> 
+  ggqqplot(
+    x = "Amount", 
+    title = "Motor Commercial", 
+    size = 0.8
+  )
+
+mp_trans_qqplot <- industry_long_trans |> 
+  dplyr::filter(`Class Name` == "motor_private") |> 
+  ggqqplot(
+    x = "Amount", 
+    title = "Motor Private", 
+    size = 0.8
+  )
+
