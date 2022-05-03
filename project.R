@@ -61,3 +61,40 @@ desc_stats <- desc_stats |>
   dplyr::relocate(Stat)
 
 # ----hist----
+mc_hist <- industry_long |> 
+  dplyr::filter(`Class Name` == "motor_commercial") |> 
+  ggplot(
+    aes(x = Amount)
+  ) + 
+  geom_histogram(
+    mapping = aes(y = ..density..), 
+    color = "green", 
+    fill = "lightgreen"
+  ) + 
+  ylab(label = "Density") + 
+  xlab("Claim Size") + 
+  ggtitle(label = "Motor Commercial") + 
+  geom_density(
+    color = "firebrick", 
+    lwd = 1
+  ) + 
+  theme_classic()
+
+mp_hist <- industry_long |> 
+  dplyr::filter(`Class Name` == "motor_private") |> 
+  ggplot(
+    aes(x = Amount)
+  ) + 
+  geom_histogram(
+    mapping = aes(y = ..density..), 
+    color = "blue", 
+    fill = "lightblue"
+  ) + 
+  ylab(label = "Density") + 
+  xlab("Claim Size") + 
+  ggtitle(label = "Motor Private") + 
+  geom_density(
+    color = "firebrick", 
+    lwd = 1
+  ) + 
+  theme_classic()
