@@ -1,7 +1,7 @@
 ---
 title: | 
   |
-  | PUT-CALL PARITY RELATIONSHIP
+  | **PUT-CALL PARITY RELATIONSHIP**
   | 
   | Case Study: AMC Entertainment Holdings INC.
 output: pdf_document
@@ -20,48 +20,78 @@ header-includes:
 - \usepackage[normalem]{ulem}
 - \usepackage{makecell}
 - \usepackage{xcolor}
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
 - \usepackage{titling}
 - \pretitle{\begin{center}
-  \includegraphics{UoN_Logo.png}\LARGE\\}
+  \includegraphics[width=3in,height=3in]{UoN_Logo.png}\LARGE\\}
 - \posttitle{\end{center}}
 ---
 
-\section*{Group Members}
+\Large
+
+\vspace{5mm}
+
+\begin{center}
+\textbf{\large {Group Members:}}
+
+\begin{tabular}{ c l l } 
+ \hline
+ \\[-1em]
+  & Name & Registration Number \\
+  \\[-1em]
+ \hline
+ \\
+ 1. & Nelvine Anyango & I07/0811/2018 \\
+ \\
+ 2. & Joy Kanyi & I07/132677/2018 \\
+ \\
+ 3. & Kennedy Mwavu & I07/0807/2018 \\
+ \\
+ 4. & Rachael Kanini & I07/0878/2018 \\
+ \hline
+\end{tabular}
+\end{center}
 ```{r warning=FALSE, message=FALSE, echo=FALSE}
 library(tidyverse)
 library(quantmod)
 library(ggpubr)
 library(kableExtra)
-
-
-members <- tibble(
-  Name = c(
-    "Joy Kanyi", 
-    "Kennedy Mwavu", 
-    "Nelvine Anyango", 
-    "Rachael Kanini"
-  ), 
-  
-  `Registration Number` = c(
-    "I07/", 
-    "I07/0807/2018", 
-    "I07/", 
-    "I07/"
-  )
-)
-
-kbl(
-  members, 
-  booktabs = TRUE, 
-  row.names = TRUE
-) |> 
-  kable_styling(latex_options = c("striped", "hold_position"))
 ```
 
+\newpage
 
-\section*{Q1: Get Options Data}
+\section{INTRODUCTION}
+Put-call parity shows the relationship that has to exist between European put and call options that have the same underlying asset, expiration, and strike prices.
 
-We used options data from NYSE's AMC Entertainment Holdings Inc with expiration date March 04 2022.
+This concept says the price of a call option implies a certain fair price for the corresponding put option with the same strike price and expiration and vice versa.
+
+If the put-call parity is violated, then arbitrage opportunities arise.
+You can determine the put-call party by using the formula:
+$$C + PV(x) = P + S$$
+where:
+
+- $C$ = price of the European call option
+- $PV(x)$ = the present value of the strike price (x), discounted from the value on the expiration date at the risk-free rate 
+- $P$ = price of the European put option
+- $S$ = the current market value of the underlying asset
+
+A strike price is a set price at which a derivative contract can be bought or sold when it is exercised. For call options, the strike price is where the security can be bought by the option holder; for put options, the strike price is the price at which the security can be sold.
+The price difference between the underlying stock price and the strike price determines an option's value.
+
+For buyers of a call option, if the strike price is above the underlying stock price, the option is out of the money (OTM). In this case, the option doesn't have intrinsic value, but it may still have value based on volatility and time until expiration as either of these two factors could put the option in the money in the future.
+Conversely, If the underlying stock price is above the strike price, the option will have intrinsic value and be in the money.
+
+Our focus on this report will be to analyze the put and call options data and make extensive and reliable conclusions on the put-call parity relationship. 
+
+\newpage
+
+\section{METHODOLOGY}
+For the purposes of this study, which is correlational, we took a look at the options data from NYSE’s AMC Entertainment Holdings Inc. with expiration date March 04 2022 in order to make adequate conclusions on the put-call parity relationship.
+
+The secondary data acquired from NYSE’s stock options market was then analyzed using R programming language and the findings were recorded.
+Below is a sample of the options data, which forms the basis of our analysis.
+
 ```{r warning=FALSE, message=FALSE, include=FALSE}
 # ----data----
 # Read in the data:
@@ -109,7 +139,22 @@ kbl(
 
 \newpage
 
-\section*{Q2: Plot Put and Call Options Vs Strike Price}
+\section{DATA ANALYSIS}
+
+\textbf{Summary Statistics Of Calls and Puts}
+```{r}
+summary(market_prices$Call)
+```
+
+```{r}
+summary(market_prices$Put)
+```
+
+Calls seem to generally have a lower mean than puts. The same trend is seen across the median and $1^{st}$ and $3^{rd}$ quartiles.
+
+\vspace{3mm}
+
+\textbf{Plot Put and Call Options Vs Strike Price}
 ```{r echo = FALSE, fig.align='center'}
 p1 <- market_prices_long |> 
   ggplot(
@@ -133,7 +178,19 @@ p1
 
 ```
 
-\section*{Q3: Fit a Multiple Linear Regression Model and Estimate All Parameters}
+\vspace{3mm}
+
+\textbf{Salient features in the graph}
+
+- The call option market price is a decreasing exponential function while the put option market price is an increasing exponential function.
+
+- The call and put options market price graphs intersect, this implies that the put and call options of AMC under the same expiration date, have the same strike price.
+
+- The put market price shoots up whereas call market price plummets at the expiration date.
+
+\vspace{3mm}
+
+\textbf{Fit a Multiple Linear Regression Model and Estimate All Parameters}
 
 Results of the model are as follows:
 ```{r echo=FALSE}
@@ -147,8 +204,10 @@ The estimated parameters are:
 - $\beta_2 = -1.001114$
 
 
-### Check If Assumption Of Normality Over Residuals Is Valid
-#### A graphical analysis of the residuals:
+\section*{Check If Assumption Of Normality Over Residuals Is Valid}
+
+\textbf{A graphical analysis of the residuals:}
+
 - A histogram of the residuals shows that most of the residuals are clustered around $0$ (which is their mean theoretically) but there are some clustered around $-0.13$. Chances are the errors may not be normally distributed.
 ```{r echo=FALSE, warning=FALSE, fig.align='center', fig.height=3, fig.width=5}
 gghistogram(
@@ -168,9 +227,7 @@ ggdensity(
 ggqqplot(error, color = "blue", alpha = 0.7)
 ```
 
-### Formal Test For Normality
-
-\vspace{2mm}
+\textbf{Formal Test For Normality}
 
 We used the `Shapiro-Wilk Test` for normality:
 
@@ -181,4 +238,37 @@ shapiro.test(error)
 `p-value < 0.05` implying that the distribution of the errors is 
 significantly different from the normal distribution, hence we cannot 
 assume normality.
+
+\vspace{3mm}
+
+\textbf{Does the options data support the put-call parity relation?}
+
+The options data do in fact support the put-call parity relation as shown by the graph since;
+$$
+C_T - P_T = S_T - K
+$$
+where: $C_T = max(S_T - K, 0)$ & $P_T = max(K - S_T, 0)$.
+$K$ is the strike price and $S_T$ the current share price.
+
+\vspace{3mm}
+
+\textbf{Plot the difference of put and call price against the strike price}
+
+```{r echo=FALSE, fig.align='center', fig.height=3, fig.width=5}
+difference <- market_prices |> 
+  mutate(
+    Difference = Call - Put
+  )
+
+difference |> 
+  ggplot(mapping = aes(x = Strike, y = Difference)) + 
+  geom_point(color = "blue") + 
+  ylab(label = "Difference (Call - Put)") + 
+  xlab(label = "Strike Price") + 
+  theme_bw()
+```
+
+The difference of the call and put options against strike price has a linear relationship. For the options prices of the same underlying assets, as the call option prices rise, the put option prices tend to go down, the call options illustrate a constant loss below the strike price to a break-even point beyond where the profits start locking in. 
+
+For the put options, maximum profits is seen when stock prices are below the strike prices but slopes down at the break-even point which equal to that of the call options, where the line slopes down implying losses therefore, the difference of the two nullifies the profits and losses below the strike price and the difference of the values from the break-even point constantly rises resulting to a straight line with a constant gradient. 
 
