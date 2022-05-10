@@ -2,6 +2,7 @@ library(readxl)
 library(tidyverse)
 library(moments)
 library(ggpubr)
+library(actuar)
 library(fitdistrplus)
 
 industry <- readxl::read_xlsx(
@@ -151,63 +152,94 @@ mp_trans_qqplot <- industry_long_trans %>%
   )
 
 # ----fit distrs----
-# fitting distributions to the data
-
-#Extract positive values for fitting models, x > 0
-# positive_data <- industry_long_trans$Amount[industry_long_trans$Amount > 0] %>% 
-#   na.omit()
-
+# Extract positive values for fitting models, x > 0, and remove 
+# missing values:
 industry_long_trans <- industry_long_trans |> 
   dplyr::filter(Amount > 0, !is.na(Amount))
 
-# motor commercial data:
-mc <- industry_long_trans |> 
-  dplyr::filter(`Class Name` %in% "motor_commercial") |> 
-  dplyr::pull(Amount)
+# positive data:
+positive_data <- industry_long_trans |> 
+  dplyr::filter(Amount > 0, !is.na(Amount)) |> 
+  dplyr::group_by(`Class Name`) |> 
+  dplyr::mutate(indices = 1:n()) |> 
+  dplyr::ungroup() |> 
+  tidyr::pivot_wider(
+    id_cols = indices, 
+    names_from = `Class Name`, 
+    values_from = Amount
+  ) |> 
+  dplyr::select(-indices)
 
-# motor private data:
-mp <- industry_long_trans |> 
-  dplyr::filter(`Class Name` %in% "motor_private") |> 
-  dplyr::pull(Amount)
+# |- exp----
+exp_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "exp"
+  )
+)
 
+exp_gof <-purrr::map(.x = exp_model, .f = gofstat)
+# extract K-S, A-D, AIC, BIC of the model
 
-# positive_data <- c(positive_data) #make it a vector
-# positive_data
+# |- gamma----
+gamma_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "gamma"
+  )
+)
 
-# Fit models
-# (i) Exponential model, x > 0
-exp_model <- fitdist(positive_data, "exp")
-exp_model$estimate       #parameter estimate
-exp_model$sd    #standard error of parameter
-exp_model$loglik    #log likelihood estimate
-gofstat(exp_model) #extract K-S, A-D, AIC, BIC of the model
+gamma_gof <- purrr::map(
+  .x = gamma_model, 
+  .f = gofstat
+)
 
+# |- lognormal----
+lnorm_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "lnorm"
+  )
+)
 
-# (ii) Gamma model, x > 0
-gamma_model <- fitdist(positive_data, "gamma")
-gamma_model$estimate       #parameters estimates
-gamma_model$sd    #standard error of estimates
-gamma_model$loglik    #log likelihood estimate
-gofstat(gamma_model) #extract K-S, A-D, AIC, BIC of the model
+lnorm_gof <- purrr::map(
+  .x = lnorm_model, 
+  .f = gofstat
+)
 
-# (iii) Lognormal model, x > 0
-lognormal_model <- fitdist(positive_data, "lnorm")
-lognormal_model$estimate       #parameters estimates
-lognormal_model$sd    #standard error of estimates
-lognormal_model$loglik    #log likelihood estimate
-gofstat(lognormal_model) #extract K-S, A-D, AIC, BIC of the model
+# |- weibull----
+weibull_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "weibull"
+  )
+)
 
-# (iv) Weibull model, x > 0
-weibull_model <- fitdist(positive_data, "weibull")
-weibull_model$estimate       #parameters estimates
-weibull_model$sd    #standard error of estimates
-weibull_model$loglik    #log likelihood estimate
-gofstat(weibull_model) #extract K-S, A-D, AIC, BIC of the model
+weibull_gof <- purrr::map(
+  .x = weibull_model, 
+  .f = gofstat
+)
 
-# (v) Pareto model, x > 0
-par_data <- c(scale(positive_data))
-pareto_model <- fitdist(par_data, "pareto", lower = c(0, 0), start = list(location = 1, shape = 1))
-pareto_model$estimate       #parameters estimates
-pareto_model$sd    #standard error of estimates
-pareto_model$loglik    #log likelihood estimate
-gofstat(pareto_model) #extract K-S, A-D, AIC, BIC of the model
+# |- pareto----
+
+# !!! NOT working: error code 100 !!!
+# scale_data <- function(x) {
+#   (x - min(x) + 0.01) / (max(x) - min(x) + 0.02)
+# }
+# 
+# pareto_model <- purrr::map(
+#   .x = positive_data,
+#   .f = ~ fitdist(
+#     data = na.omit(.x) |> as.vector() |> scale_data(),
+#     distr = "pareto"
+#   )
+# )
+# 
+# pareto_gof <- purrr::map(
+#   .x = pareto_model, 
+#   .f = gofstat
+# )
