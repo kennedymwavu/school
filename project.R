@@ -127,8 +127,11 @@ mp_qqplot <- industry_long %>%
 # make the claim sizes become closer to normally distributed
 
 # transform data:
-industry_long_trans <- industry_long
-industry_long_trans$Amount <- industry_long_trans$Amount ^ (1 / 3)
+industry_long_trans <- industry_long |> 
+  dplyr::mutate(
+    Amount = Amount ^ (1 / 3)
+  )
+
 
 # qqplots of transformed data:
 mc_trans_qqplot <- industry_long_trans %>% 
@@ -147,13 +150,29 @@ mp_trans_qqplot <- industry_long_trans %>%
     size = 0.8
   )
 
+# ----fit distrs----
 # fitting distributions to the data
 
 #Extract positive values for fitting models, x > 0
-positive_data <- industry_long_trans$Amount[industry_long_trans$Amount > 0] %>% 
-  na.omit()
-positive_data <- c(positive_data) #make it a vector
-positive_data
+# positive_data <- industry_long_trans$Amount[industry_long_trans$Amount > 0] %>% 
+#   na.omit()
+
+industry_long_trans <- industry_long_trans |> 
+  dplyr::filter(Amount > 0, !is.na(Amount))
+
+# motor commercial data:
+mc <- industry_long_trans |> 
+  dplyr::filter(`Class Name` %in% "motor_commercial") |> 
+  dplyr::pull(Amount)
+
+# motor private data:
+mp <- industry_long_trans |> 
+  dplyr::filter(`Class Name` %in% "motor_private") |> 
+  dplyr::pull(Amount)
+
+
+# positive_data <- c(positive_data) #make it a vector
+# positive_data
 
 # Fit models
 # (i) Exponential model, x > 0
