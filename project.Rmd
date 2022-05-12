@@ -1,3 +1,14 @@
+---
+title: "Loss Distributions For Motor Insurance Claim Severity In Kenya"
+output: pdf_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
 library(readxl)
 library(tidyverse)
 library(moments)
@@ -62,7 +73,27 @@ rownames(desc_stats) <- NULL
 # make stat the first column:
 desc_stats <- desc_stats %>% 
   dplyr::relocate(Stat)
+```
 
+## Descriptive Statistics
+
+Where does this appear? 
+
+```{r echo=FALSE}
+desc_stats |> 
+  kbl(
+  digits = 2, 
+  booktabs = TRUE, 
+  caption = "Incurred claims descriptive statistics 2016-2020:"
+) |> 
+  kable_styling(
+    latex_options = c("striped", "hold_position")
+  )
+```
+
+### Histograms
+
+```{r echo=FALSE}
 # ----hist----
 mc_hist <- industry_long %>%
   dplyr::filter(`Class Name` == "motor_commercial") %>% 
@@ -102,13 +133,16 @@ mp_hist <- industry_long %>%
   ) + 
   theme_classic()
 
-# ----qqplots----
-# From the descriptive stats and now from the histograms, 
-# we can affirm that the data is positively skewed.
+```
 
-# This implies the need to use continuous distributions that 
-# are +vely skewed to fit the data
+```{r, echo=FALSE, message=FALSE, fig.show="hold", out.width="50%"}
+mc_hist
+mp_hist
+```
 
+## QQ-Plots
+
+```{r include=FALSE}
 mc_qqplot <- industry_long %>%
   dplyr::filter(`Class Name` == "motor_commercial") %>% 
   ggqqplot(
@@ -124,10 +158,16 @@ mp_qqplot <- industry_long %>%
     title = "Motor Private", 
     size = 0.8
   )
+```
 
-# We used the cube root function to transform the data and 
-# make the claim sizes become closer to normally distributed
+```{r, echo=FALSE, message=FALSE, fig.show="hold", out.width="50%"}
+mc_qqplot
+mp_qqplot
+```
 
+## QQ-Plots For Transformed Data
+
+```{r include=FALSE, message=FALSE, warning=FALSE}
 # transform data:
 industry_long_trans <- industry_long |> 
   dplyr::mutate(
@@ -151,96 +191,10 @@ mp_trans_qqplot <- industry_long_trans %>%
     title = "Motor Private", 
     size = 0.8
   )
+```
 
-# ----fit distrs----
-# Extract positive values for fitting models, x > 0, and remove 
-# missing values:
-industry_long_trans <- industry_long_trans |> 
-  dplyr::filter(Amount > 0, !is.na(Amount))
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.show="hold", out.width="50%"}
+mc_trans_qqplot
+mp_trans_qqplot
+```
 
-# positive data:
-positive_data <- industry_long_trans |> 
-  dplyr::filter(Amount > 0, !is.na(Amount)) |> 
-  dplyr::group_by(`Class Name`) |> 
-  dplyr::mutate(indices = 1:n()) |> 
-  dplyr::ungroup() |> 
-  tidyr::pivot_wider(
-    id_cols = indices, 
-    names_from = `Class Name`, 
-    values_from = Amount
-  ) |> 
-  dplyr::select(-indices)
-
-# |- exp----
-exp_model <- purrr::map(
-  .x = positive_data, 
-  .f = ~ fitdist(
-    data = na.omit(.x) |> as.vector(), 
-    distr = "exp"
-  )
-)
-
-exp_gof <-purrr::map(.x = exp_model, .f = gofstat)
-# extract K-S, A-D, AIC, BIC of the model
-
-# |- gamma----
-gamma_model <- purrr::map(
-  .x = positive_data, 
-  .f = ~ fitdist(
-    data = na.omit(.x) |> as.vector(), 
-    distr = "gamma"
-  )
-)
-
-gamma_gof <- purrr::map(
-  .x = gamma_model, 
-  .f = gofstat
-)
-
-# |- lognormal----
-lnorm_model <- purrr::map(
-  .x = positive_data, 
-  .f = ~ fitdist(
-    data = na.omit(.x) |> as.vector(), 
-    distr = "lnorm"
-  )
-)
-
-lnorm_gof <- purrr::map(
-  .x = lnorm_model, 
-  .f = gofstat
-)
-
-# |- weibull----
-weibull_model <- purrr::map(
-  .x = positive_data, 
-  .f = ~ fitdist(
-    data = na.omit(.x) |> as.vector(), 
-    distr = "weibull"
-  )
-)
-
-weibull_gof <- purrr::map(
-  .x = weibull_model, 
-  .f = gofstat
-)
-
-# |- pareto----
-
-# !!! NOT working: error code 100 !!!
-# scale_data <- function(x) {
-#   (x - min(x) + 0.01) / (max(x) - min(x) + 0.02)
-# }
-# 
-# pareto_model <- purrr::map(
-#   .x = positive_data,
-#   .f = ~ fitdist(
-#     data = na.omit(.x) |> as.vector() |> scale_data(),
-#     distr = "pareto"
-#   )
-# )
-# 
-# pareto_gof <- purrr::map(
-#   .x = pareto_model, 
-#   .f = gofstat
-# )
