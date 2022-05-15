@@ -1,14 +1,51 @@
 ---
-title: "Loss Distributions For Motor Insurance Claim Severity In Kenya"
+title: |
+  |
+  | **Loss Distributions For Motor Insurance Claim Severity**
+  |
+  | Case Study: Kenya
 output: pdf_document
-date: "`r Sys.Date()`"
+header-includes:
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \usepackage{titling}
+- \pretitle{\begin{center}
+  \includegraphics[width=3in,height=3in]{uon-logo.png}\LARGE\\}
+- \posttitle{\end{center}}
 ---
+
+\Large
+
+\vspace{5mm}
+
+\begin{center}
+\textbf{\large {Group Members:}}
+
+\begin{tabular}{ c l l } 
+ \hline
+ \\[-1em]
+  & Name & Registration Number \\
+  \\[-1em]
+ \hline
+ \\
+ 1. & Lillian Ayoo & I07/0817/2018 \\
+ \\
+ 2. & Nelvine Anyango & I07/0811/2018 \\
+ \\
+ 3. & Joy Kanyi & I07/132677/2018 \\
+ \\
+ 4. & Kennedy Mwavu & I07/0807/2018 \\
+ \\
+ 5. & Rachael Kanini & I07/0878/2018 \\
+ \hline
+\end{tabular}
+\end{center}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, include=FALSE}
+```{r, include=FALSE, message=FALSE, warning=FALSE}
 library(readxl)
 library(tidyverse)
 library(moments)
@@ -16,6 +53,7 @@ library(ggpubr)
 library(actuar)
 library(fitdistrplus)
 library(kableExtra)
+library(glue)
 
 industry <- readxl::read_xlsx(
   path = "data/insurance_industry_stats_2016-2020.xlsx", 
@@ -73,27 +111,7 @@ rownames(desc_stats) <- NULL
 # make stat the first column:
 desc_stats <- desc_stats %>% 
   dplyr::relocate(Stat)
-```
 
-## Descriptive Statistics
-
-Where does this appear? 
-
-```{r echo=FALSE}
-desc_stats |> 
-  kbl(
-  digits = 2, 
-  booktabs = TRUE, 
-  caption = "Incurred claims descriptive statistics 2016-2020:"
-) |> 
-  kable_styling(
-    latex_options = c("striped", "hold_position")
-  )
-```
-
-### Histograms
-
-```{r echo=FALSE}
 # ----hist----
 mc_hist <- industry_long %>%
   dplyr::filter(`Class Name` == "motor_commercial") %>% 
@@ -133,16 +151,13 @@ mp_hist <- industry_long %>%
   ) + 
   theme_classic()
 
-```
+# ----qqplots----
+# From the descriptive stats and now from the histograms, 
+# we can affirm that the data is positively skewed.
 
-```{r, echo=FALSE, message=FALSE, fig.show="hold", out.width="50%"}
-mc_hist
-mp_hist
-```
+# This implies the need to use continuous distributions that 
+# are +vely skewed to fit the data
 
-## QQ-Plots
-
-```{r include=FALSE}
 mc_qqplot <- industry_long %>%
   dplyr::filter(`Class Name` == "motor_commercial") %>% 
   ggqqplot(
@@ -158,16 +173,10 @@ mp_qqplot <- industry_long %>%
     title = "Motor Private", 
     size = 0.8
   )
-```
 
-```{r, echo=FALSE, message=FALSE, fig.show="hold", out.width="50%"}
-mc_qqplot
-mp_qqplot
-```
+# We used the cube root function to transform the data and 
+# make the claim sizes become closer to normally distributed
 
-## QQ-Plots For Transformed Data
-
-```{r include=FALSE, message=FALSE, warning=FALSE}
 # transform data:
 industry_long_trans <- industry_long |> 
   dplyr::mutate(
@@ -191,10 +200,291 @@ mp_trans_qqplot <- industry_long_trans %>%
     title = "Motor Private", 
     size = 0.8
   )
+
+# ----fit distrs----
+# Extract positive values for fitting models, x > 0, and remove 
+# missing values:
+industry_long_trans <- industry_long_trans |> 
+  dplyr::filter(Amount > 0, !is.na(Amount))
+
+# positive data:
+positive_data <- industry_long_trans |> 
+  dplyr::filter(Amount > 0, !is.na(Amount)) |> 
+  dplyr::group_by(`Class Name`) |> 
+  dplyr::mutate(indices = 1:n()) |> 
+  dplyr::ungroup() |> 
+  tidyr::pivot_wider(
+    id_cols = indices, 
+    names_from = `Class Name`, 
+    values_from = Amount
+  ) |> 
+  dplyr::select(-indices)
+
+# |- exp----
+exp_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "exp"
+  )
+)
+
+exp_gof <- purrr::map(.x = exp_model, .f = gofstat)
+# extract K-S, A-D, AIC, BIC of the model
+
+# exp model data.frame:
+exp_model_df <- exp_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Exponential", 
+      Parameter = c("Rate", "Std. Error", "LLF")
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(.x$estimate, .x$sd, .x$loglik)
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
+
+# |- gamma----
+gamma_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "gamma"
+  )
+)
+
+gamma_gof <- purrr::map(
+  .x = gamma_model, 
+  .f = gofstat
+)
+
+gamma_model_df <- gamma_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Gamma", 
+      Parameter = c(
+        "Shape", "Shape Std. Error", "Rate", "Rate Std. Error", "LLF"
+      )
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(
+          .x$estimate[["shape"]], .x$sd[["shape"]], 
+          .x$estimate[["rate"]], .x$sd[["rate"]], 
+          .x$loglik
+        )
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
+
+# |- lognormal----
+lnorm_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "lnorm"
+  )
+)
+
+lnorm_gof <- purrr::map(
+  .x = lnorm_model, 
+  .f = gofstat
+)
+
+lnorm_model_df <- lnorm_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Log Normal", 
+      Parameter = c(
+        "Mean Log", "Mean Log Std. Error", "SD Log", "SD Log Std. Error", "LLF"
+      )
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(
+          .x$estimate[["meanlog"]], .x$sd[["meanlog"]], 
+          .x$estimate[["sdlog"]], .x$sd[["sdlog"]], 
+          .x$loglik
+        )
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
+
+# |- weibull----
+weibull_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "weibull"
+  )
+)
+
+weibull_gof <- purrr::map(
+  .x = weibull_model, 
+  .f = gofstat
+)
+
+weibull_model_df <- weibull_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Weibull", 
+      Parameter = c(
+        "Mean Log", "Mean Log Std. Error", "SD Log", "SD Log Std. Error", "LLF"
+      )
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(
+          .x$estimate[["shape"]], .x$sd[["shape"]], 
+          .x$estimate[["scale"]], .x$sd[["scale"]], 
+          .x$loglik
+        )
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
+
+# |- pareto----
+
+# !!! NOT working: error code 100 !!!
+# scale_data <- function(x) {
+#   (x - min(x) + 0.01) / (max(x) - min(x) + 0.02)
+# }
+# 
+# pareto_model <- purrr::map(
+#   .x = positive_data,
+#   .f = ~ fitdist(
+#     data = na.omit(.x) |> as.vector() |> scale_data(),
+#     distr = "pareto"
+#   )
+# )
+# 
+# pareto_gof <- purrr::map(
+#   .x = pareto_model, 
+#   .f = gofstat
+# )
+
+# ----distrs-df----
+distrs_df <- dplyr::bind_rows(
+  exp_model_df, 
+  gamma_model_df, 
+  lnorm_model_df, 
+  weibull_model_df
+)
+
+
 ```
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.show="hold", out.width="50%"}
+\newpage 
+
+# Data Analysis
+
+## Introduction
+
+The motor insurance claim severity data used was obtained from the annual reports of [Insurance Regulatory Authority](https://www.ira.go.ke/). The data was from $2016 - 2020$ and contained $37$ insurance companies, all licensed and regulated by `IRA`. Incurred claims for both motor commercial and motor private classes were analyzed side by side to obtain suitable models for each category. All the analysis was done using the [R Programming Language](https://www.r-project.org/).
+
+## Descriptive Statistics
+
+Getting a summarised overview of the data was critical in discovering patterns, especially on skewness.
+
+```{r echo=FALSE}
+desc_stats |> 
+  kbl(
+  digits = 2, 
+  booktabs = TRUE, 
+  linesep = "\\addlinespace", 
+  caption = "Descriptive statistics for incurred claims (2016-2020)"
+) |> 
+  kable_styling(
+    latex_options = c("striped", "hold_position"), 
+    font_size = 11
+  )
+```
+
+It is clearly evident that incurred claims data for both classes of motor insurance are positively skewed, with motor private having a higher mean than motor commercial.
+
+The next step was to get a visual representation of the distribution of the data.
+
+```{r, original-histograms, echo=FALSE, message=FALSE, fig.show="hold", out.width="50%", out.height="80%", fig.cap="Histograms of original datasets"}
+mc_hist
+mp_hist
+```
+
+From the histograms we can affirm that the data from both classes is not only skewed to the right, but also long-tailed. This gives a good hint of the kind of distributions most appropriate to model the data.
+
+The Normal QQ-plots in Figure \ref{fig:original-qqplots} show that the datasets don't match the normal standard distribution.
+
+```{r, original-qqplots, fig.cap="Normal QQ-plots of original data", echo=FALSE, message=FALSE, fig.show="hold", out.width="50%"}
+mc_qqplot
+mp_qqplot
+```
+
+This is a good indication that after fitting the distributions, non-parametric tests would be applied as opposed to parametric tests. 
+
+To make it simpler to work with, we transformed the data using the cube root function. QQ-Plots of the transformed data are shown in Figure \ref{fig:transformed-qq-plots}.
+
+```{r, transformed-qq-plots, echo=FALSE, warning=FALSE, message=FALSE, fig.show="hold", out.width="50%", fig.cap="QQ-Plots of transformed data"}
 mc_trans_qqplot
 mp_trans_qqplot
 ```
+
+The cube root transformed data seemed to be more suitable for fitting the distributions compared to the original data.
+
+## Parameter Estimation
+
+We used the Maximum Likelihood Estimation (`MLE`) method to obtain the various fitted distributions. Consequently, the most appropriate distribution is the one with the highest log-likelihood function (`LLF`).
+
+```{r fitted-distributions-table, echo=FALSE}
+distrs_df |> 
+  dplyr::rename(
+    `Motor Commercial` = motor_commercial, 
+    `Motor Private` = motor_private
+  ) |> 
+  dplyr::group_by(Distribution) |> 
+  kbl(
+  digits = 2, 
+  booktabs = TRUE, 
+  linesep = "\\addlinespace", 
+  caption = "Estimated Parameters For Fitted Distributions"
+) |> 
+  collapse_rows(
+    columns = 1, valign = "top", latex_hline = "major"
+  ) |> 
+  kable_styling(
+    latex_options = c("striped", "hold_position"), 
+    font_size = 9
+  )
+```
+
+Under the motor commercial class, Weibull distribution has the highest log-likelihood function ($-798.55$), followed by the Gamma distribution ($-800.47$), then Log-Normal ($-810.28$) and finally Exponential distribution ($-901.93$).
+
+For motor private, Gamma distribution has the highest LLF ($-794.92$) followed closely by Weibull ($-795.27$), then Log-Normal ($-801.37$) and finally the Exponential distribution ($-920.29$).
+
+From the LLF values, the Weibull distribution is the most appropriate for the motor commercial class and the Gamma distribution for motor private.
+
+
+## Goodness-Of-Fit Test
+
+Typically, measures of goodness-of-fit summarize the discrepancy between observed values and the values expected under the model in question.
+
+Two non-parametric tests were performed:
+
+- Kolmogorov-Smirnov (K-S) test
+
+- Anderson-Darling (A-D) test
+
+Those two were used to determine the appropriateness of the fitted distributions to the incurred claims data.
 
