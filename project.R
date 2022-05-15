@@ -5,6 +5,7 @@ library(ggpubr)
 library(actuar)
 library(fitdistrplus)
 library(kableExtra)
+library(glue)
 
 industry <- readxl::read_xlsx(
   path = "data/insurance_industry_stats_2016-2020.xlsx", 
@@ -180,8 +181,25 @@ exp_model <- purrr::map(
   )
 )
 
-exp_gof <-purrr::map(.x = exp_model, .f = gofstat)
+exp_gof <- purrr::map(.x = exp_model, .f = gofstat)
 # extract K-S, A-D, AIC, BIC of the model
+
+# exp model data.frame:
+exp_model_df <- exp_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Exponential", 
+      Parameter = c("Rate", "Std. Error", "LLF")
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(.x$estimate, .x$sd, .x$loglik)
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
 
 # |- gamma----
 gamma_model <- purrr::map(
@@ -197,6 +215,28 @@ gamma_gof <- purrr::map(
   .f = gofstat
 )
 
+gamma_model_df <- gamma_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Gamma", 
+      Parameter = c(
+        "Shape", "Shape Std. Error", "Rate", "Rate Std. Error", "LLF"
+      )
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(
+          .x$estimate[["shape"]], .x$sd[["shape"]], 
+          .x$estimate[["rate"]], .x$sd[["rate"]], 
+          .x$loglik
+        )
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
+
 # |- lognormal----
 lnorm_model <- purrr::map(
   .x = positive_data, 
@@ -211,6 +251,28 @@ lnorm_gof <- purrr::map(
   .f = gofstat
 )
 
+lnorm_model_df <- lnorm_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Log Normal", 
+      Parameter = c(
+        "Mean Log", "Mean Log Std. Error", "SD Log", "SD Log Std. Error", "LLF"
+      )
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(
+          .x$estimate[["meanlog"]], .x$sd[["meanlog"]], 
+          .x$estimate[["sdlog"]], .x$sd[["sdlog"]], 
+          .x$loglik
+        )
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
+
 # |- weibull----
 weibull_model <- purrr::map(
   .x = positive_data, 
@@ -224,6 +286,28 @@ weibull_gof <- purrr::map(
   .x = weibull_model, 
   .f = gofstat
 )
+
+weibull_model_df <- weibull_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Weibull", 
+      Parameter = c(
+        "Mean Log", "Mean Log Std. Error", "SD Log", "SD Log Std. Error", "LLF"
+      )
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(
+          .x$estimate[["shape"]], .x$sd[["shape"]], 
+          .x$estimate[["scale"]], .x$sd[["scale"]], 
+          .x$loglik
+        )
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
 
 # |- pareto----
 
@@ -244,3 +328,11 @@ weibull_gof <- purrr::map(
 #   .x = pareto_model, 
 #   .f = gofstat
 # )
+
+# ----distrs-df----
+distrs_df <- dplyr::bind_rows(
+  exp_model_df, 
+  gamma_model_df, 
+  lnorm_model_df, 
+  weibull_model_df
+)
