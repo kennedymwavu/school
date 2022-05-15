@@ -201,6 +201,64 @@ exp_model_df <- exp_model |>
     }
   )
 
+
+#' Goodness-Of-Fit data.frame
+#'
+#' @param distr_gof object of class "gofstat.fitdist"
+#' @param distr_name name of the distribution
+#'
+#' @return a data.frame obj
+#' @export
+#'
+gof_df <- function(distr_gof, distr_name) {
+  distr_gof |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      `Test Statistic` = c("K-S", "A-D"), 
+      Distribution = distr_name
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(.x$ks, .x$ad)
+      )
+  ) |> 
+    Reduce(
+      f = function(...) {
+        dplyr::full_join(..., by = c("Test Statistic", "Distribution"))
+      }
+    )
+}
+
+#' Information Criterion
+#' 
+#' AIC and BIC values.
+#' 
+#' @param distr_gof object of class "gofstat.fitdist"
+#' @param distr_name name of the distribution
+#'
+#' @return a data.frame obj
+#' @export
+#'
+aic_bic_df <- function(distr_gof, distr_name) {
+  distr_gof |> 
+    purrr::imap(
+      .f = ~ tibble::tibble(
+        `Information Criterion` = c("AIC", "BIC"), 
+        Distribution = distr_name
+      ) |> 
+        dplyr::mutate(
+          "{.y}" := c(.x$aic, .x$bic)
+        )
+    ) |> 
+    Reduce(
+      f = function(...) {
+        dplyr::full_join(..., by = c("Information Criterion", "Distribution"))
+      }
+    )
+}
+
+
+exp_gof_df <- gof_df(distr_gof = exp_gof, distr_name = "Exponential")
+  
 # |- gamma----
 gamma_model <- purrr::map(
   .x = positive_data, 
@@ -236,6 +294,8 @@ gamma_model_df <- gamma_model |>
       dplyr::full_join(..., by = c("Distribution", "Parameter"))
     }
   )
+
+gamma_gof_df <- gof_df(distr_gof = gamma_gof, distr_name = "Gamma")
 
 # |- lognormal----
 lnorm_model <- purrr::map(
@@ -273,6 +333,8 @@ lnorm_model_df <- lnorm_model |>
     }
   )
 
+lnorm_gof_df <- gof_df(distr_gof = lnorm_gof, distr_name = "Log Normal")
+
 # |- weibull----
 weibull_model <- purrr::map(
   .x = positive_data, 
@@ -309,6 +371,8 @@ weibull_model_df <- weibull_model |>
     }
   )
 
+weibull_gof_df <- gof_df(distr_gof = weibull_gof, distr_name = "Weibull")
+
 # |- pareto----
 
 # !!! NOT working: error code 100 !!!
@@ -336,3 +400,25 @@ distrs_df <- dplyr::bind_rows(
   lnorm_model_df, 
   weibull_model_df
 )
+
+# ----distrs-gof-df----
+distrs_gof_df <- dplyr::bind_rows(
+  exp_gof_df, 
+  gamma_gof_df, 
+  lnorm_gof_df, 
+  weibull_gof_df
+) |> 
+  dplyr::arrange(
+    dplyr::desc(`Test Statistic`)
+  )
+
+# ----aic-bic-df----
+info_df <- dplyr::bind_rows(
+  aic_bic_df(distr_gof = exp_gof, distr_name = "Exponential"), 
+  aic_bic_df(distr_gof = gamma_gof, distr_name = "Gamma"), 
+  aic_bic_df(distr_gof = lnorm_gof, distr_name = "Log Normal"), 
+  aic_bic_df(distr_gof = weibull_gof, distr_name = "Weibull")
+) |> 
+  dplyr::arrange(
+    `Information Criterion`
+  )

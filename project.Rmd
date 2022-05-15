@@ -249,6 +249,64 @@ exp_model_df <- exp_model |>
     }
   )
 
+
+#' Goodness-Of-Fit data.frame
+#'
+#' @param distr_gof object of class "gofstat.fitdist"
+#' @param distr_name name of the distribution
+#'
+#' @return a data.frame obj
+#' @export
+#'
+gof_df <- function(distr_gof, distr_name) {
+  distr_gof |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      `Test Statistic` = c("K-S", "A-D"), 
+      Distribution = distr_name
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(.x$ks, .x$ad)
+      )
+  ) |> 
+    Reduce(
+      f = function(...) {
+        dplyr::full_join(..., by = c("Test Statistic", "Distribution"))
+      }
+    )
+}
+
+#' Information Criterion
+#' 
+#' AIC and BIC values.
+#' 
+#' @param distr_gof object of class "gofstat.fitdist"
+#' @param distr_name name of the distribution
+#'
+#' @return a data.frame obj
+#' @export
+#'
+aic_bic_df <- function(distr_gof, distr_name) {
+  distr_gof |> 
+    purrr::imap(
+      .f = ~ tibble::tibble(
+        `Information Criterion` = c("AIC", "BIC"), 
+        Distribution = distr_name
+      ) |> 
+        dplyr::mutate(
+          "{.y}" := c(.x$aic, .x$bic)
+        )
+    ) |> 
+    Reduce(
+      f = function(...) {
+        dplyr::full_join(..., by = c("Information Criterion", "Distribution"))
+      }
+    )
+}
+
+
+exp_gof_df <- gof_df(distr_gof = exp_gof, distr_name = "Exponential")
+  
 # |- gamma----
 gamma_model <- purrr::map(
   .x = positive_data, 
@@ -284,6 +342,8 @@ gamma_model_df <- gamma_model |>
       dplyr::full_join(..., by = c("Distribution", "Parameter"))
     }
   )
+
+gamma_gof_df <- gof_df(distr_gof = gamma_gof, distr_name = "Gamma")
 
 # |- lognormal----
 lnorm_model <- purrr::map(
@@ -321,6 +381,8 @@ lnorm_model_df <- lnorm_model |>
     }
   )
 
+lnorm_gof_df <- gof_df(distr_gof = lnorm_gof, distr_name = "Log Normal")
+
 # |- weibull----
 weibull_model <- purrr::map(
   .x = positive_data, 
@@ -357,6 +419,8 @@ weibull_model_df <- weibull_model |>
     }
   )
 
+weibull_gof_df <- gof_df(distr_gof = weibull_gof, distr_name = "Weibull")
+
 # |- pareto----
 
 # !!! NOT working: error code 100 !!!
@@ -385,6 +449,27 @@ distrs_df <- dplyr::bind_rows(
   weibull_model_df
 )
 
+# ----distrs-gof-df----
+distrs_gof_df <- dplyr::bind_rows(
+  exp_gof_df, 
+  gamma_gof_df, 
+  lnorm_gof_df, 
+  weibull_gof_df
+) |> 
+  dplyr::arrange(
+    dplyr::desc(`Test Statistic`)
+  )
+
+# ----aic-bic-df----
+info_df <- dplyr::bind_rows(
+  aic_bic_df(distr_gof = exp_gof, distr_name = "Exponential"), 
+  aic_bic_df(distr_gof = gamma_gof, distr_name = "Gamma"), 
+  aic_bic_df(distr_gof = lnorm_gof, distr_name = "Log Normal"), 
+  aic_bic_df(distr_gof = weibull_gof, distr_name = "Weibull")
+) |> 
+  dplyr::arrange(
+    `Information Criterion`
+  )
 
 ```
 
@@ -488,3 +573,88 @@ Two non-parametric tests were performed:
 
 Those two were used to determine the appropriateness of the fitted distributions to the incurred claims data.
 
+```{r ks-ad-stats, echo=FALSE}
+distrs_gof_df |> 
+  dplyr::rename(
+    `Motor Commercial` = motor_commercial, 
+    `Motor Private` = motor_private
+  ) |> 
+  dplyr::group_by(`Test Statistic`) |> 
+  kbl(
+  digits = 4, 
+  booktabs = TRUE, 
+  linesep = "\\addlinespace", 
+  caption = "K-S and A-D test statistic values for fitted distributions"
+) |> 
+  collapse_rows(
+    columns = 1, valign = "top", latex_hline = "major"
+  ) |> 
+  kable_styling(
+    latex_options = c("striped", "hold_position"), 
+    font_size = 10
+  )
+```
+
+To determine the most suitable continuous distribution for the incurred claims, we fish for smaller K-S and A-D test statistic values.
+
+For the motor commercial class, Weibull distribution had the smallest K-S statistic ($0.0655$), followed very closely by Gamma distribution ($0.0693$). But under the A-D statistic, Gamma ($0.6340$) beats Weibull ($0.8083$) by a considerable margin. The Gamma distribution would be the best fit for this class.
+
+As expected for the motor private class, the Gamma distribution has the least K-S statistic ($0.0395$) as well as A-D statistic ($0.2429$) which again makes it the most appropriate fit for this class.
+
+From the K-S and A-D tests, the Gamma distribution seems to be the best fit for both auto-insurance classes.
+
+## Information Criteria
+
+Two approaches were used here:
+
+- Akaike's Information Criteria (AIC)
+
+- Bayesian Information Criteria (BIC)
+
+Lower values for both AIC and BIC indicate a more appropriate distribution.
+
+```{r information-criterion, echo=FALSE}
+info_df |> 
+  dplyr::rename(
+    `Motor Commercial` = motor_commercial, 
+    `Motor Private` = motor_private
+  ) |> 
+  dplyr::group_by(`Information Criterion`) |> 
+  kbl(
+  digits = 2, 
+  booktabs = TRUE, 
+  linesep = "\\addlinespace", 
+  caption = "AIC and BIC values for fitted distributions"
+) |> 
+  collapse_rows(
+    columns = 1, valign = "top", latex_hline = "major"
+  ) |> 
+  kable_styling(
+    latex_options = c("striped", "hold_position"), 
+    font_size = 10
+  )
+```
+
+For the motor commercial class, Weibull had the lowest AIC and BIC values ($1601.10$, $1607.45$).
+
+For motor private, Gamma distribution had the minimum AIC and BIC values ($1593.83$, $1600.17$).
+
+From the AIC and BIC values, Weibull was the most appropriate distribution for motor commercial and Gamma for motor private. In both auto-insurance classes, the Exponential distribution seems to have the worst fit. 
+
+\newpage
+
+# Conclusion
+
+Our research entailed determining the statistical distribution that best fits claim severity of motor insurance in Kenya. It could then be used to predict future claim incurrence.
+
+After selecting a family of continuous, positively skewed distributions (Exponential, Gamma, Lognormal and Weibull), their parameters were estimated using the MLE method, K-S and A-D tests applied to test their goodness-of-fit, and finally AIC and BIC criterion used to determine the most appropriate distribution among the chosen ones.
+
+The most suitable distribution is the one with:
+
+- Maximum LLF
+
+- Minimum K-S and A-D test statistic values
+
+- Minimum AIC and BIC values
+
+According to our study, the Weibull distribution is the best fit for modelling claim severity in motor commercial class, while the Gamma distribution is best for the motor private class.
