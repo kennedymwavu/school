@@ -14,32 +14,6 @@ header-includes:
 - \posttitle{\end{center}}
 ---
 
-\Large
-
-\vspace{5mm}
-
-\begin{center}
-\textbf{\large {Group Members:}}
-
-\begin{tabular}{ c l l } 
- \hline
- \\[-1em]
-  & Name & Registration Number \\
-  \\[-1em]
- \hline
- \\
- 1. & Lillian Ayoo & I07/0817/2018 \\
- \\
- 2. & Nelvine Anyango & I07/0811/2018 \\
- \\
- 3. & Joy Kanyi & I07/132677/2018 \\
- \\
- 4. & Kennedy Mwavu & I07/0807/2018 \\
- \\
- 5. & Rachael Kanini & I07/0878/2018 \\
- \hline
-\end{tabular}
-\end{center}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -473,6 +447,34 @@ info_df <- dplyr::bind_rows(
 
 ```
 
+\Large
+
+\vspace{5mm}
+
+\begin{center}
+\textbf{\large {Group Members:}}
+
+\begin{tabular}{ c l l } 
+ \hline
+ \\[-1em]
+  & Name & Registration Number \\
+  \\[-1em]
+ \hline
+ \\
+ 1. & Lillian Ayoo & I07/0817/2018 \\
+ \\
+ 2. & Nelvine Anyango & I07/0811/2018 \\
+ \\
+ 3. & Joy Kanyi & I07/132677/2018 \\
+ \\
+ 4. & Kennedy Mwavu & I07/0807/2018 \\
+ \\
+ 5. & Rachael Kanini & I07/0878/2018 \\
+ \hline
+\end{tabular}
+\end{center}
+
+
 \newpage 
 
 # Data Analysis
@@ -658,3 +660,51 @@ The most suitable distribution is the one with:
 - Minimum AIC and BIC values
 
 According to our study, the Weibull distribution is the best fit for modelling claim severity in motor commercial class, while the Gamma distribution is best for the motor private class.
+
+\newpage
+
+# References
+
+[1]	Achieng, O.M. (2010). Actuarial Modeling for Insurance Claim Severity in Motor Comprehensive Policy Using Industrial Statistical Distributions. International Congress of Actuaries, Cape Town, Vol. 712. 7-12. 
+
+[2]	Ahmad, Z., Mahmoudi, E., Sanku, D. and Saima, K. K. (2020). Modeling Vehicle Insurance Loss Data Using a New Member of T-X Family of Distributions. Journal of Statistical Theory and Applications, 19, 133-147.
+
+[3]	Akaike, H. (1974). A New Look at Statistical Model Identification. IEEE Transactions on Automatic Control, 19, 716-723.
+
+[4]	Bahnemann, D. (2015). Distributions for Actuaries. CAS Monograph Series No. 2, Casualty Actuarial Society, Arlington.
+
+[5]	Boland, P. J. (2006). Statistical Methods in General Insurance. Unpublished M. Ed. Dissertation, National University of Ireland, Dublin.
+
+[6]	Boucher, J.P., Denuit, M. and Guillén, M. (2007). Risk Classification for Claim Counts: A Comparative Analysis of Various Zero-Inflated Mixed Poisson and Hurdle Models. North American Actuarial Journal, 11, 110-131.
+
+[7]	Burnecki, K., Misiorek, A. and Weron, R. (2010). Loss Distributions. Unpublished M. Ed. Dissertation, Wroclaw University of Technology, 50-370 Wroclaw, Poland. 
+
+[8]	Dodge, Y. (2008). The concise encyclopedia of statistics: With 247 tables. New York, NY: Springer.
+
+[9]	Dutta K. and Perry J., (2006). A Tale of Tails: An Empirical Analysis of Loss Distribution Models for Estimating Operational Risk Capital. Federal Reserve Bank of Boston, MA, USA. Working Papers, No. 06-13.
+
+[10]	Frees, W. E. and Valdez, E. A. (2012). Hierarchical Insurance Claims Modeling. Journal of the American Statistical Association, 103, 484, 1457-1469. 
+
+[11]	Hakim, A. R., Fithriani, I. and Novita M. (2021). Properties of Burr distribution and its application to heavy tailed survival time data. Journal of Physics: Conference Series, 1, 1, 6-8.
+
+[12]	Hesse, C., Ofosu, J. B. and Nortey, E. N. (2017). Introduction to Nonparametric Statistical Methods. Akrong Publications Ltd, Accra.
+
+[13]	Hogg R. V. and Klugman S. A. (1984). Loss Distributions. New York: John Wiley & Sons. 
+
+[14]	lgnatov, Z. G., Kaishev, V. K. and Krachunov, R. S. (2001). An improved finite time ruin probability formula and its Mathematica implementation. Journal of Insurance: Mathematics and Economics, 29, 3, 375-386.
+
+[15]	Mazviona, B. W., & Chiduza, T. (2013). The Use of Statistical Distributions to Model Claims in Motor Insurance. International Journal of Business, Economics and Law, 3, 1, 44-57. 
+
+[16] Merz, M. and Wüthrich, M. V. (2008). Modelling the Claims Development Result for Solvency Purposes. Casualty Actuarial Society E-Forum Fall 2008, 542-568. 
+
+[17]	Mihaela, D. and Jemna Dănuţ-Vasile (2015). Modeling the Frequency of Auto insurance claims by Means of Poisson and Negative Binomial models. Journal of Scientific Annals of Economics and Business of the "Alexandru Ioan Cuza" University of laşi, Romania, 62, 2, 151-168.
+
+[18]	Nduwayezu, F. (2016). Finding appropriate Loss Distributions to insurance data: Case study of Kenya (2010-2014) Unpublished M. Ed. Dissertation, Strathmore University, Nairobi, Kenya.
+
+[19]	Omari, C., Nyambura, S. and Mwangi, J. (2018). Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions. Journal of Mathematical Finance, 8, 137-160.
+
+[20]	Packova, V., and Brebera, D. (2015). Loss Distribution in Insurance Risk Management. Proceedings of the International Conference on Economics and Statistics (ES 2015). Vienna, Austria, March 15-17, 2015, 17-22.
+
+[21] 	Selvakumar, V., Satpathi, D. K., Praveen Kumar, P. T. V. and Haragopal, V. V. (2022). Modeling of Motor Insurance Extreme Claims through Appropriate Statistical Distributions. Unpublished M. Ed. Dissertation, Birla Institute of Technology and Science – Pilani, Hyderabad, India. 
+
+[22]	 Vaughan, E. J. (1997). Risk Management. New York: John Wiley.
