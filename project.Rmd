@@ -4,7 +4,9 @@ title: |
   | **Loss Distributions For Motor Insurance Claim Severity**
   |
   | Case Study: Kenya
-output: pdf_document
+output: 
+  pdf_document:
+    number_sections: true
 header-includes:
 - \usepackage{fancyhdr}
 - \pagestyle{fancy}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.2.27)  19 MAY 2022 00:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.2.27)  19 MAY 2022 00:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -768,18 +768,18 @@ l.1459
 l.1514 \newpage
                ] [31] [32] [33] (./project.aux)
 Package rerunfilecheck Info: File `project.out' has not changed.
-(rerunfilecheck)             Checksum: A1CD2BA5C6AD90E1129B950F3F807B93;6325.
+(rerunfilecheck)             Checksum: F872A88976665AE38D5BD7DDEE0FDDE3;6518.
  ) 
 Here is how much of TeX's memory you used:
  13626 strings out of 480236
- 214566 string characters out of 5895697
- 508685 words of memory out of 5000000
+ 214910 string characters out of 5895697
+ 508994 words of memory out of 5000000
  31147 multiletter control sequences out of 15000+600000
  550796 words of font info for 100 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,14n,63p,512b,531s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,14n,63p,512b,532s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmro10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on project.pdf (33 pages, 467674 bytes).
+Output written on project.pdf (33 pages, 472383 bytes).
 PDF statistics:
  583 PDF objects out of 1000 (max. 8388607)
  495 compressed objects within 5 object streams
