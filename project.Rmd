@@ -14,6 +14,7 @@ header-includes:
 - \posttitle{\end{center}}
 - \usepackage{booktabs,tabularx,enumitem,ragged2e}
 - \usepackage{float}
+- \usepackage{amsmath}
 ---
 
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
@@ -659,9 +660,9 @@ The principle of maximum likelihood provides a means of choosing an asymptotical
 
 The exponential distribution is a continuous distribution that is usually used to model the time until the occurrence of an event of interest in the process. A continuous random variable, say X, is said to have an exponential distribution if its probability density function (pdf) is given by: 
 
-$$
+\begin{equation}
 f(x) = \lambda e^{-\lambda x}, \; x > 0
-$$
+\end{equation}
 
 Some people have used this distribution to model claim severity and some of their conclusions about it are discussed below:
 
@@ -675,15 +676,15 @@ Mazviona, B. W., & Ch.iduza, T (2013), also, rejected null hypothesis after usin
 
 Suppose $X$ represents the claim size, and $Y = \log(X)$ has a normal distribution, then $X$ is said to have a lognormal distribution. When $X$ has a lognormal distribution with parameters $\mu$ and $\sigma$ , then:
 
-$$
+\begin{equation}
 X \sim \log \, N(\mu, \sigma^2)
-$$
+\end{equation}
 
 The pdf of the lognormal distribution is given by: 
 
-$$
-f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{\log(x) - \mu}{\sigma} \right)^2}, \; for \; 0 < x < \infty
-$$
+\begin{equation}
+f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{\log(x) - \mu}{\sigma} \right)^2}, \; \text{for} \; 0 < x < \infty
+\end{equation}
 
 This distribution proves to be ideal in most cases because of its heavy-tailed and highly skewed nature. Achieng, O. M.  (2010), while modelling claim severity motor comprehensive data of First Assurance Company Limited Kenya (June 2006 – June 2007), concluded that the lognormal distribution had the smallest Akaike Information Criterion (AIC) value. Hence the lognormal distribution was found to be the best statistical distribution to model the claim amounts at 99% level of confidence.
 
@@ -697,9 +698,9 @@ A random variable, say $X$, has a gamma distribution with parameters $\alpha>0$ 
 
 Its probability density function is given by:
 
-$$
+\begin{equation}
 f(x) = \frac{\lambda ^ \alpha}{\Gamma(\alpha)} x ^ {\alpha - 1} e^{-\lambda x}, \; x > 0
-$$
+\end{equation}
 
 $\alpha$ is referred to as the shape parameter because it changes the shape of the graph while $\lambda$ is referred to as scale parameter since it affects the x scale of the graph.
 
@@ -713,15 +714,15 @@ Packova, V., & Brebera, D. (2015) used this distribution to model data obtained 
 
 Suppose the random variable say $X$ is the claim size and has the Pareto distribution with parameters $\alpha > 0$ and $\lambda > 0$; that is $X \sim Pa(\alpha, \lambda$. The distribution function is given by:
 
-$$
+\begin{equation}
 F(x) = 1 + \left( \frac{\lambda}{\lambda + x} \right)^\alpha, \; x > 0
-$$
+\end{equation}
 
 The pdf is given by:
 
-$$
+\begin{equation}
 f(x) = \frac{\alpha \lambda ^ \alpha}{(\alpha + x)^{\alpha + 1}}, \; x > 0
-$$
+\end{equation}
 
 Packova, V., & Brebera, D. (2015), modelled data from Czech insurance company for compulsory motor third-party liability insurance using Pareto distributions. This is because the distribution frequently models insurance losses required to obtain well-fitted tails. The study established that based on the tests carried out, for large claims, Pareto distribution is a good model.
 
@@ -735,9 +736,9 @@ This distribution is particularly useful in modelling left-truncated claim sever
 
 The continuous variable $X$ has Weibull distribution with parameters $c, \gamma$ and probability density function is given by:
 
-$$
+\begin{equation}
 f(x) = c \gamma x^{\gamma - 1} e^{-cx^\gamma}, \; x > 0
-$$
+\end{equation}
 
 The distribution function of the Weibull distribution is given by:
 
@@ -755,9 +756,9 @@ Achieng, O. M.  (2010) applied the Weibull distribution due to its heavy-tailed 
 
 The probability density function of Burr random variable $X$ is defined by:
 
-$$
-f(x) = \frac{\alpha \gamma \lambda ^ \alpha x^{\gamma - 1}}{(\lambda + x ^ \gamma)^{\alpha + 1}}, \; for \; \alpha, \lambda, \gamma, x > 0
-$$
+\begin{equation}
+f(x) = \frac{\alpha \gamma \lambda ^ \alpha x^{\gamma - 1}}{(\lambda + x ^ \gamma)^{\alpha + 1}}, \; \text{for} \; \alpha, \lambda, \gamma, x > 0
+\end{equation}
 
 The distribution function of Burr random variable $X$ is defined as:
 
@@ -824,7 +825,7 @@ A ^ 2 = -\frac{1}{n} \left( \sum_{i = 1} ^ n (2i - 1)(ln(z_i)) + ln(1 - z_{n + 1
 $$
 
 
-$where \; z_i = F_0(x_i;\theta), (i = 1, 2, ..., n)$
+$\text{where} \; z_i = F_0(x_i;\theta), (i = 1, 2, ..., n)$
 
 The null hypothesis is rejected beyond the limiting values of $A^2$ depending on the significance level based on the Anderson-Darling Test Table.
 
@@ -894,9 +895,9 @@ The first step that will be carried out on the data is to find its descriptive s
 
 The parameters of the chosen loss distribution in this study will be estimated using the Maximum Likelihood method. The most important stage in applying the method is that of writing down the likelihood:
 
-$$
+\begin{equation}
 L(\theta) = \prod_{i = 1}^n f(x_i; \theta)
-$$
+\end{equation}
 
 In most cases taking logs greatly simplifies the determination of the maximum likelihood estimator (MLE).
 
@@ -904,15 +905,15 @@ The following steps are used when determining a maximum likelihood estimate (MLE
 
 1. Specify the likelihood function for the available data. 
 
-$$
+\begin{equation}
 L(\theta) = \prod_{i = 1}^n f(x_i; \theta)
-$$
+\end{equation}
 
 2. Simplify the algebra using natural logs. 
 
-$$
+\begin{equation}
 I(\theta) = \log_L (\theta) = \sum_{i = 1}^n f(x_i; 0)
-$$
+\end{equation}
 
 3. Maximise the log-likelihood function by differentiating the log-likelihood function with respect to each of the unknown parameters and equating the resulting expression(s) to zero. 
 
@@ -924,90 +925,91 @@ $$
 
 The distribution function is given by:
 
-$$
+\begin{equation}
 F(x) = 1 - e ^ {-\lambda x}, \; x > 0
-$$
+\end{equation}
 
 The pdf is given by:
 
-$$
+\begin{equation}
 f(x) = \lambda e ^ {-\lambda x}, \; x > 0
-$$
+\end{equation}
 
 The mean and the variance are given by:
 
-$$
+\begin{equation}
 E(x) = \frac{1}{\lambda} \; \text{and} \; var(x) = \frac{1}{\lambda ^ 2}
-$$
+\end{equation}
 
 The likelihood function is given by: 
 
-$$
+\begin{equation}
 L = \prod_{i = 1} ^ n \lambda e ^ {-\lambda x} = \lambda ^ n e ^ {-\lambda \sum x_i} = \lambda ^ n e ^ {-\lambda n \bar{x}}
-$$
+\end{equation}
 
 where $\bar{x} = \frac{1}{n} \sum_{i = 1}^n x_i$
 
 It's log-likelihood function is:
 
-$$
+\begin{equation}
 \log L = n \log(\lambda) - \lambda n \bar{x}
-$$
+\end{equation}
 
 ### Gamma Distribution
 
 The probability density function of gamma distribution is given by:
 
-$$
+\begin{equation}
 f(x) = \frac{\lambda \alpha}{\Gamma(\alpha)} x ^ {\alpha - 1} e ^ {-\lambda x}, \; x > 0
-$$
+\end{equation}
 
 The mean and variance are given below:
 
-$$
+\begin{equation}
 E(x) = \frac{\alpha}{\lambda} \; \text{and} \; var(x) = \frac{\alpha}{\lambda ^ 2}
-$$
+\end{equation}
 
 ### Lognormal Distribution
 
 The probability density function is given by:
 
-$$
-f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{\log(x) - \mu}{\sigma} \right)^2}, \; for \; 0 < x < \infty
-$$
+\begin{equation}
+f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{\log(x) - \mu}{\sigma} \right)^2}, \; \text{for} \; 0 < x < \infty
+\end{equation}
 
 The mean and variance are given by: 
 
-$$
+\begin{equation}
 E(x) = e^{\mu + \frac{1}{2} \sigma^2} \; \text{and} \; var(x) = e^{2 \mu + \sigma ^ 2(e^{\sigma ^ 2 - 1})}
-$$
+\end{equation}
+
 $M$ and $\sigma ^ 2$ may be estimated using the log-transformed data hence easy to estimate the MLEs.
 
 We let $x_1, x_2, ..., x_n$  be the observed values and, therefore MLE is given by:
 
-$$
+\begin{equation}
 \bar{\mu} = \bar{y} = \frac{1}{n} \sum_{i = 1}^n x_i
-$$
+\end{equation}
 
 We also have $\hat{\sigma}^2 = s_y ^ 2$ where subscript $y$ is the sample variance computed on the y-values.
 
-$$
+\begin{equation}
 \hat{\sigma} ^ 2 = \frac{1}{\eta} \sum_{i = 1} ^ n \left( \bar{y_i} - y \right)^2 = \frac{1}{n} \sum_{i = 1} ^ n \left(ln (\hat{x}_i) - \mu \right) ^ 2
-$$
+\end{equation}
 
 ### Weibull Distribution
 
 The distribution function is given by:
 
-$$
+\begin{equation}
 F(x) = 1 - e^{-cx^\gamma}
-$$
+\end{equation}
 
 Its probability density function is given as:
 
-$$
-f(x) = c \gamma x ^ {\gamma - 1} e ^ {-cx^\gamma}, \; where \; x > 0
-$$
+\begin{equation}
+f(x) = c \gamma x ^ {\gamma - 1} e ^ {-cx^\gamma}, \; \text{where} \; x > 0
+\end{equation}
 
 When $c$ and $\gamma$ are unknown, it is not easy to apply the method of Maximum Likelihood.
 
@@ -1019,32 +1021,33 @@ Where $\gamma$ has a known value, Maximum Likelihood is now easy.
 
 The distribution function of Pareto distribution is given by:
 
-$$
+\begin{equation}
 F(x) = 1 - \left( \frac{\lambda}{\lambda + x} \right)^\alpha, \; x > 0
-$$
+\end{equation}
+
 The probability density function is given below: 
 
-$$
+\begin{equation}
 f(x) = \frac{\alpha \lambda ^ \alpha}{(\lambda + x) ^ {\alpha + 1}}, x > 0
-$$
+\end{equation}
 
 The mean and the variance are given by: 
 
-$$
+\begin{equation}
 E(x) = \frac{\lambda}{\alpha - 1}, \; (a > 1); \; \text{and} \; var(x) = \frac{\alpha \lambda ^ 2}{(\alpha - 1)^2{\alpha - 2}}, \; (\alpha > 0)
-$$
+\end{equation}
 
 The likelihood function is:
 
-$$
+\begin{equation}
 L = \prod_{i = 1}^n \frac{\alpha \lambda ^ \alpha}{x_i \alpha + 1}, \; 0 < \lambda \le \text{min}(x_i), \alpha > 0
-$$
+\end{equation}
 
 Its log-likelihood function is given by:
 
-$$
+\begin{equation}
 \log L = n \times \log(\alpha) + \alpha n \times \log(\lambda) - (\alpha + 1) \sum_{i = 1}^n \log(x_i)
-$$
+\end{equation}
 
 ## Goodness Of Fit Test
 
