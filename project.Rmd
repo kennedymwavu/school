@@ -482,6 +482,11 @@ info_df <- dplyr::bind_rows(
 
 \newpage
 
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
 # Acknowledgements
 
 We would love to appreciate our supervisors, Professor Patrick G.O. Weke and Dr. Carolyne Adhiambo Ogutu, for their tremendous support, practical advice and insightful comments that have been a guiding light in our research and writing of this project. Their professional expertise and vast knowledge in their respective fields has enabled us to successfully complete this project. 
