@@ -17,6 +17,7 @@ header-includes:
 - \usepackage{booktabs,tabularx,enumitem,ragged2e}
 - \usepackage{float}
 - \usepackage{amsmath}
+- \pagenumbering{gobble}
 ---
 
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
@@ -497,6 +498,8 @@ info_df <- dplyr::bind_rows(
 \end{center}
 
 \newpage
+
+\pagenumbering{arabic}
 
 \tableofcontents
 \listoffigures

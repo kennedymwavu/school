@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.2.27)  19 MAY 2022 01:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.2.27)  19 MAY 2022 01:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -494,31 +494,31 @@ File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 ) (./project.aux)
 \openout1 = `project.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 133.
-LaTeX Font Info:    ... okay on input line 133.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 134.
+LaTeX Font Info:    ... okay on input line 134.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 133.
+Package hyperref Info: Link coloring OFF on input line 134.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -528,9 +528,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count313
 )
-LaTeX Info: Redefining \ref on input line 133.
-LaTeX Info: Redefining \pageref on input line 133.
-LaTeX Info: Redefining \nameref on input line 133.
+LaTeX Info: Redefining \ref on input line 134.
+LaTeX Info: Redefining \pageref on input line 134.
+LaTeX Info: Redefining \nameref on input line 134.
 (./project.out) (./project.out)
 \@outlinefile=\write4
 \openout4 = `project.out'.
@@ -572,47 +572,47 @@ LaTeX Info: Redefining \nameref on input line 133.
 <uon-logo.png, id=172, 301.125pt x 150.5625pt>
 File: uon-logo.png Graphic file (type png)
 <use uon-logo.png>
-Package pdftex.def Info: uon-logo.png  used on input line 134.
+Package pdftex.def Info: uon-logo.png  used on input line 135.
 (pdftex.def)             Requested size: 216.81902pt x 108.4095pt.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 134.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 135.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 134.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 135.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 134.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 135.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 134.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 135.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 134.
+(Font)              <12> on input line 135.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 134.
+(Font)              <8> on input line 135.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 134.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 134.
+(Font)              <6> on input line 135.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 135.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 134.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 135.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 145.
+(Font)              <14.4> on input line 146.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 145.
+(Font)              <10> on input line 146.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 145.
+(Font)              <7> on input line 146.
 [1
 
-{/home/mwavu/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./uon-logo.png>] (./project.toc [2])
+{/home/mwavu/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./uon-logo.png>] (./project.toc [1])
 \tf@toc=\write5
 \openout5 = `project.toc'.
 
@@ -624,287 +624,287 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \tf@lot=\write7
 \openout7 = `project.lot'.
 
-[3] [4] [5] (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd)
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+[2] [3] [4] (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
 []\T1/lmr/m/n/10 Insurance costs should no-tice-ably drop when a driver reaches around 21 years
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
 []\T1/lmr/m/n/10 Points on your li-cense for speed-ing will re-sult in a higher pre-mium in the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
 []\T1/lmr/m/n/10 The make, model, age, se-cu-rity, value and size of your car all af-fect the price
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
 \T1/lmr/m/n/10 of your in-sur-ance i.e. sports cars are more likely to be in-volved in ac-ci-dents ^^U
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
 []\T1/lmr/m/n/10 Repairing pow-er-ful cars is go-ing to be a long and ex-pen-sive pro-cess, adding
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
 []\T1/lmr/m/n/10 Insurers have de-vel-oped sys-tems which re-ward/penalize pol-i-cy-hold-ers de-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
 \T1/lmr/m/n/10 pend-ing on the num-ber of claims they make in a year. This is known as
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
 \T1/lmr/m/n/10 a No-Claim Dis-count (NCD) or, as stated ear-lier, a Bonus Malus Sys-tem
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
 []\T1/lmr/m/n/10 Some in-sur-ance com-pa-nies will ask for the amount of miles driven in the pre-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 339--339
 \T1/lmr/m/n/10 vi-ous year as an in-di-ca-tor to gauge the level of risk they may be ex-posed to.
  []
 
-[6] [7pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+[5] [6pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.370 
-      ] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17]
+l.373 
+      ] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16]
 
-LaTeX Warning: Command \textellipsis invalid in math mode on input line 828.
+LaTeX Warning: Command \textellipsis invalid in math mode on input line 831.
 
-[18]
+[17]
 
-LaTeX Warning: Command \textellipsis invalid in math mode on input line 878.
-
-
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 879.
+LaTeX Warning: Command \textellipsis invalid in math mode on input line 881.
 
 
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 879.
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 882.
 
 
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 879.
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 882.
 
 
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 879.
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 882.
 
 
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 879.
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 882.
 
 
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 879.
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 882.
 
-[19] [20] [21] [22] [23] [24] [25] [26] [27]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1294.
+
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 882.
+
+[18] [19] [20] [21] [22] [23] [24] [25] [26]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1297.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 1311.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 1314.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11> on input line 1311.
+(Font)              <11> on input line 1314.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.69997> on input line 1311.
+(Font)              <7.69997> on input line 1314.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.5> on input line 1311.
+(Font)              <5.5> on input line 1314.
 <project_files/figure-latex/original-histograms-1.pdf, id=442, 469.755pt x 325.215pt>
 File: project_files/figure-latex/original-histograms-1.pdf Graphic file (type pdf)
 <use project_files/figure-latex/original-histograms-1.pdf>
-Package pdftex.def Info: project_files/figure-latex/original-histograms-1.pdf  used on input line 1346.
+Package pdftex.def Info: project_files/figure-latex/original-histograms-1.pdf  used on input line 1349.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 <project_files/figure-latex/original-histograms-2.pdf, id=443, 469.755pt x 325.215pt>
 File: project_files/figure-latex/original-histograms-2.pdf Graphic file (type pdf)
 <use project_files/figure-latex/original-histograms-2.pdf>
-Package pdftex.def Info: project_files/figure-latex/original-histograms-2.pdf  used on input line 1346.
+Package pdftex.def Info: project_files/figure-latex/original-histograms-2.pdf  used on input line 1349.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 1346--1346
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 1349--1349
 [][] []
  []
 
-[28pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+[27pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1355 
+l.1358 
        ]
 <project_files/figure-latex/original-qqplots-1.pdf, id=453, 469.755pt x 325.215pt>
 File: project_files/figure-latex/original-qqplots-1.pdf Graphic file (type pdf)
 <use project_files/figure-latex/original-qqplots-1.pdf>
-Package pdftex.def Info: project_files/figure-latex/original-qqplots-1.pdf  used on input line 1357.
+Package pdftex.def Info: project_files/figure-latex/original-qqplots-1.pdf  used on input line 1360.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 <project_files/figure-latex/original-qqplots-2.pdf, id=454, 469.755pt x 325.215pt>
 File: project_files/figure-latex/original-qqplots-2.pdf Graphic file (type pdf)
 <use project_files/figure-latex/original-qqplots-2.pdf>
-Package pdftex.def Info: project_files/figure-latex/original-qqplots-2.pdf  used on input line 1357.
+Package pdftex.def Info: project_files/figure-latex/original-qqplots-2.pdf  used on input line 1360.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 1357--1357
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 1360--1360
 [][] []
  []
 
 <project_files/figure-latex/transformed-qq-plots-1.pdf, id=456, 469.755pt x 325.215pt>
 File: project_files/figure-latex/transformed-qq-plots-1.pdf Graphic file (type pdf)
 <use project_files/figure-latex/transformed-qq-plots-1.pdf>
-Package pdftex.def Info: project_files/figure-latex/transformed-qq-plots-1.pdf  used on input line 1368.
+Package pdftex.def Info: project_files/figure-latex/transformed-qq-plots-1.pdf  used on input line 1371.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 <project_files/figure-latex/transformed-qq-plots-2.pdf, id=457, 469.755pt x 325.215pt>
 File: project_files/figure-latex/transformed-qq-plots-2.pdf Graphic file (type pdf)
 <use project_files/figure-latex/transformed-qq-plots-2.pdf>
-Package pdftex.def Info: project_files/figure-latex/transformed-qq-plots-2.pdf  used on input line 1368.
+Package pdftex.def Info: project_files/figure-latex/transformed-qq-plots-2.pdf  used on input line 1371.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 1368--1368
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 1371--1371
 [][] []
  []
 
-[29pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
+[28pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1381 
+l.1384 
        pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1381 
+l.1384 
         <./project_files/figure-latex/original-histograms-1.pdf> <./project_files/figure-latex/original-histograms-2.pdf> <./project_files/figure-latex/original-qqplots-1.pdf> <./project_files/figure-latex/original-qqplots-2.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 1387.
-[30pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
+(Font)              <9> on input line 1390.
+[29pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1438 
+l.1441 
        pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1438 
-        <./project_files/figure-latex/transformed-qq-plots-1.pdf> <./project_files/figure-latex/transformed-qq-plots-2.pdf>] [31pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+l.1441 
+        <./project_files/figure-latex/transformed-qq-plots-1.pdf> <./project_files/figure-latex/transformed-qq-plots-2.pdf>] [30pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1504 
-       ] [32pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+l.1507 
+       ] [31pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1559 \newpage
-               ] [33] [34] [35]
+l.1562 \newpage
+               ] [32] [33] [34]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1702.
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 1704.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1705.
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 1707.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Underfull \vbox (badness 4072) detected at line 2130
+Underfull \vbox (badness 4072) detected at line 2133
+ []
+
+[35]
+Underfull \vbox (badness 10000) detected at line 2133
+ []
+
+
+Overfull \vbox (2.67296pt too high) detected at line 2133
  []
 
 [36]
-Underfull \vbox (badness 10000) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 
-Overfull \vbox (2.67296pt too high) detected at line 2130
+Overfull \vbox (2.67299pt too high) detected at line 2133
  []
 
 [37]
-Underfull \vbox (badness 10000) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 
-Overfull \vbox (2.67299pt too high) detected at line 2130
+Overfull \vbox (1.39629pt too high) detected at line 2133
  []
 
 [38]
-Underfull \vbox (badness 10000) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 
-Overfull \vbox (1.39629pt too high) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 [39]
-Underfull \vbox (badness 10000) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 
-Underfull \vbox (badness 10000) detected at line 2130
+Overfull \vbox (2.67296pt too high) detected at line 2133
  []
 
 [40]
-Underfull \vbox (badness 10000) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 
-Overfull \vbox (2.67296pt too high) detected at line 2130
+Overfull \vbox (2.67296pt too high) detected at line 2133
  []
 
 [41]
-Underfull \vbox (badness 10000) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 
-Overfull \vbox (2.67296pt too high) detected at line 2130
+Overfull \vbox (0.67294pt too high) detected at line 2133
  []
 
 [42]
-Underfull \vbox (badness 10000) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 
-Overfull \vbox (0.67294pt too high) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 [43]
-Underfull \vbox (badness 10000) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 
-Underfull \vbox (badness 10000) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 [44]
-Underfull \vbox (badness 10000) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 
-Underfull \vbox (badness 10000) detected at line 2130
+Overfull \vbox (2.67299pt too high) detected at line 2133
  []
 
 [45]
-Underfull \vbox (badness 10000) detected at line 2130
+Underfull \vbox (badness 10000) detected at line 2133
  []
 
 
-Overfull \vbox (2.67299pt too high) detected at line 2130
+Overfull \vbox (2.7701pt too high) detected at line 2133
  []
 
-[46]
-Underfull \vbox (badness 10000) detected at line 2130
- []
-
-
-Overfull \vbox (2.7701pt too high) detected at line 2130
- []
-
-[47] [48] (./project.aux)
+[46] [47] (./project.aux)
 Package rerunfilecheck Info: File `project.out' has not changed.
 (rerunfilecheck)             Checksum: 1A1E6E7C9E958BC78C438CFEF9E75C8B;6742.
  ) 
 Here is how much of TeX's memory you used:
- 14200 strings out of 480236
- 223917 string characters out of 5895697
- 560772 words of memory out of 5000000
- 31677 multiletter control sequences out of 15000+600000
+ 14201 strings out of 480236
+ 223926 string characters out of 5895697
+ 560780 words of memory out of 5000000
+ 31678 multiletter control sequences out of 15000+600000
  552046 words of font info for 104 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  60i,14n,63p,512b,532s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmro10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on project.pdf (48 pages, 554975 bytes).
+Output written on project.pdf (48 pages, 555127 bytes).
 PDF statistics:
  728 PDF objects out of 1000 (max. 8388607)
  617 compressed objects within 7 object streams
