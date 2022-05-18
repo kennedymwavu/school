@@ -10,12 +10,12 @@ library(glue)
 industry <- readxl::read_xlsx(
   path = "data/insurance_industry_stats_2016-2020.xlsx", 
   skip = 1
-) %>% 
+) |> 
   dplyr::select(
     `Class Name`, `2016`:`2020`
   )
 
-industry_long <- industry %>% 
+industry_long <- industry |> 
   tidyr::pivot_longer(
     cols = !`Class Name`, 
     names_to = "Year", 
@@ -29,8 +29,8 @@ se <- function(x) {
 }
 
 # descriptive stats:
-desc_stats <- industry_long %>% 
-  group_by(`Class Name`) %>%
+desc_stats <- industry_long |> 
+  group_by(`Class Name`) |>
   summarise(
     `No. Of Observations` = n(), 
     Mean = mean(Amount), 
@@ -42,13 +42,13 @@ desc_stats <- industry_long %>%
     Minimum = min(Amount), 
     Maximum = max(Amount), 
     Sum = sum(Amount)
-  ) %>% 
-  t() %>% 
+  ) |> 
+  t() |> 
   as.data.frame()
 
 # set column names:
-colnames(desc_stats) <- desc_stats[1, 1:2] %>% 
-  gsub(pattern = "_", replacement = " ") %>% 
+colnames(desc_stats) <- desc_stats[1, 1:2] |> 
+  gsub(pattern = "_", replacement = " ") |> 
   stringr::str_to_title()
 
 # remove first row:
@@ -61,12 +61,12 @@ desc_stats["Stat"] <- rownames(desc_stats)
 rownames(desc_stats) <- NULL
 
 # make stat the first column:
-desc_stats <- desc_stats %>% 
+desc_stats <- desc_stats |> 
   dplyr::relocate(Stat)
 
 # ----hist----
-mc_hist <- industry_long %>%
-  dplyr::filter(`Class Name` == "motor_commercial") %>% 
+mc_hist <- industry_long |>
+  dplyr::filter(`Class Name` == "motor_commercial") |> 
   ggplot(
     aes(x = Amount)
   ) + 
@@ -84,8 +84,8 @@ mc_hist <- industry_long %>%
   ) + 
   theme_classic()
 
-mp_hist <- industry_long %>%
-  dplyr::filter(`Class Name` == "motor_private") %>% 
+mp_hist <- industry_long |>
+  dplyr::filter(`Class Name` == "motor_private") |> 
   ggplot(
     aes(x = Amount)
   ) + 
@@ -110,16 +110,16 @@ mp_hist <- industry_long %>%
 # This implies the need to use continuous distributions that 
 # are +vely skewed to fit the data
 
-mc_qqplot <- industry_long %>%
-  dplyr::filter(`Class Name` == "motor_commercial") %>% 
+mc_qqplot <- industry_long |>
+  dplyr::filter(`Class Name` == "motor_commercial") |> 
   ggqqplot(
     x = "Amount", 
     title = "Motor Commercial", 
     size = 0.8
   )
 
-mp_qqplot <- industry_long %>%
-  dplyr::filter(`Class Name` == "motor_private") %>% 
+mp_qqplot <- industry_long |>
+  dplyr::filter(`Class Name` == "motor_private") |> 
   ggqqplot(
     x = "Amount", 
     title = "Motor Private", 
@@ -137,16 +137,16 @@ industry_long_trans <- industry_long |>
 
 
 # qqplots of transformed data:
-mc_trans_qqplot <- industry_long_trans %>% 
-  dplyr::filter(`Class Name` == "motor_commercial") %>% 
+mc_trans_qqplot <- industry_long_trans |> 
+  dplyr::filter(`Class Name` == "motor_commercial") |> 
   ggqqplot(
     x = "Amount", 
     title = "Motor Commercial", 
     size = 0.8
   )
 
-mp_trans_qqplot <- industry_long_trans %>% 
-  dplyr::filter(`Class Name` == "motor_private") %>% 
+mp_trans_qqplot <- industry_long_trans |> 
+  dplyr::filter(`Class Name` == "motor_private") |> 
   ggqqplot(
     x = "Amount", 
     title = "Motor Private", 
@@ -212,18 +212,20 @@ exp_model_df <- exp_model |>
 #'
 gof_df <- function(distr_gof, distr_name) {
   distr_gof |> 
-  purrr::imap(
-    .f = ~ tibble::tibble(
-      `Test Statistic` = c("K-S", "A-D"), 
-      Distribution = distr_name
+    purrr::imap(
+      .f = ~ tibble::tibble(
+        `Test Statistic` = c("K-S", "A-D"), 
+        Distribution = distr_name
+      ) |> 
+        dplyr::mutate(
+          "{.y}" := c(.x$ks, .x$ad)
+        )
     ) |> 
-      dplyr::mutate(
-        "{.y}" := c(.x$ks, .x$ad)
-      )
-  ) |> 
     Reduce(
       f = function(...) {
-        dplyr::full_join(..., by = c("Test Statistic", "Distribution"))
+        dplyr::full_join(
+          ..., by = c("Test Statistic", "Distribution")
+        )
       }
     )
 }
@@ -251,14 +253,18 @@ aic_bic_df <- function(distr_gof, distr_name) {
     ) |> 
     Reduce(
       f = function(...) {
-        dplyr::full_join(..., by = c("Information Criterion", "Distribution"))
+        dplyr::full_join(
+          ..., by = c("Information Criterion", "Distribution")
+        )
       }
     )
 }
 
 
-exp_gof_df <- gof_df(distr_gof = exp_gof, distr_name = "Exponential")
-  
+exp_gof_df <- gof_df(
+  distr_gof = exp_gof, distr_name = "Exponential"
+)
+
 # |- gamma----
 gamma_model <- purrr::map(
   .x = positive_data, 
@@ -278,7 +284,8 @@ gamma_model_df <- gamma_model |>
     .f = ~ tibble::tibble(
       Distribution = "Gamma", 
       Parameter = c(
-        "Shape", "Shape Std. Error", "Rate", "Rate Std. Error", "LLF"
+        "Shape", "Shape Std. Error", "Rate", 
+        "Rate Std. Error", "LLF"
       )
     ) |> 
       dplyr::mutate(
@@ -295,7 +302,9 @@ gamma_model_df <- gamma_model |>
     }
   )
 
-gamma_gof_df <- gof_df(distr_gof = gamma_gof, distr_name = "Gamma")
+gamma_gof_df <- gof_df(
+  distr_gof = gamma_gof, distr_name = "Gamma"
+)
 
 # |- lognormal----
 lnorm_model <- purrr::map(
@@ -316,7 +325,8 @@ lnorm_model_df <- lnorm_model |>
     .f = ~ tibble::tibble(
       Distribution = "Log Normal", 
       Parameter = c(
-        "Mean Log", "Mean Log Std. Error", "SD Log", "SD Log Std. Error", "LLF"
+        "Mean Log", "Mean Log Std. Error", "SD Log", 
+        "SD Log Std. Error", "LLF"
       )
     ) |> 
       dplyr::mutate(
@@ -333,7 +343,9 @@ lnorm_model_df <- lnorm_model |>
     }
   )
 
-lnorm_gof_df <- gof_df(distr_gof = lnorm_gof, distr_name = "Log Normal")
+lnorm_gof_df <- gof_df(
+  distr_gof = lnorm_gof, distr_name = "Log Normal"
+)
 
 # |- weibull----
 weibull_model <- purrr::map(
@@ -354,7 +366,8 @@ weibull_model_df <- weibull_model |>
     .f = ~ tibble::tibble(
       Distribution = "Weibull", 
       Parameter = c(
-        "Mean Log", "Mean Log Std. Error", "SD Log", "SD Log Std. Error", "LLF"
+        "Mean Log", "Mean Log Std. Error", "SD Log", 
+        "SD Log Std. Error", "LLF"
       )
     ) |> 
       dplyr::mutate(
@@ -371,7 +384,9 @@ weibull_model_df <- weibull_model |>
     }
   )
 
-weibull_gof_df <- gof_df(distr_gof = weibull_gof, distr_name = "Weibull")
+weibull_gof_df <- gof_df(
+  distr_gof = weibull_gof, distr_name = "Weibull"
+)
 
 # |- pareto----
 
