@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.2.27)  18 MAY 2022 23:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2022.2.27)  18 MAY 2022 23:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -554,7 +554,7 @@ LaTeX Info: Redefining \nameref on input line 92.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<uon-logo.png, id=172, 301.125pt x 150.5625pt>
+<uon-logo.png, id=168, 301.125pt x 150.5625pt>
 File: uon-logo.png Graphic file (type png)
 <use uon-logo.png>
 Package pdftex.def Info: uon-logo.png  used on input line 93.
@@ -678,111 +678,111 @@ LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 83
 LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 833.
 
 [17] [18] [19] [20] [21] [22] [23] [24] [25]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1247.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1244.
 (/home/mwavu/.TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 1264.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 1261.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11> on input line 1264.
+(Font)              <11> on input line 1261.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.69997> on input line 1264.
+(Font)              <7.69997> on input line 1261.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.5> on input line 1264.
-<project_files/figure-latex/original-histograms-1.pdf, id=345, 469.755pt x 325.215pt>
+(Font)              <5.5> on input line 1261.
+<project_files/figure-latex/original-histograms-1.pdf, id=340, 469.755pt x 325.215pt>
 File: project_files/figure-latex/original-histograms-1.pdf Graphic file (type pdf)
 <use project_files/figure-latex/original-histograms-1.pdf>
-Package pdftex.def Info: project_files/figure-latex/original-histograms-1.pdf  used on input line 1299.
+Package pdftex.def Info: project_files/figure-latex/original-histograms-1.pdf  used on input line 1296.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
-<project_files/figure-latex/original-histograms-2.pdf, id=346, 469.755pt x 325.215pt>
+<project_files/figure-latex/original-histograms-2.pdf, id=341, 469.755pt x 325.215pt>
 File: project_files/figure-latex/original-histograms-2.pdf Graphic file (type pdf)
 <use project_files/figure-latex/original-histograms-2.pdf>
-Package pdftex.def Info: project_files/figure-latex/original-histograms-2.pdf  used on input line 1299.
+Package pdftex.def Info: project_files/figure-latex/original-histograms-2.pdf  used on input line 1296.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 1299--1299
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 1296--1296
 [][] []
  []
 
 [26pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1308 
+l.1305 
        ]
-<project_files/figure-latex/original-qqplots-1.pdf, id=357, 469.755pt x 325.215pt>
+<project_files/figure-latex/original-qqplots-1.pdf, id=352, 469.755pt x 325.215pt>
 File: project_files/figure-latex/original-qqplots-1.pdf Graphic file (type pdf)
 <use project_files/figure-latex/original-qqplots-1.pdf>
-Package pdftex.def Info: project_files/figure-latex/original-qqplots-1.pdf  used on input line 1310.
+Package pdftex.def Info: project_files/figure-latex/original-qqplots-1.pdf  used on input line 1307.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
-<project_files/figure-latex/original-qqplots-2.pdf, id=358, 469.755pt x 325.215pt>
+<project_files/figure-latex/original-qqplots-2.pdf, id=353, 469.755pt x 325.215pt>
 File: project_files/figure-latex/original-qqplots-2.pdf Graphic file (type pdf)
 <use project_files/figure-latex/original-qqplots-2.pdf>
-Package pdftex.def Info: project_files/figure-latex/original-qqplots-2.pdf  used on input line 1310.
+Package pdftex.def Info: project_files/figure-latex/original-qqplots-2.pdf  used on input line 1307.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 1310--1310
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 1307--1307
 [][] []
  []
 
-<project_files/figure-latex/transformed-qq-plots-1.pdf, id=360, 469.755pt x 325.215pt>
+<project_files/figure-latex/transformed-qq-plots-1.pdf, id=355, 469.755pt x 325.215pt>
 File: project_files/figure-latex/transformed-qq-plots-1.pdf Graphic file (type pdf)
 <use project_files/figure-latex/transformed-qq-plots-1.pdf>
-Package pdftex.def Info: project_files/figure-latex/transformed-qq-plots-1.pdf  used on input line 1321.
+Package pdftex.def Info: project_files/figure-latex/transformed-qq-plots-1.pdf  used on input line 1318.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
-<project_files/figure-latex/transformed-qq-plots-2.pdf, id=361, 469.755pt x 325.215pt>
+<project_files/figure-latex/transformed-qq-plots-2.pdf, id=356, 469.755pt x 325.215pt>
 File: project_files/figure-latex/transformed-qq-plots-2.pdf Graphic file (type pdf)
 <use project_files/figure-latex/transformed-qq-plots-2.pdf>
-Package pdftex.def Info: project_files/figure-latex/transformed-qq-plots-2.pdf  used on input line 1321.
+Package pdftex.def Info: project_files/figure-latex/transformed-qq-plots-2.pdf  used on input line 1318.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 1321--1321
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 1318--1318
 [][] []
  []
 
 [27pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1334 
+l.1331 
        pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1334 
+l.1331 
         <./project_files/figure-latex/original-histograms-1.pdf> <./project_files/figure-latex/original-histograms-2.pdf> <./project_files/figure-latex/original-qqplots-1.pdf> <./project_files/figure-latex/original-qqplots-2.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 1340.
+(Font)              <9> on input line 1337.
 [28pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1391 
+l.1388 
        pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1391 
+l.1388 
         <./project_files/figure-latex/transformed-qq-plots-1.pdf> <./project_files/figure-latex/transformed-qq-plots-2.pdf>] [29pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1457 
+l.1454 
        ] [30pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1512 \newpage
+l.1509 \newpage
                ] [31] [32] [33] (./project.aux)
 Package rerunfilecheck Info: File `project.out' has not changed.
-(rerunfilecheck)             Checksum: DAF3B5FF07C7E399AE614FC35FBD92A9;6450.
+(rerunfilecheck)             Checksum: A1CD2BA5C6AD90E1129B950F3F807B93;6325.
  ) 
 Here is how much of TeX's memory you used:
- 13601 strings out of 480236
- 214254 string characters out of 5895697
- 508723 words of memory out of 5000000
- 31149 multiletter control sequences out of 15000+600000
+ 13597 strings out of 480236
+ 214198 string characters out of 5895697
+ 508685 words of memory out of 5000000
+ 31147 multiletter control sequences out of 15000+600000
  550796 words of font info for 100 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  60i,14n,63p,512b,531s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/home/mwavu/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmro10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></home/mwavu/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on project.pdf (33 pages, 464926 bytes).
+Output written on project.pdf (33 pages, 466890 bytes).
 PDF statistics:
- 554 PDF objects out of 1000 (max. 8388607)
- 466 compressed objects within 5 object streams
- 134 named destinations out of 1000 (max. 500000)
- 372 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 548 PDF objects out of 1000 (max. 8388607)
+ 460 compressed objects within 5 object streams
+ 132 named destinations out of 1000 (max. 500000)
+ 364 words of extra memory for PDF output out of 10000 (max. 10000000)
 

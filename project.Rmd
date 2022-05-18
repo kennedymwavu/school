@@ -673,16 +673,16 @@ Mazviona, B. W., & Ch.iduza, T (2013), also, rejected null hypothesis after usin
 
 ### Lognormal Distribution
 
-Suppose $X$ represents the claim size, and $Y = log(X)$ has a normal distribution, then $X$ is said to have a lognormal distribution. When $X$ has a lognormal distribution with parameters $\mu$ and $\sigma$ , then:
+Suppose $X$ represents the claim size, and $Y = \log(X)$ has a normal distribution, then $X$ is said to have a lognormal distribution. When $X$ has a lognormal distribution with parameters $\mu$ and $\sigma$ , then:
 
 $$
-X \sim log \, N(\mu, \sigma^2)
+X \sim \log \, N(\mu, \sigma^2)
 $$
 
 The pdf of the lognormal distribution is given by: 
 
 $$
-f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{log(x) - \mu}{\sigma} \right)^2}, \; for \; 0 < x < \infty
+f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{\log(x) - \mu}{\sigma} \right)^2}, \; for \; 0 < x < \infty
 $$
 
 This distribution proves to be ideal in most cases because of its heavy-tailed and highly skewed nature. Achieng, O. M.  (2010), while modelling claim severity motor comprehensive data of First Assurance Company Limited Kenya (June 2006 – June 2007), concluded that the lognormal distribution had the smallest Akaike Information Criterion (AIC) value. Hence the lognormal distribution was found to be the best statistical distribution to model the claim amounts at 99% level of confidence.
@@ -872,8 +872,6 @@ We will take the claim size as our variable of interest in the motor insurance i
 
 IRA provides annual reports on activities within the insurance industry by various insurance companies. These reports are available in Microsoft Excel Binary File Format, hence it’s easier to extract the relevant data from the report using Microsoft Excel and R. The data published in these reports is what we use as secondary data in our study.
 
-## Data Analysis
-
 Every insurer has a duty to price premiums profitably, and this can be guided if the insurer has a clue on which probability law better approximates the risk posed by the policyholders, Packova, V., & Brebera, D. (2015). This, according to researchers guide the insurer in making proper evaluations and predictions to avoid or minimize the potential losses. Unlike developed countries where auto insurers have robust pricing systems that capture policyholders’ claims, most Kenyan motor insurance firms use a pricing system that pays little attention to the importance of claims histories. However, drawing from the above literature, the danger posed by policyholders’ claims can never be undermined.
 
 Notwithstanding, the claims ratios from most market players in Kenya according to the Insurance Regulatory Authority (IRA) annual reports are below the internationally accepted standards. The claim ratio is calculated as the net claims incurred divided by the Net Earned Premiums. It is an influential ratio indicating the strength an insurer exercise in paying claims and to some extent, how well policyholders are treated. Aside from the market claims ratio, another influential indicator of probability is the total expense ratio i.e. management expense and commission expense. This ratio is determined as a percentage of the Net Earned Premium with an internationally accepted ratio usually less than 40%. As this ratio becomes larger, it implies that the company is inefficiently discharging its duties, and this is more likely to impact its prompt payment of claims to policyholders.
@@ -913,7 +911,7 @@ $$
 2. Simplify the algebra using natural logs. 
 
 $$
-I(\theta) = log_L (\theta) = \sum_{i = 1}^n f(x_i; 0)
+I(\theta) = \log_L (\theta) = \sum_{i = 1}^n f(x_i; 0)
 $$
 
 3. Maximise the log-likelihood function by differentiating the log-likelihood function with respect to each of the unknown parameters and equating the resulting expression(s) to zero. 
@@ -953,7 +951,7 @@ where $\bar{x} = \frac{1}{n} \sum_{i = 1}^n x_i$
 It's log-likelihood function is:
 
 $$
-log L = n log(\lambda) - \lambda n \bar{x}
+\log L = n \log(\lambda) - \lambda n \bar{x}
 $$
 
 ### Gamma Distribution
@@ -975,7 +973,7 @@ $$
 The probability density function is given by:
 
 $$
-f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{log(x) - \mu}{\sigma} \right)^2}, \; for \; 0 < x < \infty
+f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{\log(x) - \mu}{\sigma} \right)^2}, \; for \; 0 < x < \infty
 $$
 
 The mean and variance are given by: 
@@ -1039,13 +1037,13 @@ $$
 The likelihood function is:
 
 $$
-L = \prod_{i = 1}^n \frac{\alpha \lambda ^ \alpha}{x_i \alpha + 1}, \; 0 < \lambda \le min(x_i), \alpha > 0
+L = \prod_{i = 1}^n \frac{\alpha \lambda ^ \alpha}{x_i \alpha + 1}, \; 0 < \lambda \le \text{min}(x_i), \alpha > 0
 $$
 
 Its log-likelihood function is given by:
 
 $$
-Log L = n \times log(\alpha) + \alpha n \times log(\lambda) - (\alpha + 1) \sum_{i = 1}^nlog(x_i)
+\log L = n \times \log(\alpha) + \alpha n \times \log(\lambda) - (\alpha + 1) \sum_{i = 1}^n \log(x_i)
 $$
 
 ## Goodness Of Fit Test
