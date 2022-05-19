@@ -3,6 +3,7 @@ title: "Loss Distributions For Motor Insurance Claim Severity"
 subtitle: "Case Study: Kenya"
 output:
   xaringan::moon_reader:
+    self_contained: true
     lib_dir: libs
     nature:
       highlightStyle: github
