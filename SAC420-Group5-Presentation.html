@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Loss Distributions For Motor Insurance Claim Severity</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Loss Distributions For Motor Insurance Claim Severity
+]
+.subtitle[
+## Case Study: Kenya
+]
+
+---
+
+
+# Group Members
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Name &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Registration.Number &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Lillian Ayoo &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; I07/0817/2018 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Nelvine Anyango &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; I07/0811/2018 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Joy Kanyi &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; I07/132677/2018 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kennedy Mwavu &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; I07/0807/2018 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Rachael Kanini &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; I07/0878/2018 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+# Supervisors
+
+1. Professor Patrick G.O. Weke
+
+2. Dr. Carolyne Adhiambo Ogutu
+
+
+---
+class: middle,  center
+
+# Introduction
+
+---
+
+## Background of the study
+
+- Transferring of risks was practiced by the Chinese and Babylonian traders back in the `\(2^{nd}\)` and `\(3^{rd}\)` millennia BC. 
+
+- Since then, more people are aware of the importance of insurance, giving rise to increased claims. 
+
+- Motor industry encompasses the management of large numbers of risk events. These arise due to instances of theft, fire and damage to vehicles due to accidents or other causes as well as the extent of damage to the parties involved. This presents the need to come up with models that enlighten a company and allow it to decide on things such as premiums charged, anticipated profits, required reserves that will guarantee profitability with a high likelihood and the effect of reinsurance and policy excess.
+
+---
+
+## Problem statement
+
+- Motor insurance is one of the largest non-life insurance classes, but it is known for the massive losses it makes. This could be partly attributed to the fact that motor insurance companies in Kenya do not have good enough models for loss distributions, and thus cannot be able to correctly forecast future claims experience. This project identifies the best loss distribution which help insurers to precisely estimate prospective claims experience and thus plan accordingly to reduce their huge losses and the chances of them making such losses.
+
+---
+
+## Main Objective
+
+- The main objective of this project is to take a closer look into the Kenyan market and recommend specific statistical distributions that could be used for modelling auto insurance claim severity based on the motor insurance claims data in Kenya.
+
+---
+
+## Specific Objectives
+
+- Study different statistical distributions
+
+- Carry out tests to identify the one that best fits the data
+
+- Use this distribution to forecast claim experience in the near future
+
+---
+
+## Justification/Significance of the study
+
+- This research will help motor insurance companies in Kenya to correctly forecast future claims experience, thus rate premiums and reserves correctly hence proper solvency testing.
+
+---
+class: middle, center
+
+# Literature Review
+
+---
+class: middle, left
+
+- Dutta and Perry, 2006, rejected the idea of using exponential, gamma and Weibull distributions due to their inflexibility and poor results.
+
+- In a study done by Achieng, 2010, established that the log normal distribution was a suitable model for the claims data.
+
+- Mazviona and Chiduza, 2013, used gamma distribution in their study to model a motor dataset and noted that it failed to fit the data very closely.
+
+- Research done by Ahmad, Sanku and others, published in 2020, reveals that Weibull distribution sufficiently models auto insurance loss data and provides greater accuracy. 
+
+---
+class: middle, center
+
+# Methodology
+
+---
+
+## Introduction
+
+- We discuss the design of the research, population and sample of the study, collection of the study data and finally the data analysis processes carried out in the study.
+
+- This study adopts a quantitative method which is focusing on modelling an appropriate loss distribution for motor insurance claim severity in Kenya.
+
+- The variable of interest is the claim size in the motor insurance industry. This study will use data for Kenya motor insurance companies from 2016-2020.
+
+- As of 2020 there were 36 insurance companies providing motor insurance. Study focuses on entire population as it’s relatively small.
+
+- The study uses secondary data provided by IRA – annual reports highlighting various activities in the insurance industry.
+
+---
+
+## Steps Followed When Fitting Claims Data
+
+1. Select a family of distributions for the claims model.
+
+2. Estimate the parameters for the model.
+
+3. Specify a selection criterion to determine the appropriate distribution from the family of distributions.
+
+4. Carry out a goodness-of-fit test on the selected appropriate distribution.
+
+---
+
+## Parameter Estimation
+
+- We use the maximum likelihood method (MLE) to estimate parameters of the chosen loss distribution.
+
+---
+
+## Determining MLE
+
+1. Specify the likelihood function for the available data. 
+    \begin{equation}
+    \tag{1}
+    L(\theta) = \prod_{i = 1}^n f(x_i; \theta)
+    \end{equation}
+
+2. Simplify the algebra using natural logs. 
+    \begin{equation}
+    \tag{2}
+    I(\theta) = \log\_L(\theta) = \sum\_{i = 1}^n f(x\_i; 0)
+    \end{equation}
+
+3. Maximise the log-likelihood function by differentiating the log-likelihood function with respect to each of the unknown parameters and equating the resulting expression(s) to zero.
+
+4. The MLEs of the parameters are obtained by solving the resulting equation(s). To ensure that the obtained values maximize the likelihood function, differentiate a second time. 
+
+---
+
+## Standard Continuous Distributions
+
+This study will employ the following parametric families of continuous distributions: 
+
+  * Exponential
+  * Gamma
+  * Lognormal
+  * Weibull
+
+---
+
+## Exponential Distribution
+
+- The pdf is given by:
+
+`\begin{equation}
+\tag{3}
+f(x) = \lambda e ^ {-\lambda x}, \; x &gt; 0
+\end{equation}`
+
+- The mean and the variance are given by:
+
+`\begin{equation}
+\tag{4}
+E(x) = \frac{1}{\lambda} \; \text{and} \; var(x) = \frac{1}{\lambda ^ 2}
+\end{equation}`
+
+- The likelihood function is given by: 
+
+`\begin{equation}
+\tag{5}
+L = \prod_{i = 1} ^ n \lambda e ^ {-\lambda x} = \lambda ^ n e ^ {-\lambda \sum x_i} = \lambda ^ n e ^ {-\lambda n \overline{x}}
+\end{equation}`
+
+where `\(\bar{x} = \frac{1}{n} \sum_{i = 1}^n x_i\)`
+
+- It's log-likelihood function is:
+
+`\begin{equation}
+\tag{6}
+\log L = n \log(\lambda) - \lambda n \overline{x}
+\end{equation}`
+
+---
+
+## Gamma Distribution
+
+- It's pdf is given by:
+
+`\begin{equation}
+\tag{7}
+f(x) = \frac{\lambda \alpha}{\Gamma(\alpha)} x ^ {\alpha - 1} e ^ {-\lambda x}, \; x &gt; 0
+\end{equation}`
+
+- The mean and variance are given below:
+
+`\begin{equation}
+\tag{8}
+E(x) = \frac{\alpha}{\lambda} \; \text{and} \; var(x) = \frac{\alpha}{\lambda ^ 2}
+\end{equation}`
+
+- The moment estimators are used as initial estimators for the MLEs since they cannot be obtained in closed form (i.e., in terms of elementary functions).
+
+---
+
+## Lognormal Distribution
+
+- The probability density function is given by:
+
+`\begin{equation}
+\tag{9}
+f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{\log(x) - \mu}{\sigma} \right)^2}, \; \text{for} \; 0 &lt; x &lt; \infty
+\end{equation}`
+
+- The mean and variance are given by: 
+
+`\begin{equation}
+\tag{10}
+E(x) = e^{\mu + \frac{1}{2} \sigma^2} \; \text{and} \; var(x) = e^{2 \mu + \sigma ^ 2(e^{\sigma ^ 2 - 1})}
+\end{equation}`
+
+- `\(M\)` and `\(\sigma ^ 2\)` may be estimated using the log-transformed data hence easy to estimate the MLEs.
+
+- We let `\(x_1, x_2, ..., x_n\)`  be the observed values and, therefore MLE is given by:
+
+`\begin{equation}
+\tag{11}
+\bar{\mu} = \bar{y} = \frac{1}{n} \sum_{i = 1}^n x_{i}
+\end{equation}`
+
+- We also have `\(\hat{\sigma}^2 = s_y ^ 2\)`
+
+---
+
+## Weibull Distribution
+
+- Its probability density function is given as:
+
+`\begin{equation}
+\tag{12}
+f(x) = c \gamma x ^ {\gamma - 1} e ^ {-cx^\gamma}, \; \text{where} \; x &gt; 0
+\end{equation}`
+
+- When `\(c\)` and `\(\gamma\)` are unknown, it is not easy to apply the method of Maximum Likelihood.
+
+- However, the equations are elementary when we use a computer.
+
+- Where `\(\gamma\)` has a known value, Maximum Likelihood is now easy.
+
+---
+
+## Goodness of Fit Tests 
+
+- This enables one to determine whether the observed sample was drawn from a population that follows a particular probability distribution.
+
+- Both the Kolmogorov-Smirnov and Anderson-Darling tests will be applied because they are suitable for performing an exact test on continuous distributions.
+
+- For all the goodness-of-fit tests, the hypotheses will be formulated as follows: 
+  - `\(H_0\)`: The claim severity data follows a particular distribution; `\(F(x) = F_0(x)\)`
+  - `\(H_1\)`: The claim severity data does not follow the particular distribution; `\(F(x) \neq F_0(x)\)`
+  
+- `\(F(x)\)` is the unknown distribution function of the claim severity data (sample).
+
+- `\(F_0(x)\)` is a specific and known distribution function (population).
+
+---
+
+## Information Criteria
+
+- For all the selected claim severity distributions that pass the goodness-of-fit test, both the Akaike Information Criterion (AIC) and the Bayesian Information Criterion (BIC) will be used to select the best model for the claim severity data.
+
+- The AIC value for a model is calculated as follows:
+
+`\begin{equation}
+\tag{13}
+AIC = 2k - 2\ln(L)
+\end{equation}`
+
+- The BIC value for a model is calculated as follows:
+
+`\begin{equation}
+\tag{14}
+BIC = k \ln(n) - 2\ln(L)
+\end{equation}`
+
+- The lower the value of this criteria, the better a model is.
+
+---
+
+## Model Selection 
+
+- The loss distribution that will be selected as being an appropriate model is one that has:
+  - The maximum MLE value subject to passing the goodness-of-fit tests
+  - The minimum AIC and BIC value
+
+---
+class: middle, center
+
+# Data Analysis
+
+
+
+---
+
+## Descriptive Statistics
+
+- A summarised overview of the data:
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Stat &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Motor Commercial &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Motor Private &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; No. Of Observations &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 185 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 185 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mean &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 296940.7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 408137.7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Standard Error &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 23745.16 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 30003.67 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Median &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 173695 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 271419 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Standard Deviation &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 322969.1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 408094.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Kurtosis &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5.937997 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5.777819 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;"&gt; Skewness &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;"&gt; 1.741602 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: green !important;"&gt; 1.683955 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Minimum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -24861 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Maximum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1470770 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1992246 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 54934035 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 75505472 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- Critical in discovering patterns, especially on skewness.
+
+---
+
+## Histograms
+
+- A visual representation of the distribution of the data.
+
+
+.pull-left[
+![](SAC420-Group5-Presentation_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+![](SAC420-Group5-Presentation_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+]
+
+- Skewed to the right, long-tailed.
+
+---
+
+## Normal QQ-Plots
+
+.pull-left[
+![](SAC420-Group5-Presentation_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+![](SAC420-Group5-Presentation_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+]
+
+- The datasets don’t match the normal standard distribution.
+  - After fitting the distributions, non-parametric tests would be applied as opposed to parametric tests.
+
+---
+
+## Transformed Data
+
+- To make it simpler to work with, we transformed the data using the cube root function.
+
+.pull-left[
+![](SAC420-Group5-Presentation_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+![](SAC420-Group5-Presentation_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+]
+
+---
+
+## Parameter Estimation
+
+- We used the Maximum Likelihood Estimation (MLE) method to obtain the various fitted distributions.
+
+---
+
+&lt;table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption style="font-size: initial !important;"&gt;Estimated Parameters For Fitted Distributions&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Distribution &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Parameter &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Motor Commercial &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Motor Private &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr grouplength="3"&gt;&lt;td colspan="4" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;Exponential&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rate &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Std. Error &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;color: red !important;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;color: red !important;"&gt; LLF &lt;/td&gt;
+   &lt;td style="text-align:right;color: red !important;"&gt; -901.93 &lt;/td&gt;
+   &lt;td style="text-align:right;color: red !important;"&gt; -920.29 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr grouplength="5"&gt;&lt;td colspan="4" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;Gamma&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Shape &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.54 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.90 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Shape Std. Error &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.93 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rate &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.13 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Rate Std. Error &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.01 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;font-weight: bold;color: green !important;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; LLF &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: green !important;"&gt; -800.47 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: green !important;"&gt; -794.92 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr grouplength="5"&gt;&lt;td colspan="4" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;Log Normal&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Mean Log &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.17 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Mean Log Std. Error &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.03 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.03 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; SD Log &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.42 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.35 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; SD Log Std. Error &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.02 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; LLF &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -810.28 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -801.37 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr grouplength="5"&gt;&lt;td colspan="4" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;Weibull&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Mean Log &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.91 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.33 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Mean Log Std. Error &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.17 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.19 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; SD Log &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 67.40 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 76.47 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; SD Log Std. Error &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.84 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.83 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;font-weight: bold;color: green !important;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: green !important;"&gt; LLF &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: green !important;"&gt; -798.55 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: green !important;"&gt; -795.27 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Goodness-Of-Fit Test
+
+- Typically, measures of goodness-of-fit summarize the discrepancy between observed values and the values expected under the model in question.
+
+&lt;table&gt;
+&lt;caption&gt;K-S and A-D test statistic values for fitted distributions&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Test Statistic &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Distribution &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Motor Commercial &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Motor Private &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr grouplength="4"&gt;&lt;td colspan="4" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;K-S&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Exponential &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3428 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3785 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Gamma &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0693 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0395 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Log Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0846 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0622 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Weibull &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0655 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0679 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr grouplength="4"&gt;&lt;td colspan="4" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;A-D&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Exponential &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31.8254 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 37.2804 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Gamma &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6340 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2429 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Log Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.1405 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6198 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Weibull &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8083 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9116 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Information Criteria
+
+&lt;table&gt;
+&lt;caption&gt;AIC and BIC values for fitted distributions&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Information Criterion &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Distribution &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Motor Commercial &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Motor Private &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr grouplength="4"&gt;&lt;td colspan="4" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;AIC&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Exponential &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1805.85 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1842.59 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Gamma &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1604.95 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1593.83 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Log Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1624.55 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1606.74 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Weibull &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1601.10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1594.54 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr grouplength="4"&gt;&lt;td colspan="4" style="border-bottom: 1px solid;"&gt;&lt;strong&gt;BIC&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Exponential &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1809.03 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1845.76 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Gamma &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1611.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1600.17 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Log Normal &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1630.91 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1613.08 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;padding-left: 2em;" indentlevel="1"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Weibull &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1607.45 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1600.88 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: middle, center
+
+# Conclusion
+
+---
+
+- In this study, we found out that Weibull distribution is the best fit for modelling claim severity in motor commercial class, while Gamma distribution is the best fit for modelling claim severity in motor private class.
+
+- The above were selected because of having: 
+  * Maximum LLF
+  * Minimum K-S and A-D test statistic values
+  * Minimum AIC and BIC values
+
+---
+
+## Limitations/Suggestions
+
+- Our study focuses on use of statistical distributions only to model claim severity. Other approaches such as use of non-parametric methods may be suitable where data fails to follow any statistical distribution.
+
+- This study did not focus on the impact of modelling claim severity on insurance companies. It is important for insurers to know this so that they know if the resources used are worth it or not. Hence, proper adjustments.
+
+---
+class: middle, center
+
+# References
+
+---
+class: middle, left
+
+[1]	Achieng, O.M. (2010). Actuarial Modeling for Insurance Claim Severity in Motor Comprehensive Policy Using Industrial Statistical Distributions. International Congress of Actuaries, Cape Town, Vol. 712. 7-12. 
+
+[2]	Ahmad, Z., Mahmoudi, E., Sanku, D. and Saima, K. K. (2020). Modeling Vehicle Insurance Loss Data Using a New Member of T-X Family of Distributions. Journal of Statistical Theory and Applications, 19, 133-147.
+
+[3]	Boland, P. J. (2006). Statistical Methods in General Insurance. Unpublished M. Ed. Dissertation, National University of Ireland, Dublin.
+
+[4]	Dutta K. and Perry J., (2006). A Tale of Tails: An Empirical Analysis of Loss Distribution Models for Estimating Operational Risk Capital. Federal Reserve Bank of Boston, MA, USA. Working Papers, No. 06-13.
+
+[5]	Frees, W. E. and Valdez, E. A. (2012). Hierarchical Insurance Claims Modeling. Journal of the American Statistical Association, 103, 484, 1457-1469. 
+
+---
+class: middle, left
+
+[6]	Hakim, A. R., Fithriani, I. and Novita M. (2021). Properties of Burr distribution and its application to heavy tailed survival time data. Journal of Physics: Conference Series, 1, 1, 6-8.
+
+[7]	Mazviona, B. W., &amp; Chiduza, T. (2013). The Use of Statistical Distributions to Model Claims in Motor Insurance. International Journal of Business, Economics and Law, 3, 1, 44-57. 
+
+[8] Merz, M. and Wüthrich, M. V. (2008). Modelling the Claims Development Result for Solvency Purposes. Casualty Actuarial Society E-Forum Fall 2008, 542-568. 
+
+---
+class: middle, center
+
+## Thank You!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,1005 @@
+---
+title: "Loss Distributions For Motor Insurance Claim Severity"
+subtitle: "Case Study: Kenya"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+header-includes:
+- \usepackage{amsmath}
+---
+
+# Group Members
+
+```{r echo=FALSE}
+details <- data.frame(
+  Name = c(
+    "Lillian Ayoo", "Nelvine Anyango", "Joy Kanyi", 
+    "Kennedy Mwavu", "Rachael Kanini"
+  ), 
+  
+  `Registration Number` = c(
+    "I07/0817/2018", "I07/0811/2018", "I07/132677/2018", 
+    "I07/0807/2018", "I07/0878/2018"
+  )
+)
+
+kableExtra::kbl(x = details, format = "html", align = "l")
+```
+
+# Supervisors
+
+1. Professor Patrick G.O. Weke
+
+2. Dr. Carolyne Adhiambo Ogutu
+
+
+---
+class: middle,  center
+
+# Introduction
+
+---
+
+## Background of the study
+
+- Transferring of risks was practiced by the Chinese and Babylonian traders back in the $2^{nd}$ and $3^{rd}$ millennia BC. 
+
+- Since then, more people are aware of the importance of insurance, giving rise to increased claims. 
+
+- Motor industry encompasses the management of large numbers of risk events. These arise due to instances of theft, fire and damage to vehicles due to accidents or other causes as well as the extent of damage to the parties involved. This presents the need to come up with models that enlighten a company and allow it to decide on things such as premiums charged, anticipated profits, required reserves that will guarantee profitability with a high likelihood and the effect of reinsurance and policy excess.
+
+---
+
+## Problem statement
+
+- Motor insurance is one of the largest non-life insurance classes, but it is known for the massive losses it makes. This could be partly attributed to the fact that motor insurance companies in Kenya do not have good enough models for loss distributions, and thus cannot be able to correctly forecast future claims experience. This project identifies the best loss distribution which help insurers to precisely estimate prospective claims experience and thus plan accordingly to reduce their huge losses and the chances of them making such losses.
+
+---
+
+## Main Objective
+
+- The main objective of this project is to take a closer look into the Kenyan market and recommend specific statistical distributions that could be used for modelling auto insurance claim severity based on the motor insurance claims data in Kenya.
+
+---
+
+## Specific Objectives
+
+- Study different statistical distributions
+
+- Carry out tests to identify the one that best fits the data
+
+- Use this distribution to forecast claim experience in the near future
+
+---
+
+## Justification/Significance of the study
+
+- This research will help motor insurance companies in Kenya to correctly forecast future claims experience, thus rate premiums and reserves correctly hence proper solvency testing.
+
+---
+class: middle, center
+
+# Literature Review
+
+---
+class: middle, left
+
+- Dutta and Perry, 2006, rejected the idea of using exponential, gamma and Weibull distributions due to their inflexibility and poor results.
+
+- In a study done by Achieng, 2010, established that the log normal distribution was a suitable model for the claims data.
+
+- Mazviona and Chiduza, 2013, used gamma distribution in their study to model a motor dataset and noted that it failed to fit the data very closely.
+
+- Research done by Ahmad, Sanku and others, published in 2020, reveals that Weibull distribution sufficiently models auto insurance loss data and provides greater accuracy. 
+
+---
+class: middle, center
+
+# Methodology
+
+---
+
+## Introduction
+
+- We discuss the design of the research, population and sample of the study, collection of the study data and finally the data analysis processes carried out in the study.
+
+- This study adopts a quantitative method which is focusing on modelling an appropriate loss distribution for motor insurance claim severity in Kenya.
+
+- The variable of interest is the claim size in the motor insurance industry. This study will use data for Kenya motor insurance companies from 2016-2020.
+
+- As of 2020 there were 36 insurance companies providing motor insurance. Study focuses on entire population as it’s relatively small.
+
+- The study uses secondary data provided by IRA – annual reports highlighting various activities in the insurance industry.
+
+---
+
+## Steps Followed When Fitting Claims Data
+
+1. Select a family of distributions for the claims model.
+
+2. Estimate the parameters for the model.
+
+3. Specify a selection criterion to determine the appropriate distribution from the family of distributions.
+
+4. Carry out a goodness-of-fit test on the selected appropriate distribution.
+
+---
+
+## Parameter Estimation
+
+- We use the maximum likelihood method (MLE) to estimate parameters of the chosen loss distribution.
+
+---
+
+## Determining MLE
+
+1. Specify the likelihood function for the available data. 
+    \begin{equation}
+    \tag{1}
+    L(\theta) = \prod_{i = 1}^n f(x_i; \theta)
+    \end{equation}
+
+2. Simplify the algebra using natural logs. 
+    \begin{equation}
+    \tag{2}
+    I(\theta) = \log\_L(\theta) = \sum\_{i = 1}^n f(x\_i; 0)
+    \end{equation}
+
+3. Maximise the log-likelihood function by differentiating the log-likelihood function with respect to each of the unknown parameters and equating the resulting expression(s) to zero.
+
+4. The MLEs of the parameters are obtained by solving the resulting equation(s). To ensure that the obtained values maximize the likelihood function, differentiate a second time. 
+
+---
+
+## Standard Continuous Distributions
+
+This study will employ the following parametric families of continuous distributions: 
+
+  * Exponential
+  * Gamma
+  * Lognormal
+  * Weibull
+
+---
+
+## Exponential Distribution
+
+- The pdf is given by:
+
+\begin{equation}
+\tag{3}
+f(x) = \lambda e ^ {-\lambda x}, \; x > 0
+\end{equation}
+
+- The mean and the variance are given by:
+
+\begin{equation}
+\tag{4}
+E(x) = \frac{1}{\lambda} \; \text{and} \; var(x) = \frac{1}{\lambda ^ 2}
+\end{equation}
+
+- The likelihood function is given by: 
+
+\begin{equation}
+\tag{5}
+L = \prod_{i = 1} ^ n \lambda e ^ {-\lambda x} = \lambda ^ n e ^ {-\lambda \sum x_i} = \lambda ^ n e ^ {-\lambda n \overline{x}}
+\end{equation}
+
+where $\bar{x} = \frac{1}{n} \sum_{i = 1}^n x_i$
+
+- It's log-likelihood function is:
+
+\begin{equation}
+\tag{6}
+\log L = n \log(\lambda) - \lambda n \overline{x}
+\end{equation}
+
+---
+
+## Gamma Distribution
+
+- It's pdf is given by:
+
+\begin{equation}
+\tag{7}
+f(x) = \frac{\lambda \alpha}{\Gamma(\alpha)} x ^ {\alpha - 1} e ^ {-\lambda x}, \; x > 0
+\end{equation}
+
+- The mean and variance are given below:
+
+\begin{equation}
+\tag{8}
+E(x) = \frac{\alpha}{\lambda} \; \text{and} \; var(x) = \frac{\alpha}{\lambda ^ 2}
+\end{equation}
+
+- The moment estimators are used as initial estimators for the MLEs since they cannot be obtained in closed form (i.e., in terms of elementary functions).
+
+---
+
+## Lognormal Distribution
+
+- The probability density function is given by:
+
+\begin{equation}
+\tag{9}
+f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{\log(x) - \mu}{\sigma} \right)^2}, \; \text{for} \; 0 < x < \infty
+\end{equation}
+
+- The mean and variance are given by: 
+
+\begin{equation}
+\tag{10}
+E(x) = e^{\mu + \frac{1}{2} \sigma^2} \; \text{and} \; var(x) = e^{2 \mu + \sigma ^ 2(e^{\sigma ^ 2 - 1})}
+\end{equation}
+
+- $M$ and $\sigma ^ 2$ may be estimated using the log-transformed data hence easy to estimate the MLEs.
+
+- We let $x_1, x_2, ..., x_n$  be the observed values and, therefore MLE is given by:
+
+\begin{equation}
+\tag{11}
+\bar{\mu} = \bar{y} = \frac{1}{n} \sum_{i = 1}^n x_{i}
+\end{equation}
+
+- We also have $\hat{\sigma}^2 = s_y ^ 2$
+
+---
+
+## Weibull Distribution
+
+- Its probability density function is given as:
+
+\begin{equation}
+\tag{12}
+f(x) = c \gamma x ^ {\gamma - 1} e ^ {-cx^\gamma}, \; \text{where} \; x > 0
+\end{equation}
+
+- When $c$ and $\gamma$ are unknown, it is not easy to apply the method of Maximum Likelihood.
+
+- However, the equations are elementary when we use a computer.
+
+- Where $\gamma$ has a known value, Maximum Likelihood is now easy.
+
+---
+
+## Goodness of Fit Tests 
+
+- This enables one to determine whether the observed sample was drawn from a population that follows a particular probability distribution.
+
+- Both the Kolmogorov-Smirnov and Anderson-Darling tests will be applied because they are suitable for performing an exact test on continuous distributions.
+
+- For all the goodness-of-fit tests, the hypotheses will be formulated as follows: 
+  - $H_0$: The claim severity data follows a particular distribution; $F(x) = F_0(x)$
+  - $H_1$: The claim severity data does not follow the particular distribution; $F(x) \neq F_0(x)$
+  
+- $F(x)$ is the unknown distribution function of the claim severity data (sample).
+
+- $F_0(x)$ is a specific and known distribution function (population).
+
+---
+
+## Information Criteria
+
+- For all the selected claim severity distributions that pass the goodness-of-fit test, both the Akaike Information Criterion (AIC) and the Bayesian Information Criterion (BIC) will be used to select the best model for the claim severity data.
+
+- The AIC value for a model is calculated as follows:
+
+\begin{equation}
+\tag{13}
+AIC = 2k - 2\ln(L)
+\end{equation}
+
+- The BIC value for a model is calculated as follows:
+
+\begin{equation}
+\tag{14}
+BIC = k \ln(n) - 2\ln(L)
+\end{equation}
+
+- The lower the value of this criteria, the better a model is.
+
+---
+
+## Model Selection 
+
+- The loss distribution that will be selected as being an appropriate model is one that has:
+  - The maximum MLE value subject to passing the goodness-of-fit tests
+  - The minimum AIC and BIC value
+
+---
+class: middle, center
+
+# Data Analysis
+
+```{r, runner, include=FALSE, message=FALSE, warning=FALSE}
+library(readxl)
+library(tidyverse)
+library(moments)
+library(ggpubr)
+library(actuar)
+library(fitdistrplus)
+library(kableExtra)
+library(glue)
+
+industry <- readxl::read_xlsx(
+  path = "data/insurance_industry_stats_2016-2020.xlsx", 
+  skip = 1
+) |> 
+  dplyr::select(
+    `Class Name`, `2016`:`2020`
+  )
+
+industry_long <- industry |> 
+  tidyr::pivot_longer(
+    cols = !`Class Name`, 
+    names_to = "Year", 
+    values_to = "Amount"
+  )
+
+# ----desc stats----
+# standard error:
+se <- function(x) {
+  sqrt(var(x) / length(x))
+}
+
+# descriptive stats:
+desc_stats <- industry_long |> 
+  group_by(`Class Name`) |>
+  summarise(
+    `No. Of Observations` = n(), 
+    Mean = mean(Amount), 
+    `Standard Error` = se(Amount), 
+    Median = median(Amount), 
+    `Standard Deviation` = sd(Amount), 
+    Kurtosis = kurtosis(Amount), 
+    Skewness = skewness(Amount), 
+    Minimum = min(Amount), 
+    Maximum = max(Amount), 
+    Sum = sum(Amount)
+  ) |> 
+  t() |> 
+  as.data.frame()
+
+# set column names:
+colnames(desc_stats) <- desc_stats[1, 1:2] |> 
+  gsub(pattern = "_", replacement = " ") |> 
+  stringr::str_to_title()
+
+# remove first row:
+desc_stats <- desc_stats[-1, ]
+
+# Make rownames the `Stat` column:
+desc_stats["Stat"] <- rownames(desc_stats)
+
+# remove rownames:
+rownames(desc_stats) <- NULL
+
+# make stat the first column:
+desc_stats <- desc_stats |> 
+  dplyr::relocate(Stat)
+
+# ----hist----
+mc_hist <- industry_long |>
+  dplyr::filter(`Class Name` == "motor_commercial") |> 
+  ggplot(
+    aes(x = Amount)
+  ) + 
+  geom_histogram(
+    mapping = aes(y = ..density..), 
+    color = "green", 
+    fill = "lightgreen"
+  ) + 
+  ylab(label = "Density") + 
+  xlab("Claim Size") + 
+  ggtitle(label = "Motor Commercial") + 
+  geom_density(
+    color = "firebrick", 
+    lwd = 1
+  ) + 
+  theme_classic()
+
+mp_hist <- industry_long |>
+  dplyr::filter(`Class Name` == "motor_private") |> 
+  ggplot(
+    aes(x = Amount)
+  ) + 
+  geom_histogram(
+    mapping = aes(y = ..density..), 
+    color = "blue", 
+    fill = "lightblue"
+  ) + 
+  ylab(label = "Density") + 
+  xlab("Claim Size") + 
+  ggtitle(label = "Motor Private") + 
+  geom_density(
+    color = "firebrick", 
+    lwd = 1
+  ) + 
+  theme_classic()
+
+# ----qqplots----
+# From the descriptive stats and now from the histograms, 
+# we can affirm that the data is positively skewed.
+
+# This implies the need to use continuous distributions that 
+# are +vely skewed to fit the data
+
+mc_qqplot <- industry_long |>
+  dplyr::filter(`Class Name` == "motor_commercial") |> 
+  ggqqplot(
+    x = "Amount", 
+    title = "Motor Commercial", 
+    size = 0.8
+  )
+
+mp_qqplot <- industry_long |>
+  dplyr::filter(`Class Name` == "motor_private") |> 
+  ggqqplot(
+    x = "Amount", 
+    title = "Motor Private", 
+    size = 0.8
+  )
+
+# We used the cube root function to transform the data and 
+# make the claim sizes become closer to normally distributed
+
+# transform data:
+industry_long_trans <- industry_long |> 
+  dplyr::mutate(
+    Amount = Amount ^ (1 / 3)
+  )
+
+
+# qqplots of transformed data:
+mc_trans_qqplot <- industry_long_trans |> 
+  dplyr::filter(`Class Name` == "motor_commercial") |> 
+  ggqqplot(
+    x = "Amount", 
+    title = "Motor Commercial", 
+    size = 0.8
+  )
+
+mp_trans_qqplot <- industry_long_trans |> 
+  dplyr::filter(`Class Name` == "motor_private") |> 
+  ggqqplot(
+    x = "Amount", 
+    title = "Motor Private", 
+    size = 0.8
+  )
+
+# ----fit distrs----
+# Extract positive values for fitting models, x > 0, and remove 
+# missing values:
+industry_long_trans <- industry_long_trans |> 
+  dplyr::filter(Amount > 0, !is.na(Amount))
+
+# positive data:
+positive_data <- industry_long_trans |> 
+  dplyr::filter(Amount > 0, !is.na(Amount)) |> 
+  dplyr::group_by(`Class Name`) |> 
+  dplyr::mutate(indices = 1:n()) |> 
+  dplyr::ungroup() |> 
+  tidyr::pivot_wider(
+    id_cols = indices, 
+    names_from = `Class Name`, 
+    values_from = Amount
+  ) |> 
+  dplyr::select(-indices)
+
+# |- exp----
+exp_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "exp"
+  )
+)
+
+exp_gof <- purrr::map(.x = exp_model, .f = gofstat)
+# extract K-S, A-D, AIC, BIC of the model
+
+# exp model data.frame:
+exp_model_df <- exp_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Exponential", 
+      Parameter = c("Rate", "Std. Error", "LLF")
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(.x$estimate, .x$sd, .x$loglik)
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
+
+
+#' Goodness-Of-Fit data.frame
+#'
+#' @param distr_gof object of class "gofstat.fitdist"
+#' @param distr_name name of the distribution
+#'
+#' @return a data.frame obj
+#' @export
+#'
+gof_df <- function(distr_gof, distr_name) {
+  distr_gof |> 
+    purrr::imap(
+      .f = ~ tibble::tibble(
+        `Test Statistic` = c("K-S", "A-D"), 
+        Distribution = distr_name
+      ) |> 
+        dplyr::mutate(
+          "{.y}" := c(.x$ks, .x$ad)
+        )
+    ) |> 
+    Reduce(
+      f = function(...) {
+        dplyr::full_join(
+          ..., by = c("Test Statistic", "Distribution")
+        )
+      }
+    )
+}
+
+#' Information Criterion
+#' 
+#' AIC and BIC values.
+#' 
+#' @param distr_gof object of class "gofstat.fitdist"
+#' @param distr_name name of the distribution
+#'
+#' @return a data.frame obj
+#' @export
+#'
+aic_bic_df <- function(distr_gof, distr_name) {
+  distr_gof |> 
+    purrr::imap(
+      .f = ~ tibble::tibble(
+        `Information Criterion` = c("AIC", "BIC"), 
+        Distribution = distr_name
+      ) |> 
+        dplyr::mutate(
+          "{.y}" := c(.x$aic, .x$bic)
+        )
+    ) |> 
+    Reduce(
+      f = function(...) {
+        dplyr::full_join(
+          ..., by = c("Information Criterion", "Distribution")
+        )
+      }
+    )
+}
+
+
+exp_gof_df <- gof_df(
+  distr_gof = exp_gof, distr_name = "Exponential"
+)
+
+# |- gamma----
+gamma_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "gamma"
+  )
+)
+
+gamma_gof <- purrr::map(
+  .x = gamma_model, 
+  .f = gofstat
+)
+
+gamma_model_df <- gamma_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Gamma", 
+      Parameter = c(
+        "Shape", "Shape Std. Error", "Rate", 
+        "Rate Std. Error", "LLF"
+      )
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(
+          .x$estimate[["shape"]], .x$sd[["shape"]], 
+          .x$estimate[["rate"]], .x$sd[["rate"]], 
+          .x$loglik
+        )
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
+
+gamma_gof_df <- gof_df(
+  distr_gof = gamma_gof, distr_name = "Gamma"
+)
+
+# |- lognormal----
+lnorm_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "lnorm"
+  )
+)
+
+lnorm_gof <- purrr::map(
+  .x = lnorm_model, 
+  .f = gofstat
+)
+
+lnorm_model_df <- lnorm_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Log Normal", 
+      Parameter = c(
+        "Mean Log", "Mean Log Std. Error", "SD Log", 
+        "SD Log Std. Error", "LLF"
+      )
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(
+          .x$estimate[["meanlog"]], .x$sd[["meanlog"]], 
+          .x$estimate[["sdlog"]], .x$sd[["sdlog"]], 
+          .x$loglik
+        )
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
+
+lnorm_gof_df <- gof_df(
+  distr_gof = lnorm_gof, distr_name = "Log Normal"
+)
+
+# |- weibull----
+weibull_model <- purrr::map(
+  .x = positive_data, 
+  .f = ~ fitdist(
+    data = na.omit(.x) |> as.vector(), 
+    distr = "weibull"
+  )
+)
+
+weibull_gof <- purrr::map(
+  .x = weibull_model, 
+  .f = gofstat
+)
+
+weibull_model_df <- weibull_model |> 
+  purrr::imap(
+    .f = ~ tibble::tibble(
+      Distribution = "Weibull", 
+      Parameter = c(
+        "Mean Log", "Mean Log Std. Error", "SD Log", 
+        "SD Log Std. Error", "LLF"
+      )
+    ) |> 
+      dplyr::mutate(
+        "{.y}" := c(
+          .x$estimate[["shape"]], .x$sd[["shape"]], 
+          .x$estimate[["scale"]], .x$sd[["scale"]], 
+          .x$loglik
+        )
+      )
+  ) |> 
+  Reduce(
+    f = function(...) {
+      dplyr::full_join(..., by = c("Distribution", "Parameter"))
+    }
+  )
+
+weibull_gof_df <- gof_df(
+  distr_gof = weibull_gof, distr_name = "Weibull"
+)
+
+# |- pareto----
+
+# !!! NOT working: error code 100 !!!
+# scale_data <- function(x) {
+#   (x - min(x) + 0.01) / (max(x) - min(x) + 0.02)
+# }
+# 
+# pareto_model <- purrr::map(
+#   .x = positive_data,
+#   .f = ~ fitdist(
+#     data = na.omit(.x) |> as.vector() |> scale_data(),
+#     distr = "pareto"
+#   )
+# )
+# 
+# pareto_gof <- purrr::map(
+#   .x = pareto_model, 
+#   .f = gofstat
+# )
+
+# ----distrs-df----
+distrs_df <- dplyr::bind_rows(
+  exp_model_df, 
+  gamma_model_df, 
+  lnorm_model_df, 
+  weibull_model_df
+)
+
+# ----distrs-gof-df----
+distrs_gof_df <- dplyr::bind_rows(
+  exp_gof_df, 
+  gamma_gof_df, 
+  lnorm_gof_df, 
+  weibull_gof_df
+) |> 
+  dplyr::arrange(
+    dplyr::desc(`Test Statistic`)
+  )
+
+# ----aic-bic-df----
+info_df <- dplyr::bind_rows(
+  aic_bic_df(distr_gof = exp_gof, distr_name = "Exponential"), 
+  aic_bic_df(distr_gof = gamma_gof, distr_name = "Gamma"), 
+  aic_bic_df(distr_gof = lnorm_gof, distr_name = "Log Normal"), 
+  aic_bic_df(distr_gof = weibull_gof, distr_name = "Weibull")
+) |> 
+  dplyr::arrange(
+    `Information Criterion`
+  )
+
+
+```
+
+---
+
+## Descriptive Statistics
+
+- A summarised overview of the data:
+
+```{r echo=FALSE}
+desc_stats |> 
+  kbl(
+  format = "html", 
+  digits = 2, 
+  booktabs = TRUE, 
+  linesep = "\\addlinespace", 
+  caption = NULL
+) |> 
+  row_spec(
+    row = 7, 
+    bold = TRUE, 
+    color = "white", 
+    background = "green"
+  )
+```
+
+- Critical in discovering patterns, especially on skewness.
+
+---
+
+## Histograms
+
+- A visual representation of the distribution of the data.
+
+
+.pull-left[
+```{r, echo=FALSE, message=FALSE}
+mc_hist
+```
+
+]
+
+.pull-right[
+```{r, echo=FALSE, message=FALSE}
+mp_hist
+```
+
+]
+
+- Skewed to the right, long-tailed.
+
+---
+
+## Normal QQ-Plots
+
+.pull-left[
+```{r, echo=FALSE, message=FALSE}
+mc_qqplot
+```
+
+]
+
+.pull-right[
+```{r, echo=FALSE, message=FALSE}
+mp_qqplot
+```
+
+]
+
+- The datasets don’t match the normal standard distribution.
+  - After fitting the distributions, non-parametric tests would be applied as opposed to parametric tests.
+
+---
+
+## Transformed Data
+
+- To make it simpler to work with, we transformed the data using the cube root function.
+
+.pull-left[
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+mc_trans_qqplot
+```
+
+]
+
+.pull-right[
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+mp_trans_qqplot
+```
+]
+
+---
+
+## Parameter Estimation
+
+- We used the Maximum Likelihood Estimation (MLE) method to obtain the various fitted distributions.
+
+---
+
+```{r fitted-distributions-table, echo=FALSE}
+distrs_df |> 
+  dplyr::rename(
+    `Motor Commercial` = motor_commercial, 
+    `Motor Private` = motor_private
+  ) |> 
+  dplyr::mutate(
+    Distribution = ""
+  ) |> 
+  kbl(
+  format = "html", 
+  row.names = FALSE, 
+  digits = 2, 
+  booktabs = TRUE, 
+  linesep = "\\addlinespace", 
+  caption = "Estimated Parameters For Fitted Distributions"
+) |> 
+  pack_rows("Exponential", 1, 3) |> 
+  pack_rows("Gamma", 4, 8,) |> 
+  pack_rows("Log Normal", 9, 13) |> 
+  pack_rows("Weibull", 14, 18) |> 
+  row_spec(
+    row = 18, 
+    bold = TRUE, 
+    color = "green"
+  ) |> 
+  row_spec(
+    row = 8, 
+    bold = TRUE, 
+    color = "green"
+  ) |> 
+  row_spec(
+    row = 3, 
+    bold = FALSE, 
+    color = "red"
+  ) |> 
+  kable_styling(
+    font_size = 12, 
+    full_width = TRUE
+  )
+```
+
+---
+
+## Goodness-Of-Fit Test
+
+- Typically, measures of goodness-of-fit summarize the discrepancy between observed values and the values expected under the model in question.
+
+```{r ks-ad-stats, echo=FALSE}
+distrs_gof_df |> 
+  dplyr::rename(
+    `Motor Commercial` = motor_commercial, 
+    `Motor Private` = motor_private
+  ) |> 
+  dplyr::mutate(
+    `Test Statistic` = ""
+  ) |> 
+  kbl(
+  digits = 4, 
+  booktabs = TRUE, 
+  linesep = "\\addlinespace", 
+  caption = "K-S and A-D test statistic values for fitted distributions"
+) |> 
+  collapse_rows(
+    columns = 1, valign = "top", latex_hline = "major"
+  ) |> 
+  pack_rows("K-S", 1, 4) |> 
+  pack_rows("A-D", 5, 8)
+```
+
+---
+
+## Information Criteria
+
+```{r information-criterion, echo=FALSE}
+info_df |> 
+  dplyr::rename(
+    `Motor Commercial` = motor_commercial, 
+    `Motor Private` = motor_private
+  ) |> 
+  dplyr::mutate(
+    `Information Criterion` = ""
+  ) |> 
+  kbl(
+  digits = 2, 
+  booktabs = TRUE, 
+  linesep = "\\addlinespace", 
+  caption = "AIC and BIC values for fitted distributions"
+) |> 
+  collapse_rows(
+    columns = 1, valign = "top", latex_hline = "major"
+  ) |> 
+    pack_rows("AIC", 1, 4) |> 
+    pack_rows("BIC", 5, 8)
+```
+
+---
+class: middle, center
+
+# Conclusion
+
+---
+
+- In this study, we found out that Weibull distribution is the best fit for modelling claim severity in motor commercial class, while Gamma distribution is the best fit for modelling claim severity in motor private class.
+
+- The above were selected because of having: 
+  * Maximum LLF
+  * Minimum K-S and A-D test statistic values
+  * Minimum AIC and BIC values
+
+---
+
+## Limitations/Suggestions
+
+- Our study focuses on use of statistical distributions only to model claim severity. Other approaches such as use of non-parametric methods may be suitable where data fails to follow any statistical distribution.
+
+- This study did not focus on the impact of modelling claim severity on insurance companies. It is important for insurers to know this so that they know if the resources used are worth it or not. Hence, proper adjustments.
+
+---
+class: middle, center
+
+# References
+
+---
+class: middle, left
+
+[1]	Achieng, O.M. (2010). Actuarial Modeling for Insurance Claim Severity in Motor Comprehensive Policy Using Industrial Statistical Distributions. International Congress of Actuaries, Cape Town, Vol. 712. 7-12. 
+
+[2]	Ahmad, Z., Mahmoudi, E., Sanku, D. and Saima, K. K. (2020). Modeling Vehicle Insurance Loss Data Using a New Member of T-X Family of Distributions. Journal of Statistical Theory and Applications, 19, 133-147.
+
+[3]	Boland, P. J. (2006). Statistical Methods in General Insurance. Unpublished M. Ed. Dissertation, National University of Ireland, Dublin.
+
+[4]	Dutta K. and Perry J., (2006). A Tale of Tails: An Empirical Analysis of Loss Distribution Models for Estimating Operational Risk Capital. Federal Reserve Bank of Boston, MA, USA. Working Papers, No. 06-13.
+
+[5]	Frees, W. E. and Valdez, E. A. (2012). Hierarchical Insurance Claims Modeling. Journal of the American Statistical Association, 103, 484, 1457-1469. 
+
+---
+class: middle, left
+
+[6]	Hakim, A. R., Fithriani, I. and Novita M. (2021). Properties of Burr distribution and its application to heavy tailed survival time data. Journal of Physics: Conference Series, 1, 1, 6-8.
+
+[7]	Mazviona, B. W., & Chiduza, T. (2013). The Use of Statistical Distributions to Model Claims in Motor Insurance. International Journal of Business, Economics and Law, 3, 1, 44-57. 
+
+[8] Merz, M. and Wüthrich, M. V. (2008). Modelling the Claims Development Result for Solvency Purposes. Casualty Actuarial Society E-Forum Fall 2008, 542-568. 
+
+---
+class: middle, center
+
+## Thank You!
