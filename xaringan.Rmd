@@ -1,0 +1,164 @@
+---
+title: "Loss Distributions For Motor Insurance Claim Severity"
+subtitle: "Case Study: Kenya"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+header-includes:
+- \usepackage{amsmath}
+---
+
+# Group Members
+
+```{r echo=FALSE}
+details <- data.frame(
+  Name = c(
+    "Lillian Ayoo", "Nelvine Anyango", "Joy Kanyi", 
+    "Kennedy Mwavu", "Rachael Kanini"
+  ), 
+  
+  `Registration Number` = c(
+    "I07/0817/2018", "I07/0811/2018", "I07/132677/2018", 
+    "I07/0807/2018", "I07/0878/2018"
+  )
+)
+
+kableExtra::kbl(x = details, format = "html", align = "l")
+```
+
+# Supervisors
+
+1. Professor Patrick G.O. Weke
+
+2. Dr. Carolyne Adhiambo Ogutu
+
+
+---
+class: middle,  center
+
+# Introduction
+
+---
+
+## Background of the study
+
+- Transferring of risks was practiced by the Chinese and Babylonian traders back in the $2^{nd}$ and $3^{rd}$ millennia BC. 
+
+- Since then, more people are aware of the importance of insurance, giving rise to increased claims. 
+
+- Motor industry encompasses the management of large numbers of risk events. These arise due to instances of theft, fire and damage to vehicles due to accidents or other causes as well as the extent of damage to the parties involved. This presents the need to come up with models that enlighten a company and allow it to decide on things such as premiums charged, anticipated profits, required reserves that will guarantee profitability with a high likelihood and the effect of reinsurance and policy excess.
+
+---
+
+## Problem statement
+
+- Motor insurance is one of the largest non-life insurance classes, but it is known for the massive losses it makes. This could be partly attributed to the fact that motor insurance companies in Kenya do not have good enough models for loss distributions, and thus cannot be able to correctly forecast future claims experience. This project identifies the best loss distribution which help insurers to precisely estimate prospective claims experience and thus plan accordingly to reduce their huge losses and the chances of them making such losses.
+
+---
+
+## Main Objective
+
+- The main objective of this project is to take a closer look into the Kenyan market and recommend specific statistical distributions that could be used for modelling auto insurance claim severity based on the motor insurance claims data in Kenya.
+
+---
+
+## Specific Objectives
+
+- Study different statistical distributions
+
+- Carry out tests to identify the one that best fits the data
+
+- Use this distribution to forecast claim experience in the near future
+
+---
+
+## Justification/Significance of the study
+
+- This research will help motor insurance companies in Kenya to correctly forecast future claims experience, thus rate premiums and reserves correctly hence proper solvency testing.
+
+---
+class: middle, center
+
+# Literature Review
+
+---
+
+- Dutta and Perry, 2006, rejected the idea of using exponential, gamma and Weibull distributions due to their inflexibility and poor results.
+
+- In a study done by Achieng, 2010, established that the log normal distribution was a suitable model for the claims data.
+
+- Mazviona and Chiduza, 2013, used gamma distribution in their study to model a motor dataset and noted that it failed to fit the data very closely.
+
+- Research done by Ahmad, Sanku and others, published in 2020, reveals that Weibull distribution sufficiently models auto insurance loss data and provides greater accuracy. 
+
+---
+class: middle, center
+
+# Methodology
+
+---
+
+## Introduction
+
+- We discuss the design of the research, population and sample of the study, collection of the study data and finally the data analysis processes carried out in the study.
+
+- This study adopts a quantitative method which is focusing on modelling an appropriate loss distribution for motor insurance claim severity in Kenya.
+
+- The variable of interest is the claim size in the motor insurance industry. This study will use data for Kenya motor insurance companies from 2016-2020.
+
+- As of 2020 there were 36 insurance companies providing motor insurance. Study focuses on entire population as it’s relatively small.
+
+- The study uses secondary data provided by IRA – annual reports highlighting various activities in the insurance industry.
+
+---
+
+## Steps Followed When Fitting Claims Data
+
+1. Select a family of distributions for the claims model.
+
+2. Estimate the parameters for the model.
+
+3. Specify a selection criterion to determine the appropriate distribution from the family of distributions.
+
+4. Carry out a goodness-of-fit test on the selected appropriate distribution.
+
+---
+
+## Parameter Estimation
+
+- We use the maximum likelihood method (MLE) to estimate parameters of the chosen loss distribution.
+
+---
+
+## Determining MLE
+
+1. Specify the likelihood function for the available data. 
+    \begin{equation}
+    \tag{1}
+    L(\theta) = \prod_{i = 1}^n f(x_i; \theta)
+    \end{equation}
+
+2. Simplify the algebra using natural logs. 
+    \begin{equation}
+    \tag{2}
+    I(\theta) = \log\_L(\theta) = \sum\_{i = 1}^n f(x\_i; 0)
+    \end{equation}
+
+3. Maximise the log-likelihood function by differentiating the log-likelihood function with respect to each of the unknown parameters and equating the resulting expression(s) to zero.
+
+4. The MLEs of the parameters are obtained by solving the resulting equation(s). To ensure that the obtained values maximize the likelihood function, differentiate a second time. 
+
+---
+
+## Standard Continuous Distributions
+
+This study will employ the following parametric families of continuous distributions: 
+
+  * Exponential
+  * Gamma
+  * Lognormal
+  * Weibull
+
