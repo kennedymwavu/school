@@ -561,11 +561,27 @@ L = \prod_{i = 1} ^ n \lambda e ^ {-\lambda x} = \lambda ^ n e ^ {-\lambda \sum 
 
 where `\(\bar{x} = \frac{1}{n} \sum_{i = 1}^n x_i\)`
 
+---
+
 - It&#39;s log-likelihood function is:
 
 `\begin{equation}
 \tag{6}
 \log L = n \log(\lambda) - \lambda n \overline{x}
+\end{equation}`
+
+- Determine stationary points by differentiating:
+
+`\begin{equation}
+\tag{7}
+\frac{\partial}{\partial \lambda} \log L = \frac{n}{\lambda} - n \overline{x}
+\end{equation}`
+
+- Setting this to zero gives:
+
+`\begin{equation}
+\tag{8}
+\hat{\lambda} = \frac{1}{\overline{x}}
 \end{equation}`
 
 ---
@@ -575,14 +591,14 @@ where `\(\bar{x} = \frac{1}{n} \sum_{i = 1}^n x_i\)`
 - It&#39;s pdf is given by:
 
 `\begin{equation}
-\tag{7}
+\tag{9}
 f(x) = \frac{\lambda \alpha}{\Gamma(\alpha)} x ^ {\alpha - 1} e ^ {-\lambda x}, \; x &gt; 0
 \end{equation}`
 
 - The mean and variance are given below:
 
 `\begin{equation}
-\tag{8}
+\tag{10}
 E(x) = \frac{\alpha}{\lambda} \; \text{and} \; var(x) = \frac{\alpha}{\lambda ^ 2}
 \end{equation}`
 
@@ -595,14 +611,14 @@ E(x) = \frac{\alpha}{\lambda} \; \text{and} \; var(x) = \frac{\alpha}{\lambda ^ 
 - The probability density function is given by:
 
 `\begin{equation}
-\tag{9}
+\tag{11}
 f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{\log(x) - \mu}{\sigma} \right)^2}, \; \text{for} \; 0 &lt; x &lt; \infty
 \end{equation}`
 
 - The mean and variance are given by: 
 
 `\begin{equation}
-\tag{10}
+\tag{12}
 E(x) = e^{\mu + \frac{1}{2} \sigma^2} \; \text{and} \; var(x) = e^{2 \mu + \sigma ^ 2(e^{\sigma ^ 2 - 1})}
 \end{equation}`
 
@@ -611,12 +627,12 @@ E(x) = e^{\mu + \frac{1}{2} \sigma^2} \; \text{and} \; var(x) = e^{2 \mu + \sigm
 - We let `\(x_1, x_2, ..., x_n\)`  be the observed values and, therefore MLEs will be given by:
 
 `\begin{equation}
-\tag{11}
+\tag{13}
 \bar{\mu} = \bar{y} = \frac{1}{n} \sum_{i = 1}^n x_{i}
 \end{equation}`
 
 `\begin{equation}
-\tag{12}
+\tag{14}
 \hat{\sigma}^2 = s_y ^ 2
 \end{equation}`
 
@@ -627,7 +643,7 @@ E(x) = e^{\mu + \frac{1}{2} \sigma^2} \; \text{and} \; var(x) = e^{2 \mu + \sigm
 - Its probability density function is given as:
 
 `\begin{equation}
-\tag{13}
+\tag{15}
 f(x) = c \gamma x ^ {\gamma - 1} e ^ {-cx^\gamma}, \; \text{where} \; x &gt; 0
 \end{equation}`
 
@@ -662,16 +678,20 @@ f(x) = c \gamma x ^ {\gamma - 1} e ^ {-cx^\gamma}, \; \text{where} \; x &gt; 0
 - The AIC value for a model is calculated as follows:
 
 `\begin{equation}
-\tag{14}
-AIC = 2k - 2\ln(L)
+\tag{16}
+AIC = 2k - 2\ln(\hat{L})
 \end{equation}`
+
+where `\(k\)` is the number of estimated parameters in the model and `\(\hat{L}\)` is the maximum value of the likelihood function of the model.
 
 - The BIC value for a model is calculated as follows:
 
 `\begin{equation}
-\tag{15}
-BIC = k \ln(n) - 2\ln(L)
+\tag{17}
+BIC = k \ln(n) - 2\ln(\hat{L})
 \end{equation}`
+
+where `\(k\)` is the number of estimated parameters in the model, `\(n\)` is the number of observations and `\(\hat{L}\)` is the maximized value of the likelihood function of the model.
 
 - The lower the value of this criteria, the better a model is.
 
