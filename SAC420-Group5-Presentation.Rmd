@@ -72,8 +72,6 @@ class: middle,  center
 
 - Carry out tests to identify the one that best fits the data
 
-- Use this distribution to forecast claim experience in the near future
-
 ---
 
 ## Justification/Significance of the study
@@ -238,14 +236,17 @@ E(x) = e^{\mu + \frac{1}{2} \sigma^2} \; \text{and} \; var(x) = e^{2 \mu + \sigm
 
 - $M$ and $\sigma ^ 2$ may be estimated using the log-transformed data hence easy to estimate the MLEs.
 
-- We let $x_1, x_2, ..., x_n$  be the observed values and, therefore MLE is given by:
+- We let $x_1, x_2, ..., x_n$  be the observed values and, therefore MLEs will be given by:
 
 \begin{equation}
 \tag{11}
 \bar{\mu} = \bar{y} = \frac{1}{n} \sum_{i = 1}^n x_{i}
 \end{equation}
 
-- We also have $\hat{\sigma}^2 = s_y ^ 2$
+\begin{equation}
+\tag{12}
+\hat{\sigma}^2 = s_y ^ 2
+\end{equation}
 
 ---
 
@@ -254,7 +255,7 @@ E(x) = e^{\mu + \frac{1}{2} \sigma^2} \; \text{and} \; var(x) = e^{2 \mu + \sigm
 - Its probability density function is given as:
 
 \begin{equation}
-\tag{12}
+\tag{13}
 f(x) = c \gamma x ^ {\gamma - 1} e ^ {-cx^\gamma}, \; \text{where} \; x > 0
 \end{equation}
 
@@ -289,14 +290,14 @@ f(x) = c \gamma x ^ {\gamma - 1} e ^ {-cx^\gamma}, \; \text{where} \; x > 0
 - The AIC value for a model is calculated as follows:
 
 \begin{equation}
-\tag{13}
+\tag{14}
 AIC = 2k - 2\ln(L)
 \end{equation}
 
 - The BIC value for a model is calculated as follows:
 
 \begin{equation}
-\tag{14}
+\tag{15}
 BIC = k \ln(n) - 2\ln(L)
 \end{equation}
 
