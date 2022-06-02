@@ -502,7 +502,7 @@ info_df <- dplyr::bind_rows(
 
 \vspace{1.3in}
 
-\textbf{SAC 420: Project In Actuarial Science}
+\textbf{\normalsize{SAC 420: Project In Actuarial Science}}
 \end{center}
 \newpage
 ```
@@ -726,7 +726,18 @@ We therefore, seek to address this niche in the Kenya motor insurance industry b
 
 ## Research Objectives
 
-The objective of this research paper is to present an appropriate statistical distribution that approximately fits claims severity losses of motor insurance in Kenya and can be used to accurately forecast future claims experience.
+### Main Objective
+
+The objective of this project is to determine the appropriate statistical distribution that fits claim severity data of motor insurance in Kenya.
+
+### Specific Objectives
+
+```{=tex}
+\begin{enumerate}
+  \item Analyse the different types of statistical distributions.
+  \item Carry out relevant tests on them to identify which one best fits our data.
+\end{enumerate}
+```
 
 ## Justification of the Study
 
@@ -752,8 +763,6 @@ Generally, the research will provide motor insurance in Kenya with the most appr
 
 This section has a detailed overview of the actuarial modelling in insurance claim severity. This uses probability distributions as discussed by other research studies, i.e. published books, reports, and prior collected opinions. This chapter seeks to widen the study scope hence revealing the information gap.
 
-## Introduction
-
 Loss distribution is the probability distribution associated with either the loss or the amount paid due to the loss. This paper involves the steps taken in actuarial modelling to find a suitable probability distribution for the claims data observed and testing for the goodness of fit of the supposed distribution.
 
 R. V. Hogg, S. A. Klugman (1984) gives good introduction on fitting distributions to losses. Emphasis is on the distribution of single losses related to claims made against various types of insurance policies. These models are informative to the company and they enable it make decisions on amongst other things: premium loading, expected profits, reserves necessary to ensure (with high probability) profitability and the impact of reinsurance and deductibles.
@@ -762,232 +771,19 @@ Dutta K. and Perry J (2006) in the recent past, carried out an empirical study o
 
 Achieng, O. M. (2010), did actuarial modeling for insurance claim severity in motor comprehensive policy in 2010, she used claim amounts from First Assurance Company Limited, Kenya. The modeling process established one statistical distribution that could efficiently model the claim amounts, she then did a goodness of fit test both mathematically and graphically using Akaike Information Criterion (AIC) and Quantile-Quantile Plots (Q-Q plots) respectively. The study established that the log-normal distribution was a suitable model for the claims data.
 
-Packova, V., & Brebera, D. (2015), applied Pareto model in reinsurance. They used data from Czech insurance company for compulsory motor third-party liability insurance. Goodness-of-fit test concluded that the Pareto distribution is a good model for large claims.
+Burnecki \emph{et al.} (2010) used the Burr distribution to model fire losses dataset. The study failed to suggest that Burr distribution as a good model since it failed to pass the applied tests therein. It is worth to mention that while this distribution can be used to model claim size distributions, most studies fail to utilize it among their chosen distributions.
 
-Selvakumar V et al. (2022) modelled motor insurance extreme claims using various distributions. They fitted gamma, Pareto, lognormal, Weibull, log-logistic distributions to the claims data. A goodness-of-fit test, Q-Q Plots test and P-P Plots test were then performed on them and it was concluded that the lognormal distribution was the best fitting distribution for overall claim amounts.
+Mazviona, B. W., & Ch.iduza, T (2013), their study to model a motor dataset, used the gamma distribution. They rejected null hypothesis because the distribution, based on the critical value for the chi-square test, failed to fit the data very closely. They also rejected null hypothesis after using exponential distribution to model motor dataset. This distribution failed to fit the data very closely based on the critical value for the chi-square test.
+
+Packova, V., & Brebera, D. (2015), applied Pareto model in reinsurance. They used data from Czech insurance company for compulsory motor third-party liability insurance. Goodness-of-fit test concluded that the Pareto distribution is a good model for large claims.
 
 Omar et al. (2018) used the Maximum Likelihood Estimation method to obtain parameter estimates for the fitted models. With Auto Collision, data Car, and data Ohlsson as variables they modelled a sample of the automobile portfolio datasets obtained from the insurance Data package in R. After carrying out a goodness-of-fit test, Akaike Information Criterion, Bayesian Information Criterion were applied on the claims data. It was concluded that the lognormal distribution provides a good model for claims severity on a short-term basis.
 
+Ahmad \emph{et al.} (2020) used Weibull distribution to model vehicle insurance loss data and provide greater accuracy in data fitting. Numerical results from their study show that the somewhat improved distribution outperforms other existing long-tail distributions under the different measures of model assessment considered in respect to vehicle insurance loss data.
+
+Selvakumar V et al. (2022) modelled motor insurance extreme claims using various distributions. They fitted gamma, Pareto, lognormal, Weibull, log-logistic distributions to the claims data. A goodness-of-fit test, Q-Q Plots test and P-P Plots test were then performed on them and it was concluded that the lognormal distribution was the best fitting distribution for overall claim amounts.
+
 Since we aim to fit a suitable loss distribution to the claim severity data for motor insurance companies using the company-specific data set, it is important to explain the theoretical framework that will be applied throughout this research. This includes parameter estimation, goodness-of-fit test, standard normal distributions and model selection criteria. These then form the basis of the subsequent parts of the study that will eventually yield an appropriate loss distribution model.
-
-## Estimation Of Parameters
-
-Here, we use the Maximum Likelihood Estimation (MLE) technique.
-
-The MLE is a commonly applied method of estimation in a variety of problems. We opt for this method because it often yields better estimates compared to other methods like Least-squares Estimation (LSE), the method of quantile and method of moments especially when the sample size is large.
-
-Boucher et al., (2007) argued that the MLE approach fully utilizes all the information about the parameters contained in the data and yields highly flexible estimator with better asymptotic properties.
-
-Likelihood function, say $L(\theta)$, is the probability or probability density function of the observed data expressed as a function of the unknown parameter $\theta$.
-
-The principle of maximum likelihood provides a means of choosing an asymptotically efficient estimator for a parameter or a set of parameters as the value for the unknown parameter that makes the observed data "most probable". The maximum likelihood estimate (MLE) of a parameter $\theta$ is obtained through maximizing the likelihood function.
-
-### Exponential Distribution
-
-The exponential distribution is a continuous distribution that is usually used to model the time until the occurrence of an event of interest in the process. A continuous random variable, say X, is said to have an exponential distribution if its probability density function (pdf) is given by:
-
-```{=tex}
-\begin{equation}
-f(x) = \lambda e^{-\lambda x}, \; x > 0
-\end{equation}
-```
-Some people have used this distribution to model claim severity and some of their conclusions about it are discussed below:
-
-Achieng, O. M. (2010) after using exponential distribution, she concluded that the distribution was not a good fit. Its density value of its probability density function graphical plot and log-likelihood were low hence the conclusion.
-
-Omari et al (2018) used this distribution to model an automobile dataset. The distribution had the largest values among distributions used for the Kolmogorov-Smirnov and Anderson Darling Tests hence rejected null hypothesis.
-
-Mazviona, B. W., & Ch.iduza, T (2013), also, rejected null hypothesis after using this distribution to model motor dataset. This distribution failed to fit the data very closely based on the critical value for the chi-square test.
-
-### Lognormal Distribution
-
-Suppose $X$ represents the claim size, and $Y = \log(X)$ has a normal distribution, then $X$ is said to have a lognormal distribution. When $X$ has a lognormal distribution with parameters $\mu$ and $\sigma$ , then:
-
-```{=tex}
-\begin{equation}
-X \sim \log \, N(\mu, \sigma^2)
-\end{equation}
-```
-The pdf of the lognormal distribution is given by:
-
-```{=tex}
-\begin{equation}
-f(x) = \frac{1}{x \sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \left( \frac{\log(x) - \mu}{\sigma} \right)^2}, \; \text{for} \; 0 < x < \infty
-\end{equation}
-```
-This distribution proves to be ideal in most cases because of its heavy-tailed and highly skewed nature. Achieng, O. M. (2010), while modelling claim severity motor comprehensive data of First Assurance Company Limited Kenya (June 2006 -- June 2007), concluded that the lognormal distribution had the smallest Akaike Information Criterion (AIC) value. Hence the lognormal distribution was found to be the best statistical distribution to model the claim amounts at 99% level of confidence.
-
-Omar et al. (2018), found out that the lognormal distribution was the most suitable model to fit an automobile dataset, since it had the lowest Akaike Information Criterion and Bayesian Information Criterion values.
-
-Selvakumar V et al. (2022), carried out a goodness-of-fit test, Q-Q Plots test and P-P Plots test while modelling motor insurance extreme claims. They found out that the lognormal distribution was the best fitting distribution for overall claim amounts.
-
-### Gamma Distribution
-
-A random variable, say $X$, has a gamma distribution with parameters $\alpha>0$ and $\lambda>0$ written as $X \sim Gamma (\alpha, \lambda)$.
-
-Its probability density function is given by:
-
-```{=tex}
-\begin{equation}
-f(x) = \frac{\lambda ^ \alpha}{\Gamma(\alpha)} x ^ {\alpha - 1} e^{-\lambda x}, \; x > 0
-\end{equation}
-```
-$\alpha$ is referred to as the shape parameter because it changes the shape of the graph while $\lambda$ is referred to as scale parameter since it affects the x scale of the graph.
-
-Since majority of claim data arising from the insurance industry are positive skewed and heavy tailed, as noted by Merz and Wuthrich, Achieng, O.M (2010) used the gamma distribution to model claim severity in First Assurance Company Limited, Kenya because it has the two properties. In his study, he came to a conclusion that the distribution was not a suitable model for the claims data based on its Q-Q plot.
-
-Mazviona, B. W., & Ch.iduza, T (2013), in their study to model a motor dataset, used the gamma distribution. They rejected null hypothesis because the distribution, based on the critical value for the chi-square test, failed to fit the data very closely.
-
-Packova, V., & Brebera, D. (2015) used this distribution to model data obtained from a Czech insurance company for compulsory motor third-party liability insurance. They used this distribution because it is specifically applicable for modelling claim severity. However, based on Anderson-Darling test value, their study found out that gamma distribution failed to be a suitable model for this.
-
-### Pareto Distribution
-
-Suppose the random variable say $X$ is the claim size and has the Pareto distribution with parameters $\alpha > 0$ and $\lambda > 0$; that is $X \sim Pa(\alpha, \lambda$. The distribution function is given by:
-
-```{=tex}
-\begin{equation}
-F(x) = 1 + \left( \frac{\lambda}{\lambda + x} \right)^\alpha, \; x > 0
-\end{equation}
-```
-The pdf is given by:
-
-```{=tex}
-\begin{equation}
-f(x) = \frac{\alpha \lambda ^ \alpha}{(\alpha + x)^{\alpha + 1}}, \; x > 0
-\end{equation}
-```
-Packova, V., & Brebera, D. (2015), modelled data from Czech insurance company for compulsory motor third-party liability insurance using Pareto distributions. This is because the distribution frequently models insurance losses required to obtain well-fitted tails. The study established that based on the tests carried out, for large claims, Pareto distribution is a good model.
-
-Omar et al. (2018) also used Pareto distribution to model an automobile dataset. Based on the tests carried out, the Pareto distribution was discarded since its values were extremely out of range.
-
-Selvakumar V et al. (2022) modelled motor insurance extreme claims using Pareto distribution as one of the distributions to fit the data. However, it was found that it was not a good fit based on the tests carried out and that the lognormal distribution best fits the data.
-
-### Weibull Distribution
-
-This distribution is particularly useful in modelling left-truncated claim severity distributions. It has been used to model excess of loss treaty over automobile insurance.
-
-The continuous variable $X$ has Weibull distribution with parameters $c, \gamma$ and probability density function is given by:
-
-```{=tex}
-\begin{equation}
-f(x) = c \gamma x^{\gamma - 1} e^{-cx^\gamma}, \; x > 0
-\end{equation}
-```
-The distribution function of the Weibull distribution is given by:
-
-$$
-F(x) = 1 - e^{-cx^\gamma}
-$$
-
-Ahmad et al. (2020) used Weibull distribution to model vehicle insurance loss data and provide greater accuracy in data fitting. Numerical results from their study show that the somewhat improved distribution outperforms other existing long-tail distributions under the different measures of model assessment considered in respect to vehicle insurance loss data.
-
-Packová and Brebera (2015) used Weibull distribution to model data for compulsory motor third-party liability insurance. The study found out that the Weibull distribution failed to be a good model for the losses based on the Anderson-Darling test value.
-
-Achieng, O. M. (2010) applied the Weibull distribution due to its heavy-tailed and highly skewed nature to model claim severity motor comprehensive data of First Assurance Company Limited, Kenya (June 2006 - June 2007). The study established that the Weibull distribution is not a suitable model for the claims data.
-
-### Burr Distribution
-
-The probability density function of Burr random variable $X$ is defined by:
-
-```{=tex}
-\begin{equation}
-f(x) = \frac{\alpha \gamma \lambda ^ \alpha x^{\gamma - 1}}{(\lambda + x ^ \gamma)^{\alpha + 1}}, \; \text{for} \; \alpha, \lambda, \gamma, x > 0
-\end{equation}
-```
-The distribution function of Burr random variable $X$ is defined as:
-
-$$
-F(x) = 1 - \left( \frac{\lambda}{\lambda + x^\gamma} \right)^\alpha
-$$
-
-Hakim A. R et al. (2021) applied the Burr distribution due its similarity to Pareto distribution in terms of tail index. Several numerical computations and Kolmogorov--Smirnov test in the study revealed that the Burr distribution fits well to model the claims data.
-
-Burnecki et al. (2010) used the Burr distribution to model fire losses dataset. The study failed to suggest the Burr distribution as a good model since it failed to pass the applied tests therein.
-
-It is worth to mention that while this distribution can be used to model claim size distributions, most studies fail to utilize it among their chosen distributions.
-
-## Goodness Of Fit Tests
-
-A goodness-of-fit test is a statistical procedure that describes how well a distribution fits a set of observations by measuring the quantifiable compatibility between the estimated theoretical distributions against the empirical distributions of the sample data (Omari et al., 2018). This enables one "to determine whether the observed sample was drawn from a population that follows a particular probability distribution" (Dodge, 2008).
-
-The tests are effectively based on either of the two distribution functions: the probability density function (PDF) or cumulative distribution function (CDF) in order to test the null hypothesis that the unknown distribution function is, in fact, a known specified function. The tests considered for testing the suitability of the fitted distributions to claims data include; the Chi-Square goodness of fit test, Kolmogorov-Smirnov (K-S) test, and the Anderson-Darling (A-D) test.
-
-Here, the Kolmogorov-Smirnov and Anderson-Darling tests are used because they are suitable for performing an exact test on continuous distributions.
-
-For all the Goodness of Fit tests, the hypotheses of interest are:
-
--   $H_0$: The claims data sample follows a particular distribution.
-
--   $H_1$: The claims data samples do not follow the particular distribution.
-
-### Kolmogorov-Smirnov Test
-
-Named after Russian mathematicians Andrey Kolmogorov and Nikolai Smirnov, the Kolmogorov-Smirnov test is a non-parametric (does not rely on any distribution to be valid) goodness-of-fit test and is used to determine whether an underlying probability distribution differs from a hypothesized distribution.
-
-Consider an independent random sample $(x_1, x_2, …, x_n)$, a sample of size $n$ with unknown distribution function $F(x)$ coming from a population with a specific and known distribution function $F_0(x)$. The hypothesis to test is as follows:
-
-$$
-\begin{array}{c}
-H_0: F(x) = F_0(x) \\ 
-H_1: F(x) \neq F_0(x)
-\end{array}
-$$
-
-If $F(x)$ is the empirical distribution function of the random sample, then the statistical test $T_n$ is defined as the greatest vertical distance between $F_0(x)$ and $F(x)$.
-
-The decision rule is to reject $H_0$ at the significance level $\alpha$ if $T_n$ is greater than the value of the Kolmogorov table having for the parameters $n$ and $1 - \alpha$, which is denoted by $t_{n, 1 - \alpha}$ i.e, if:
-
-$$
-T_n > t_{n, 1 - \alpha}
-$$
-
-### Anderson-Darling Test
-
-The Anderson--Darling test is a goodness-of-fit test which allows to control the hypothesis that the distribution of a random variable observed in a sample follows a certain theoretical distribution (Dodge, 2008).
-
-Consider a random variable $X$, which follows a particular distribution, and has a distribution function $F_0(x; \theta)$, where $\theta$ is a parameter (or a set of parameters) that determine, $F_0$. We further assume $\theta$ to be known. An observation of a sample of size $n$ issued from the variable $X$ gives a distribution function $F(x)$. The Anderson-Darling statistic, denoted by $A^2$, is then given by the weighted sum of the squared deviations $F_0(x; \theta) - F(x)$.
-
-Starting from the fact that $A^2$ is a random variable that follows a certain distribution over the interval $[0; + \infty]$, it is possible to test, for a significance level that is fixed a priori, whether $F(x)$ is the realization of the random variable $F_0(X; \theta)$; that is, whether X follows the probability distribution with the distribution function $F_0(x; \theta)$.
-
-To compute the $A^2$ statistic, arrange the observations $x_1, x_2,…, x_n$ in the sample obtained from $X$ in ascending order i.e., $x_1 < x_2 < ··· < x_n$. The $A^2$ is then computed as:
-
-$$
-A ^ 2 = -\frac{1}{n} \left( \sum_{i = 1} ^ n (2i - 1)(ln(z_i)) + ln(1 - z_{n + 1 - i}) \right) - n
-$$
-
-$\text{where} \; z_i = F_0(x_i;\theta), (i = 1, 2, ..., n)$
-
-The null hypothesis is rejected beyond the limiting values of $A^2$ depending on the significance level based on the Anderson-Darling Test Table.
-
-## Information Criterion
-
-An information criterion is a measure of the quality of a statistical model. It takes into account:
-
--   How well the model fits the data
-
--   The complexity of the model
-
-Information criteria are used to compare alternative models fitted to the same data set. All else being equal, a model with a lower information criterion is superior to a model with a higher value.
-
-### Akaike Information Criterion
-
-Akaike's information criterion (AIC) developed by Akaike, H. (1974) is an estimator of prediction error and thereby relative quality of statistical models for a given set of data. The AIC is not a test of the distribution in the sense of hypothesis testing; rather it compares between distributions―a tool for distribution selection. Given a data set, several fitted distributions may be ranked according to their AIC. The fitted distribution with the smallest AIC is selected as the most appropriate distribution for modeling the claims data. The AIC value for a model is calculated as follows:
-
-$$
-AIC = 2k - 2ln(L)
-$$ where $k$ is the number of estimated parameters in the model and $L$ is the maximum value of the likelihood function of the model.
-
-### Bayesian Information Criterion
-
-The Bayesian Information Criterion (BIC) also known as Schwarz Information Criterion (also SIC, SBC, SBIC) is a criterion for model selection among a finite set of models; models with lower BIC are generally preferred. It is based, in part, on the likelihood function and it is closely related to the AIC. The appropriate model that is preferred is one that has the lowest BIC value since it implies a lower penalty term. In contrast to the AIC the Bayesian information criterion (BIC), comprises of the number of observations in the penalty term.
-
-The BIC value for a model is calculated as follows:
-
-$$
-BIC = k \times ln(n) - 2ln(L)
-$$
-
-where $k$ is the number of estimated parameters in the model, $n$ is the number of observations and $L$ is the maximized value of the likelihood function of the model.
 
 \newpage
 
@@ -1136,7 +932,7 @@ We also have $\hat{\sigma}^2 = s_y ^ 2$ where subscript $y$ is the sample varian
 
 ```{=tex}
 \begin{equation}
-\hat{\sigma} ^ 2 = \frac{1}{\eta} \sum_{i = 1} ^ n \left( \bar{y_i} - y \right)^2 = \frac{1}{n} \sum_{i = 1} ^ n \left(ln (\hat{x}_i) - \mu \right) ^ 2
+\hat{\sigma} ^ 2 = \frac{1}{\eta} \sum_{i = 1} ^ n \left( \bar{y_i} - y \right)^2 = \frac{1}{n} \sum_{i = 1} ^ n \left(\ln (\hat{x}_i) - \mu \right) ^ 2
 \end{equation}
 ```
 ### Weibull Distribution
@@ -1200,19 +996,96 @@ Its log-likelihood function is given by:
 ```
 ## Goodness Of Fit Test
 
-The purpose of goodness-of-fit tests is typically to measure the distance between the fitted parametric distribution and the empirical distribution. To select the most appropriate continuous distributions for the claims severity we apply both the Kolmogorov-Smirnov and Anderson-Darling tests since they are suitable for performing an exact test on continuous distribution.
+A goodness-of-fit test is a statistical procedure that describes how well a distribution fits a set of observations by measuring the quantifiable compatibility between the estimated theoretical distributions against the empirical distributions of the sample data (Omari et al., 2018). This enables one "to determine whether the observed sample was drawn from a population that follows a particular probability distribution" (Dodge, 2008). 
 
-For both the Goodness of Fit tests, our hypotheses of interest are:
+The tests are effectively based on either of the two distribution functions: the probability density function (PDF) or cumulative distribution function (CDF) in order to test the null hypothesis that the unknown distribution function is, in fact, a known specified function. The tests considered for testing the suitability of the fitted distributions to claims data include; the Chi-Square goodness of fit test, Kolmogorov-Smirnov (K-S) test, and the Anderson-Darling (A-D) test.
 
--   $H_0$: The claims data sample follows a particular distribution.
+Here, the Kolmogorov-Smirnov and Anderson-Darling tests are used because they are suitable for performing an exact test on continuous distributions.
 
--   $H_1$: The claims data samples do not follow the particular distribution.
+For all the Goodness of Fit tests, the hypotheses of interest are:
 
-Smaller K-S and A-D test statistic values will indicate that the distribution fits the data better.
+- $H_0$: The claims data sample follows a particular distribution.
+
+- $H_1$: The claims data samples do not follow the particular distribution.
+
+### Kolmogorov-Smirnov Test
+
+Named after Russian mathematicians Andrey Kolmogorov and Nikolai Smirnov, the Kolmogorov-Smirnov test is a non-parametric (does not rely on any distribution to be valid) goodness-of-fit test and is used to determine whether an underlying probability distribution differs from a hypothesized distribution.
+
+Consider an independent random sample $(x_1, x_2, …, x_n)$, a sample of size $n$ with unknown distribution function $F(x)$ coming from a population with a specific and known distribution function $F_0(x)$. The hypothesis to test is as follows:
+
+\[
+\begin{array}{c}
+H_0: F(x) = F_0(x) \\ 
+H_1: F(x) \neq F_0(x)
+\end{array}
+\]
+
+
+If $F(x)$ is the empirical distribution function of the random sample, then the statistical test $T_n$ is defined as the greatest vertical distance between $F_0(x)$ and $F(x)$.
+
+The decision rule is to reject $H_0$ at the significance level $\alpha$ if $T_n$ is greater than the value of the Kolmogorov table having for the parameters $n$ and $1 - \alpha$, which is denoted by $t_{n, 1 - \alpha}$ i.e, if:
+
+$$T_n > t_{n, 1 - \alpha}$$
+
+### Anderson-Darling Test
+
+The Anderson–Darling test is a goodness-of-fit test which allows to control the hypothesis that the distribution of a random variable observed in a sample follows a certain theoretical distribution (Dodge, 2008).
+
+Consider a random variable $X$, which follows a particular distribution, and has a distribution function $F_0(x; \theta)$, where $\theta$ is a parameter (or a set of parameters) that determine, $F_0$. We further assume $\theta$ to be known. An observation of a sample of size $n$ issued from the variable $X$ gives a distribution function $F(x)$. The Anderson-Darling statistic, denoted by $A^2$, is then given by the weighted sum of the squared deviations $F_0(x; \theta) - F(x)$.
+
+Starting from the fact that $A^2$ is a random variable that follows a certain distribution over the interval $[0; + \infty]$, it is possible to test, for a significance level that is fixed a priori, whether $F(x)$ is the realization of the random variable $F_0(X; \theta)$; that is, whether X follows the probability distribution with the distribution function $F_0(x; \theta)$.
+
+
+To compute the $A^2$ statistic, arrange the observations $x_1, x_2,…, x_n$ in the sample obtained from $X$ in ascending order i.e., $x_1 < x_2 < ··· < x_n$. The $A^2$ is then computed as:
+
+
+```{=tex}
+\begin{equation}
+A ^ 2 = -\frac{1}{n} \left( \sum_{i = 1} ^ n (2i - 1)(ln(z_i)) + ln(1 - z_{n + 1 - i}) \right) - n
+\end{equation}
+```
+
+
+$\text{where} \; z_i = F_0(x_i;\theta), (i = 1, 2, ..., n)$
+
+The null hypothesis is rejected beyond the limiting values of $A^2$ depending on the significance level based on the Anderson-Darling Test Table.
 
 ## Information Criteria
 
-Both the information criteria, AIC and BIC are utilized for the selection of the most appropriate distribution for the claims data for all the selected claims frequency and claims severity distributions that pass the goodness of fit tests. The lower the value of these two criteria the better a model is.
+An information criterion is a measure of the quality of a statistical model. It takes into account:
+
+-   How well the model fits the data
+
+-   The complexity of the model
+
+Information criteria are used to compare alternative models fitted to the same data set. All else being equal, a model with a lower information criterion is superior to a model with a higher value.
+
+### Akaike Information Criterion
+
+Akaike's information criterion (AIC) developed by Akaike, H. (1974) is an estimator of prediction error and thereby relative quality of statistical models for a given set of data. The AIC is not a test of the distribution in the sense of hypothesis testing; rather it compares between distributions―a tool for distribution selection. Given a data set, several fitted distributions may be ranked according to their AIC. The fitted distribution with the smallest AIC is selected as the most appropriate distribution for modeling the claims data. The AIC value for a model is calculated as follows:
+
+```{=tex}
+\begin{equation}
+AIC = 2k - 2\ln(L)
+\end{equation}
+```
+where $k$ is the number of estimated parameters in the model and $L$ is the maximum value of the likelihood function of the model.
+
+### Bayesian Information Criterion
+
+The Bayesian Information Criterion (BIC) also known as Schwarz Information Criterion (also SIC, SBC, SBIC) is a criterion for model selection among a finite set of models; models with lower BIC are generally preferred. It is based, in part, on the likelihood function and it is closely related to the AIC. The appropriate model that is preferred is one that has the lowest BIC value since it implies a lower penalty term. In contrast to the AIC the Bayesian information criterion (BIC), comprises of the number of observations in the penalty term.
+
+The BIC value for a model is calculated as follows:
+
+```{=tex}
+\begin{equation}
+BIC = k \times \ln(n) - 2\ln(L)
+\end{equation}
+```
+
+where $k$ is the number of estimated parameters in the model, $n$ is the number of observations and $L$ is the maximized value of the likelihood function of the model.
+
 
 ## Model Selection
 
@@ -1389,6 +1262,7 @@ From the AIC and BIC values, Weibull was the most appropriate distribution for m
 
 # Conclusion
 
+## Conclusion
 Our research entailed determining the statistical distribution that best fits claim severity of motor insurance in Kenya. It could then be used to predict future claim incurrence.
 
 After selecting a family of continuous, positively skewed distributions (Exponential, Gamma, Lognormal and Weibull), their parameters were estimated using the MLE method, K-S and A-D tests applied to test their goodness-of-fit, and finally AIC and BIC criterion used to determine the most appropriate distribution among the chosen ones.
@@ -1403,53 +1277,63 @@ The most suitable distribution is the one with:
 
 According to our study, the Weibull distribution is the best fit for modelling claim severity in motor commercial class, while the Gamma distribution is best for the motor private class.
 
+## Limitations and Suggestions
+
+This study focused on statistical distributions only instead of considering to other approaches too, such use of non-parametric methods. Non-parametric methods are also suitable for modelling claim severity. They do not assume any statistical distributions and hence do not depend on any distribution. Due to this, therefore, this approach may be suitable in situations where data does not follow any statistical distribution hence modelled best using this approach.
+
+We therefore suggest that, in future, researchers may consider using non-parametric approaches to model claim severity.
+
+This study did not determine the impact of modelling claim severity on the business of insurance companies. Modelling claim severity requires use of resources and therefore it is important for insurers to know the impact. This will help them make suitable changes in this process for increased profits. If modelling has a positive impact on the business, insurers will therefore commit high-quality resources towards the modelling process so as to increase their profits. 
+
+We suggest that, future studies may consider determining the impact of modelling claim severity so that insurers make more profits than losses.
+
 \newpage
 
 # References
 
-[1] Achieng, O.M. (2010). Actuarial Modeling for Insurance Claim Severity in Motor Comprehensive Policy Using Industrial Statistical Distributions. International Congress of Actuaries, Cape Town, Vol. 712. 7-12.
+[1] Achieng, O.M. (2010). \emph{Actuarial Modeling for Insurance Claim Severity in Motor Comprehensive Policy Using Industrial Statistical Distributions.} International Congress of Actuaries, Cape Town, Vol. 712. 7-12.
 
-[2] Ahmad, Z., Mahmoudi, E., Sanku, D. and Saima, K. K. (2020). Modeling Vehicle Insurance Loss Data Using a New Member of T-X Family of Distributions. Journal of Statistical Theory and Applications, 19, 133-147.
+[2] Ahmad, Z., Mahmoudi, E., Sanku, D. and Saima, K. K. (2020). \emph{Modeling Vehicle Insurance Loss Data Using a New Member of T-X Family of Distributions.} Journal of Statistical Theory and Applications, 19, 133-147.
 
-[3] Akaike, H. (1974). A New Look at Statistical Model Identification. IEEE Transactions on Automatic Control, 19, 716-723.
+[3] Akaike, H. (1974). \emph{A New Look at Statistical Model Identification.} IEEE Transactions on Automatic Control, 19, 716-723.
 
-[4] Bahnemann, D. (2015). Distributions for Actuaries. CAS Monograph Series No. 2, Casualty Actuarial Society, Arlington.
+[4] Bahnemann, D. (2015). \emph{Distributions for Actuaries.} CAS Monograph Series No. 2, Casualty Actuarial Society, Arlington.
 
-[5] Boland, P. J. (2006). Statistical Methods in General Insurance. Unpublished M. Ed. Dissertation, National University of Ireland, Dublin.
+[5] Boland, P. J. (2006). \emph{Statistical Methods in General Insurance.} Unpublished M. Ed. Dissertation, National University of Ireland, Dublin.
 
-[6] Boucher, J.P., Denuit, M. and Guillén, M. (2007). Risk Classification for Claim Counts: A Comparative Analysis of Various Zero-Inflated Mixed Poisson and Hurdle Models. North American Actuarial Journal, 11, 110-131.
+[6] Boucher, J.P., Denuit, M. and Guillén, M. (2007). \emph{Risk Classification for Claim Counts: A Comparative Analysis of Various Zero-Inflated Mixed Poisson and Hurdle Models.} North American Actuarial Journal, 11, 110-131.
 
-[7] Burnecki, K., Misiorek, A. and Weron, R. (2010). Loss Distributions. Unpublished M. Ed. Dissertation, Wroclaw University of Technology, 50-370 Wroclaw, Poland.
+[7] Burnecki, K., Misiorek, A. and Weron, R. (2010). \emph{Loss Distributions.} Unpublished M. Ed. Dissertation, Wroclaw University of Technology, 50-370 Wroclaw, Poland.
 
-[8] Dodge, Y. (2008). The concise encyclopedia of statistics: With 247 tables. New York, NY: Springer.
+[8] Dodge, Y. (2008). \emph{The concise encyclopedia of statistics:} With 247 tables. New York, NY: Springer.
 
-[9] Dutta K. and Perry J., (2006). A Tale of Tails: An Empirical Analysis of Loss Distribution Models for Estimating Operational Risk Capital. Federal Reserve Bank of Boston, MA, USA. Working Papers, No. 06-13.
+[9] Dutta K. and Perry J., (2006). \emph{A Tale of Tails: An Empirical Analysis of Loss Distribution Models for Estimating Operational Risk Capital.} Federal Reserve Bank of Boston, MA, USA. Working Papers, No. 06-13.
 
-[10] Frees, W. E. and Valdez, E. A. (2012). Hierarchical Insurance Claims Modeling. Journal of the American Statistical Association, 103, 484, 1457-1469.
+[10] Frees, W. E. and Valdez, E. A. (2012). \emph{Hierarchical Insurance Claims Modeling.} Journal of the American Statistical Association, 103, 484, 1457-1469.
 
-[11] Hakim, A. R., Fithriani, I. and Novita M. (2021). Properties of Burr distribution and its application to heavy tailed survival time data. Journal of Physics: Conference Series, 1, 1, 6-8.
+[11] Hakim, A. R., Fithriani, I. and Novita M. (2021). \emph{Properties of Burr distribution and its application to heavy tailed survival time data.} Journal of Physics: Conference Series, 1, 1, 6-8.
 
-[12] Hesse, C., Ofosu, J. B. and Nortey, E. N. (2017). Introduction to Nonparametric Statistical Methods. Akrong Publications Ltd, Accra.
+[12] Hesse, C., Ofosu, J. B. and Nortey, E. N. (2017). \emph{Introduction to Nonparametric Statistical Methods.} Akrong Publications Ltd, Accra.
 
-[13] Hogg R. V. and Klugman S. A. (1984). Loss Distributions. New York: John Wiley & Sons.
+[13] Hogg R. V. and Klugman S. A. (1984). \emph{Loss Distributions.} New York: John Wiley & Sons.
 
-[14] lgnatov, Z. G., Kaishev, V. K. and Krachunov, R. S. (2001). An improved finite time ruin probability formula and its Mathematica implementation. Journal of Insurance: Mathematics and Economics, 29, 3, 375-386.
+[14] lgnatov, Z. G., Kaishev, V. K. and Krachunov, R. S. (2001). \emph{An improved finite time ruin probability formula and its Mathematica implementation.} Journal of Insurance: Mathematics and Economics, 29, 3, 375-386.
 
-[15] Mazviona, B. W., & Chiduza, T. (2013). The Use of Statistical Distributions to Model Claims in Motor Insurance. International Journal of Business, Economics and Law, 3, 1, 44-57.
+[15] Mazviona, B. W., & Chiduza, T. (2013). \emph{The Use of Statistical Distributions to Model Claims in Motor Insurance.} International Journal of Business, Economics and Law, 3, 1, 44-57.
 
-[16] Merz, M. and Wüthrich, M. V. (2008). Modelling the Claims Development Result for Solvency Purposes. Casualty Actuarial Society E-Forum Fall 2008, 542-568.
+[16] Merz, M. and Wüthrich, M. V. (2008). \emph{Modelling the Claims Development Result for Solvency Purposes.} Casualty Actuarial Society E-Forum Fall 2008, 542-568.
 
-[17] Mihaela, D. and Jemna Dănuţ-Vasile (2015). Modeling the Frequency of Auto insurance claims by Means of Poisson and Negative Binomial models. Journal of Scientific Annals of Economics and Business of the "Alexandru Ioan Cuza" University of laşi, Romania, 62, 2, 151-168.
+[17] Mihaela, D. and Jemna Dănuţ-Vasile (2015). \emph{Modeling the Frequency of Auto insurance claims by Means of Poisson and Negative Binomial models.} Journal of Scientific Annals of Economics and Business of the "Alexandru Ioan Cuza" University of laşi, Romania, 62, 2, 151-168.
 
-[18] Nduwayezu, F. (2016). Finding appropriate Loss Distributions to insurance data: Case study of Kenya (2010-2014) Unpublished M. Ed. Dissertation, Strathmore University, Nairobi, Kenya.
+[18] Nduwayezu, F. (2016). \emph{Finding appropriate Loss Distributions to insurance data: Case study of Kenya (2010-2014).} Unpublished M. Ed. Dissertation, Strathmore University, Nairobi, Kenya.
 
-[19] Omari, C., Nyambura, S. and Mwangi, J. (2018). Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions. Journal of Mathematical Finance, 8, 137-160.
+[19] Omari, C., Nyambura, S. and Mwangi, J. (2018). \emph{Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions.} Journal of Mathematical Finance, 8, 137-160.
 
-[20] Packova, V., and Brebera, D. (2015). Loss Distribution in Insurance Risk Management. Proceedings of the International Conference on Economics and Statistics (ES 2015). Vienna, Austria, March 15-17, 2015, 17-22.
+[20] Packova, V., and Brebera, D. (2015). \emph{Loss Distribution in Insurance Risk Management.} Proceedings of the International Conference on Economics and Statistics (ES 2015). Vienna, Austria, March 15-17, 2015, 17-22.
 
-[21] Selvakumar, V., Satpathi, D. K., Praveen Kumar, P. T. V. and Haragopal, V. V. (2022). Modeling of Motor Insurance Extreme Claims through Appropriate Statistical Distributions. Unpublished M. Ed. Dissertation, Birla Institute of Technology and Science -- Pilani, Hyderabad, India.
+[21] Selvakumar, V., Satpathi, D. K., Praveen Kumar, P. T. V. and Haragopal, V. V. (2022). \emph{Modeling of Motor Insurance Extreme Claims through Appropriate Statistical Distributions.} Unpublished M. Ed. Dissertation, Birla Institute of Technology and Science -- Pilani, Hyderabad, India.
 
-[22] Vaughan, E. J. (1997). Risk Management. New York: John Wiley.
+[22] Vaughan, E. J. (1997). \emph{Risk Management.} New York: John Wiley.
 
 # Appendix: R Code For This Project
 
