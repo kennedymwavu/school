@@ -1,0 +1,255 @@
+
+\documentclass[12pt,a4paper]{report}
+\usepackage[pdftex]{graphicx} %for embedding images
+\usepackage{url, xcolor} %for proper url entries
+\usepackage[bookmarks, colorlinks=false, pdfborder={0 0 0}, pdftitle={<pdf title here>}, pdfauthor={<author's name here>}, pdfsubject={<subject here>}, pdfkeywords={<keywords here>}]{hyperref} %for creating links in the pdf version and other additional pdf attributes, no effect on the printed document
+%\usepackage[final]{pdfpages} %for embedding another pdf, remove if not required
+\usepackage[margin=1.2in]{geometry} %left=1.0in, top=2in, bottom=2in,
+\usepackage{textcomp} 
+
+\begin{document}
+\renewcommand\bibname{References} %Renames "Bibliography" to "References" on ref page
+
+%title 
+\begin{titlepage}
+\begin{center}
+\begin{flushright}
+{\color{blue}\bf ISSN: 2410-1397}
+\end{flushright}
+\vspace{2mm}
+\begin{center}
+
+\textup{\Large {\bf SAC 420 Project in Actuarial Science} \\[5mm] Report}\\[0.4in]
+
+% titlepage starts here
+\Large \textbf { TITLE: ?Here?}\\[0.5in]
+  
+\end{center}
+        \emph{Submitted in partial fulfillment of
+        the requirements for the award of the degree of}
+        \vspace{.2in}
+
+       {\bf \Large  Bachelor of Science in Mathematics}\\[0.5in]
+
+% Submitted by
+\normalsize Submitted by \\
+\begin{table}[h]
+\centering
+\begin{tabular}{lr}\hline\\
+Registration No & Names of Students \\ \\ \hline
+\\
+<Roll no here> & <Name here> \\
+<Roll no here> & <Name here> \\ 
+<Roll no here> & <Name here> \\ 
+<Roll no here> & <Name here> \\ \\ \hline 
+\end{tabular}
+\end{table}
+
+\vspace{.1in}
+%Under the guidance of\\
+%{\textbf{<Guide's name here>}}\\[0.2in]
+
+\vfill
+ \includegraphics[width=0.17\textwidth]{uon-logo}\\[4mm]
+\textsc{\Large School of Mathematics}\\[2mm]
+\normalsize
+\textsc{\large College of Biological and Physical Sciences}\\[2mm]
+\textsc{\Large University of Nairobi} 
+
+      
+       
+% Bottom of the page
+
+\vspace{0.5in}
+ {\sffamily\textcopyright  June  2019}
+
+\end{center}
+
+\end{titlepage}
+%%% titlepage ends here
+
+%%%%%approval page
+
+\newpage
+\thispagestyle{empty}
+
+\begin{center}
+\pagenumbering{roman}
+\newpage
+%\pagenumbering{roman}
+ %\includegraphics[width=0.18\textwidth]{nitc-logo}\\[0.1in]
+%\textsc{\Large School of Mathematics}\\[3mm]
+%\normalsize
+%\textsc{\large College of Biological and Physical Sciences}\\[3mm]
+%\textsc{\Large University of Nairobi} \\[10mm]
+ \chapter*{Declaration and Approval}
+\end{center}
+\normalsize This is to certify that this is a bonafide record of the project presented by the students whose names are given below  in partial fulfilment of the requirements of the degree of Bachelor of Science in  Mathematics.\\[1.0cm]
+
+\begin{table}[h]
+\centering
+\begin{tabular}{p{4cm} ll}
+ Registration No & Names of Students& Sign \\ \\ \hline
+\\
+<Registration No> & <Names of Students> & \rule{4cm}{1pt} \\[3mm] 
+<Registration No> & <Names of Students> & \rule{4cm}{1pt} \\[3mm] 
+<Registration No> & <Names of Students> & \rule{4cm}{1pt}\\[3mm] 
+<Registration No> & <Names of Students> & \rule{4cm}{1pt} \\[3mm] 
+\end{tabular}
+\end{table}
+\begin{flushright}
+Date: \today
+\end{flushright}
+
+In my capacity as  a supervisor of the candidates, I certify that this project has my approval for submission.
+\vspace{0.5in}
+
+
+\begin{center}
+\begin{tabular}{cc}
+ \rule{5cm}{1pt} &  \rule{5cm}{1pt}\\
+Signature & Date
+\end{tabular}
+\end{center}
+
+
+
+
+% Bottom of the page
+\begin{flushright}
+Dr James Bond\\
+(Project Supervisor)\\[1.5cm]
+
+\end{flushright}
+
+
+
+%%%%%%%%%%% summary/Abstract
+\newpage
+%\thispagestyle{plain} % empty
+\mbox{}
+\vspace{2in}
+\chapter*{Summary}  %Summary/Abstract
+<Abstract here>
+
+
+
+
+
+%\pagenumbering{roman} %numbering before main content starts
+\tableofcontents
+\listoffigures
+
+\newpage
+
+
+
+%%%%%%%% acknowledgement
+
+\cleardoublepage
+%\pagebreak
+\phantomsection
+\addcontentsline{toc}{chapter}{Acknowledgements}
+\chapter*{Acknowledgments}
+\vspace{1.0in}
+<Acknowledgements here>
+\\
+\\
+\\ 
+\\
+<Name here> \\ 
+\\
+First, I thank \ldots.\vspace{8mm}
+%Again to you all.\\
+\begin{flushright} Your Names\\
+\rule{\textwidth}{0.5pt}
+ Nairobi, 2019.\end{flushright}
+\newpage
+
+
+%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%
+\pagenumbering{arabic} %reset numbering to normal for the main content
+\chapter{Problem Definition}
+
+<Problem Definition here>
+
+
+
+\chapter{Introduction}
+
+\section{Background and Recent Research}
+\subsection{<any sub section here>}
+
+\subsection{Literature Survey}
+
+\subsubsection{<Sub-subsection title>}
+some text\cite{citation-1-name-here}, some more text
+
+\subsubsection{<Sub-subsection title>}
+even more text\footnote{<footnote here>}, and even more.
+
+\section{Motivation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Work Done}
+
+\section{<Section title>}
+
+\subsection{<Sub-section title>}
+
+\subsection{<Sub-section title>}
+some text\cite{citation-2-name-here}, some more text
+\subsection{<Sub-section title>}
+
+\subsection{<Sub-section title>}
+
+Refer figure \ref{fig:label}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.3]{glider} % e.g. insert ./image for image.png in the working directory, adjust scale as necessary
+\caption{<Caption here>}
+\label{fig:label} % insert suitable label, this is used to refer to a fig from within the text as shown above
+\end{figure}
+
+\subsection{<Sub-section title>}
+
+
+\section{<Section title>}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Future Work}
+
+<Future work here>
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%
+\chapter{Conclusion}
+
+<Conclusion here>
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% References
+\cleardoublepage
+%\pagebreak
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+\begin{thebibliography}{99}
+
+\bibitem{citation-1-name-here}<Name of the reference here>,\ \url{<url here>}
+
+\bibitem{citation-2-name-here}<Name of the reference here>,\ \url{<url here>}
+
+\end{thebibliography}
+
+
+\end{document}
